@@ -3,9 +3,7 @@ package spirograph;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 /**
@@ -28,94 +26,56 @@ public class Example extends Object
 	 */
 	public static void main(String[] arguments)
 	{
-		// // スクリーンのサイズを求め、スクリーン全体をキャプチャ（画像に）する。
+		// Get Construct Data from SoiroConstruct
+		SpiroConstruct aConstruct = new SpiroConstruct();
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Robot aRobot = null;
-		try
-		{
-			aRobot = new Robot();
-		}
-		catch (Exception anException)
-		{
-			System.err.println(anException);
-			throw new RuntimeException(anException.toString());
-		}
-		BufferedImage anImage = aRobot.createScreenCapture(new Rectangle(screenSize));
 
-		// ウィンドウのサイズを決め、モデルを作る。
-		Dimension aDimension = new Dimension(800, 600);
-		Model aModel = new Model();
+		Dimension aSpiroDimension = new Dimension(aConstruct.SPIRO_WINDOW_WIDTH, aConstruct.SPIRO_WINDOW_HEIGHT);
+		SpiroModel aSpiroModel = new SpiroModel();
 
-		// MVCの出現数から、最初のウィンドウの出現位置を計算する。
-		Integer howMany = 1; // MVCの出現回数
 		Point offsetPoint = new Point(80, 60); // ウィンドウを出現させる時のオフセット(ズレ：ずらし)
-		Integer width = aDimension.width + (offsetPoint.x * (howMany - 1));
-		Integer height = aDimension.height + (offsetPoint.y * (howMany - 1));
+		Integer width = aSpiroDimension.width;
+		Integer height = aSpiroDimension.height;
 		Integer x = (screenSize.width / 2) - (width / 2);
 		Integer y = (screenSize.height / 2) - (height / 2);
 		Point displayPoint = new Point(x, y);
 
-		// MVCを出現回数分だけ出現させる。
-		//for (Integer index = 0; index < howMany; index++)
-		//{
 			// 上記のモデルのビューとコンピュローラのペアを作り、ウィンドウに乗せる。
-		View aView = new View(aModel);
+		SpiroView aSpiroView = new SpiroView(aSpiroModel);
 		JFrame aWindow = new JFrame("SpiroGraph");
-		aWindow.getContentPane().add(aView);
+		aWindow.getContentPane().add(aSpiroView);
 
 	// 高さはタイトルバーの高さを考慮してウィンドウの大きさを決定する。
 		aWindow.addNotify();
 		Integer titleBarHeight = aWindow.getInsets().top;
-		width = aDimension.width;
-		height = aDimension.height + titleBarHeight;
+		width = aSpiroDimension.width;
+		height = aSpiroDimension.height + titleBarHeight;
 		Dimension windowSize = new Dimension(width, height);
 		aWindow.setSize(windowSize.width, windowSize.height);
 		// ウィンドウに各種の設定を行って出現させる。
 		aWindow.setMinimumSize(new Dimension(400, 300 + titleBarHeight));
-		aWindow.setResizable(true);
+		aWindow.setResizable(false);
 		aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		x = displayPoint.x; //+ (index * offsetPoint.x);
-		y = displayPoint.y;  //+ (index * offsetPoint.y);
+		x = displayPoint.x;
+		y = displayPoint.y;
 		aWindow.setLocation(x, y);
 		aWindow.setVisible(true);
 		aWindow.toFront();
-		//}
+
 
 		// メニュー用 テスト
-		MenuModel aMenuModel = new MenuModel();
+		Dimension aMenuDimension = new Dimension(aConstruct.MENU_WINDOW_WIDTH,aConstruct.MENU_WINDOW_HEIGHT);
+		MenuModel aMenuModel = new MenuModel(aSpiroModel);
 		MenuView aMenuView = new MenuView(aMenuModel);
 		JFrame aMenuWindow = new JFrame("Menu");
 		aMenuWindow.getContentPane().add(aMenuView);
-		aMenuWindow.setSize(100,200);
-		aMenuWindow.setResizable(true);
+		aMenuWindow.setSize(aMenuDimension.width,aMenuDimension.height);
+		aMenuWindow.setResizable(false);
 		aMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		aMenuWindow.setBounds(0,0,aMenuDimension.width,aMenuDimension.height);
 		aMenuWindow.setVisible(true);
 		aMenuWindow.toFront();
 
-
-	// 	// モデルのピクチャを、奇数の時はnullに、偶数の時はスクリーン全体のキャプチャ画像にする。
-	// 	for (Integer index = 0; index < (howMany * 4 - 1); index++)
-	// 	{
-	// 		try
-	// 		{
-	// 			Thread.sleep(1000);
-	// 		}
-	// 		catch (InterruptedException anException)
-	// 		{
-	// 			System.err.println(anException);
-	// 			throw new RuntimeException(anException.toString());
-	// 		}
-	// 		if (index % 2 == 0)
-	// 		{
-	// 			aModel.picture(anImage);
-	// 		}
-	// 		else
-	// 		{
-	// 			aModel.picture(null);
-	// 		}
-	// 		aModel.changed();
-	// 	}
-	//
-	// 	return;
 	}
 }
