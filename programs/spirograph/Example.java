@@ -81,6 +81,18 @@ public class Example extends Object
 		aWindow.toFront();
 		//}
 
+		// メニュー用 テスト
+		MenuModel aMenuModel = new MenuModel();
+		MenuView aMenuView = new MenuView(aMenuModel);
+		JFrame aMenuWindow = new JFrame("Menu");
+		aMenuWindow.getContentPane().add(aMenuView);
+		aMenuWindow.setSize(100,200);
+		aMenuWindow.setResizable(true);
+		aMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		aMenuWindow.setVisible(true);
+		aMenuWindow.toFront();
+
+
 	// 	// モデルのピクチャを、奇数の時はnullに、偶数の時はスクリーン全体のキャプチャ画像にする。
 	// 	for (Integer index = 0; index < (howMany * 4 - 1); index++)
 	// 	{
