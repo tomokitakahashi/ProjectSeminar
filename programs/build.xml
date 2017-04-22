@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="MVC" default="all" basedir=".">
+<project name="SpiroGraph" default="all" basedir=".">
 
 	<property name="package" value="spirograph" />
 	<property name="packagenames" value="${package}" />

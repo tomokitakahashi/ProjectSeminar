@@ -1,4 +1,4 @@
-package mvc;
+package spirograph;
 
 import java.awt.Point;
 import java.awt.Graphics;
@@ -23,7 +23,7 @@ public class View extends JPanel
 	 * 良好（2010年7月25日）
 	 */
 	protected Controller controller;
-	
+
 	/**
 	 * スクロール量としてPointのインスタンスを束縛する。
 	 * 良好（2010年7月25日）
@@ -68,7 +68,7 @@ public class View extends JPanel
 		offset = new Point(0, 0);
 		return;
 	}
-	
+
 	/**
 	 * 指定されたグラフィクスに背景色（明灰色）でビュー全体を塗り、その後にモデルの内容物を描画する。
 	 * それはスクロール量（offset）を考慮してモデル画像（picture）をペイン（パネル）内に描画することである。
@@ -100,7 +100,7 @@ public class View extends JPanel
 		int y = 0 - offset.y;
 		return (new Point(x, y));
 	}
-	
+
 	/**
 	 * スクロール量を指定された座標分だけ相対スクロールする。
 	 * @param aPoint X軸とY軸のスクロール量を表す座標
@@ -144,7 +144,7 @@ public class View extends JPanel
 		aBuffer.append("]");
 		return aBuffer.toString();
 	}
-	
+
 	/**
 	 * ビューの全領域を再描画する。
 	 * 良好（2010年7月25日）

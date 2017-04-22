@@ -1,4 +1,4 @@
-package mvc;
+package spirograph;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -18,19 +18,19 @@ public class Controller extends MouseInputAdapter implements MouseWheelListener
 	 * 良好（2010年7月25日）
 	 */
 	protected Model model;
-	
+
 	/**
 	 * 表示を司るViewのインスタンスを束縛する。
 	 * 良好（2010年7月25日）
 	 */
 	protected View view;
-	
+
 	/**
 	 * 以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
 	 * 良好（2010年7月25日）
 	 */
 	private Point previous;
-	
+
 	/**
 	 * 現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
 	 * 良好（2010年7月25日）
@@ -188,7 +188,7 @@ public class Controller extends MouseInputAdapter implements MouseWheelListener
 		view.addMouseWheelListener(this);
 		return;
 	}
-	
+
 	/**
 	 * このインスタンスを文字列にして応答する。
 	 * @return 自分自身を表す文字列

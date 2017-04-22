@@ -1,4 +1,4 @@
-package mvc;
+package spirograph;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -43,7 +43,7 @@ public class Model extends Object
 		dependents.add(aView);
 		return;
 	}
-	
+
 	/**
 	 * モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
 	 * 良好（2010年7月25日）
@@ -59,7 +59,7 @@ public class Model extends Object
 		}
 		return;
 	}
-	
+
 	/**
 	 * 初期化する。
 	 * 良好（2010年7月25日）
@@ -70,7 +70,7 @@ public class Model extends Object
 		picture = null;
 		return;
 	}
-		
+
 	/**
 	 * 何もしない。
 	 * 良好（2010年7月25日）
@@ -79,7 +79,7 @@ public class Model extends Object
 	{
 		return;
 	}
-	
+
 	/**
 	 * 画像（モデルの内容物）を応答する。
 	 * @return このモデルのpictureフィールドに格納されている画像
@@ -90,7 +90,7 @@ public class Model extends Object
 	{
 		return picture;
 	}
-		
+
 	/**
 	 * 画像（モデルの内容物）を設定する。
 	 * @param anImage このモデルのpictureフィールドに格納する画像
@@ -102,7 +102,7 @@ public class Model extends Object
 		picture = anImage;
 		return;
 	}
-	
+
 	/**
 	 * このインスタンスを文字列にして応答する。
 	 * @return 自分自身を表す文字列
