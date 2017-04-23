@@ -26,12 +26,9 @@ public class Example extends Object
 	 */
 	public static void main(String[] arguments)
 	{
-		// Get Construct Data from SoiroConstruct
-		SpiroConstruct aConstruct = new SpiroConstruct();
-
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		Dimension aSpiroDimension = new Dimension(aConstruct.SPIRO_WINDOW_WIDTH, aConstruct.SPIRO_WINDOW_HEIGHT);
+		Dimension aSpiroDimension = new Dimension(SpiroConstruct.SPIRO_WINDOW.width, SpiroConstruct.SPIRO_WINDOW.height);
 		SpiroModel aSpiroModel = new SpiroModel();
 
 		Point offsetPoint = new Point(80, 60); // ウィンドウを出現させる時のオフセット(ズレ：ずらし)
@@ -63,13 +60,15 @@ public class Example extends Object
 		aWindow.setVisible(true);
 		aWindow.toFront();
 
-
 		// メニュー用 テスト
-		Dimension aMenuDimension = new Dimension(aConstruct.MENU_WINDOW_WIDTH,aConstruct.MENU_WINDOW_HEIGHT);
+
+		Dimension aMenuDimension = new Dimension(SpiroConstruct.MENU_WINDOW.width,SpiroConstruct.MENU_WINDOW.height);
+		MenuController aMenuContrroller = new MenuController();
 		MenuModel aMenuModel = new MenuModel(aSpiroModel);
-		MenuView aMenuView = new MenuView(aMenuModel);
+		MenuView aMenuView = new MenuView(aMenuModel,aMenuContrroller);
 		JFrame aMenuWindow = new JFrame("Menu");
 		aMenuWindow.getContentPane().add(aMenuView);
+		aMenuWindow.addNotify();
 		aMenuWindow.setSize(aMenuDimension.width,aMenuDimension.height);
 		aMenuWindow.setResizable(false);
 		aMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

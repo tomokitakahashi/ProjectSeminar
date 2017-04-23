@@ -5,5 +5,7 @@ public class SpurModel extends GearModel
   public SpurModel()
   {
     super();
+    return;
   }
+  
 }
