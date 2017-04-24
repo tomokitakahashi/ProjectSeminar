@@ -22,7 +22,6 @@ public class MenuController extends Controller implements ActionListener
 
   public void actionPerformed(ActionEvent aEvent)
   {
-
     String aCommand = aEvent.getActionCommand();
     if(aCommand.equals("Start"))
     {
@@ -46,6 +45,7 @@ public class MenuController extends Controller implements ActionListener
     }
   }
 
+  // スタートボタンを押した時のアクションゲッター
   private void tappedStartButton()
   {
     System.out.println("tappedStartButton");
@@ -57,6 +57,7 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  // ストップボタンを押した時のアクションゲッター
   private void tappedStopButton()
   {
     System.out.println("tappedStopButton");
@@ -65,6 +66,7 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  // セーブボタンを押した時のアクションゲッター
   private void tappedSaveButton()
   {
     System.out.println("tappedSaveButton");
@@ -73,6 +75,7 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  // クリアボタンを押した時のアクションゲッター
   private void tappedLoadButton()
   {
     System.out.println("tappedLoadButton");
@@ -81,6 +84,7 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  // クリアボタンを押した時のアクションゲッター
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
