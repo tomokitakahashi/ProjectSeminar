@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 
 public class MenuView extends View
 {
+  // 描写するボタンのタイトルリスト
   private ArrayList<String> buttonTitleList;
 
   public MenuView(MenuModel aMenuModel)
@@ -42,10 +43,6 @@ public class MenuView extends View
       }
     };
     return;
-  }
-
-  private void createButtonTitles() {
-
   }
 
   @Override

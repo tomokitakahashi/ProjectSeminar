@@ -12,6 +12,7 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  // MenuControllerではMouseListenerを使わないためOverrideしてviewのsetのみ
   @Override
   public void setView(View aView)
   {
