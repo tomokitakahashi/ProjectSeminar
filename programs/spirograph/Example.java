@@ -63,9 +63,9 @@ public class Example extends Object
 		// メニュー用 テスト
 
 		Dimension aMenuDimension = new Dimension(SpiroConstruct.MENU_WINDOW.width,SpiroConstruct.MENU_WINDOW.height);
-		MenuController aMenuContrroller = new MenuController();
-		MenuModel aMenuModel = new MenuModel(aSpiroModel);
-		MenuView aMenuView = new MenuView(aMenuModel,aMenuContrroller);
+		MenuController aMenuController = new MenuController();
+		MenuModel aMenuModel = new MenuModel();
+		MenuView aMenuView = new MenuView(aMenuModel,aMenuController);
 		JFrame aMenuWindow = new JFrame("Menu");
 		aMenuWindow.getContentPane().add(aMenuView);
 		aMenuWindow.addNotify();

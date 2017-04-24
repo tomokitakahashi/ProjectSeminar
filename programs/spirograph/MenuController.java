@@ -12,6 +12,13 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  @Override
+  public void setView(View aView)
+  {
+    view = aView;
+    return;
+  }
+
   public void actionPerformed(ActionEvent aEvent)
   {
 
@@ -41,30 +48,43 @@ public class MenuController extends Controller implements ActionListener
   private void tappedStartButton()
   {
     System.out.println("tappedStartButton");
+    //MenuModel aMenuModel = (MenuModel)model;
+    // if(aMenuModel.isStop())
+    // {
+    //   aMenuModel.setStop(false);
+    // }
     return;
   }
 
   private void tappedStopButton()
   {
     System.out.println("tappedStopButton");
+    //MenuModel aMenuModel = (MenuModel)model;
+    //aMenuModel.setStop(true);
     return;
   }
 
   private void tappedSaveButton()
   {
     System.out.println("tappedSaveButton");
+    // MenuModel aMenuModel = (MenuModel)model;
+    // aMenuModel.save();
     return;
   }
 
   private void tappedLoadButton()
   {
     System.out.println("tappedLoadButton");
+    // MenuModel aMenuModel = (MenuModel)model;
+    // aMenuModel.load();
     return;
   }
 
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
+    // MenuModel aMenuModel = (MenuModel)model;
+    // aMenuModel.clear();
     return;
   }
 

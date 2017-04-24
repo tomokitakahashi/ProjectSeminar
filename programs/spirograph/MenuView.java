@@ -2,6 +2,7 @@ package spirograph;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 public class MenuView extends View
 {
   private ArrayList<String> buttonTitleList;
+
   public MenuView(MenuModel aMenuModel)
   {
     super(aMenuModel);
@@ -28,6 +30,8 @@ public class MenuView extends View
   public MenuView(MenuModel aMenuModel, MenuController aMenuController)
   {
     super(aMenuModel,aMenuController);
+    model = aMenuModel;
+    controller = aMenuController;
     buttonTitleList = new ArrayList<String>(){
       {
         add("Start");
@@ -47,8 +51,10 @@ public class MenuView extends View
   @Override
   public void paintComponent(Graphics aGraphics)
   {
-    this.setLayout(null);
+    JPanel panel = new JPanel();
+    panel.setLayout(null);
     Dimension aMenuViewSize = this.getSize();
+    panel.setBounds(0,0,aMenuViewSize.width,aMenuViewSize.height);
     MenuController menuController = (MenuController)controller;
     Integer bottonCount = 5;
     for (Integer index = 0;index < buttonTitleList.size() ;index++ ) {
@@ -63,8 +69,10 @@ public class MenuView extends View
 
       aButton.addActionListener(menuController);
       aButton.setActionCommand(aTitle);
-      this.add(aButton);
+      panel.add(aButton);
+      this.add(panel);
     }
     return;
   }
+
 }

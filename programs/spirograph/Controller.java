@@ -188,7 +188,7 @@ public class Controller extends MouseInputAdapter implements MouseWheelListener
 		view.addMouseWheelListener(this);
 		return;
 	}
-
+	
 	/**
 	 * このインスタンスを文字列にして応答する。
 	 * @return 自分自身を表す文字列

@@ -5,13 +5,11 @@ import java.util.ArrayList;
 
 public class MenuModel extends Model
 {
-  public SpiroModel spiroModel;
 
   // MenuModel のコンストラクタ
-  public MenuModel(SpiroModel aSpiroModel)
+  public MenuModel()
   {
     super();
-    spiroModel = aSpiroModel;
     return;
   }
 
@@ -29,7 +27,5 @@ public class MenuModel extends Model
   {
     return;
   }
-
-
 
 }

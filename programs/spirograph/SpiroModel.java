@@ -11,9 +11,24 @@ public class SpiroModel extends Model
   // スピログラフのピニオンモデル
   public PinionModel pinionModel;
 
+  private Boolean isStop;
+
   public SpiroModel()
   {
     super();
     return;
   }
+
+  public void setStop()
+  {
+    isStop = true;
+    return;
+  }
+
+  public void setStart()
+  {
+    isStop = false;
+    return;
+  }
+  
 }
