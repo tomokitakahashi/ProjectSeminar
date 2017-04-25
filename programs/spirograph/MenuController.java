@@ -20,6 +20,7 @@ public class MenuController extends Controller implements ActionListener
     return;
   }
 
+  // ボタンのアクションを取得するためのメソッド
   public void actionPerformed(ActionEvent aEvent)
   {
     String aCommand = aEvent.getActionCommand();

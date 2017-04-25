@@ -12,20 +12,4 @@ public class MenuModel extends Model
     super();
     return;
   }
-
-  public void save()
-  {
-    return;
-  }
-
-  public void load()
-  {
-    return;
-  }
-
-  public void clear()
-  {
-    return;
-  }
-
 }

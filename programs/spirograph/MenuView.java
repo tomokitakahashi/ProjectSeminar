@@ -13,6 +13,7 @@ public class MenuView extends View
   // 描写するボタンのタイトルリスト
   private ArrayList<String> buttonTitleList;
 
+  // MenuViewのコンストラクタ
   public MenuView(MenuModel aMenuModel)
   {
     super(aMenuModel);
@@ -28,6 +29,7 @@ public class MenuView extends View
     return;
   }
 
+  // MenuViewのコンストラクタ
   public MenuView(MenuModel aMenuModel, MenuController aMenuController)
   {
     super(aMenuModel,aMenuController);
@@ -44,7 +46,9 @@ public class MenuView extends View
     };
     return;
   }
-  
+
+
+  // Componentを表示させるためのメソッドggjyouiji
   @Override
   public void paintComponent(Graphics aGraphics)
   {
