@@ -44,7 +44,7 @@ public class MenuView extends View
     };
     return;
   }
-
+  
   @Override
   public void paintComponent(Graphics aGraphics)
   {
@@ -63,7 +63,6 @@ public class MenuView extends View
                         SpiroConstruct.MENU_BUTTON_MARGIN + index*(height+SpiroConstruct.MENU_BUTTON_MARGIN),
                         width,
                         height);
-
       aButton.addActionListener(menuController);
       aButton.setActionCommand(aTitle);
       panel.add(aButton);
