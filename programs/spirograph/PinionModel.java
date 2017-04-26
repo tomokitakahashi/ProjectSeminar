@@ -25,7 +25,7 @@ public class PinionModel extends GearModel
   // 縦線の座標リストを応答する
   public ArrayList<Point2D.Double> verticalLineCoodinate()
   {
-    return lineCoodinate;
+    return verticalLineCoodinate;
   }
 
   // 縦線の座標リストをセットする
