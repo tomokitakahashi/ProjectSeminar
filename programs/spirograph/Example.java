@@ -29,6 +29,7 @@ public class Example extends Object
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		Dimension aSpiroDimension = new Dimension(SpiroConstruct.SPIRO_WINDOW.width, SpiroConstruct.SPIRO_WINDOW.height);
+		SpiroController aSpiroController = new SpiroController();
 		SpiroModel aSpiroModel = new SpiroModel();
 
 		Point offsetPoint = new Point(80, 60); // ウィンドウを出現させる時のオフセット(ズレ：ずらし)
@@ -39,7 +40,7 @@ public class Example extends Object
 		Point displayPoint = new Point(x, y);
 
 			// 上記のモデルのビューとコンピュローラのペアを作り、ウィンドウに乗せる。
-		SpiroView aSpiroView = new SpiroView(aSpiroModel);
+		SpiroView aSpiroView = new SpiroView(aSpiroModel,aSpiroController);
 		JFrame aWindow = new JFrame("SpiroGraph");
 		aWindow.getContentPane().add(aSpiroView);
 

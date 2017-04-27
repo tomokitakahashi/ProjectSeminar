@@ -16,9 +16,9 @@ public class PinionModel extends GearModel
   private Point2D.Double pencilCoodinate;
 
   // コンストラクタ
-  public PinionModel()
+  public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
-    super();
+    super(aCenterCoodinate,aRadius);
     return;
   }
 
