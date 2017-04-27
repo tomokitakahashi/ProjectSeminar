@@ -9,6 +9,7 @@ public class SpiroConstruct {
   public static final Dimension MENU_WINDOW = new Dimension(200,300);
   public static final Point SPIRO_WINDOW_CENTER = new Point(375,300);
   public static final Integer MENU_BUTTON_MARGIN = 10;
+  public static final Integer TAP_AREA_RADIUS = 6;
 
 
   // メニューに表示するボタン群を定値として持っておく

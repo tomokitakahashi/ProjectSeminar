@@ -13,6 +13,11 @@ public class SpiroView extends View
     super(aSpiroModel);
     return;
   }
+  public SpiroView(SpiroModel aSpiroModel,SpiroController aSpiroController)
+  {
+    super(aSpiroModel,aSpiroController);
+    return;
+  }
 
   @Override
   public void paintComponent(Graphics aGraphics)
@@ -32,7 +37,6 @@ public class SpiroView extends View
 
   private void drawPinionGear(Graphics aGraphics)
   {
-
     return;
   }
 
@@ -51,7 +55,7 @@ public class SpiroView extends View
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
       Point2D.Double areaCoodinate = tapAreaCoodinateList.get(index);
-      aGraphics.drawOval((int)areaCoodinate.x,(int)areaCoodinate.y,5,5);
+      aGraphics.drawOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS,SpiroConstruct.TAP_AREA_RADIUS);
     }
     return;
   }

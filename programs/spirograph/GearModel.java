@@ -23,13 +23,13 @@ public class GearModel extends Object
   private void initializeTapArea()
   {
     tapAreaCoodinateList = new ArrayList<Point2D.Double>();
-    Point2D.Double topAreaCoodinate = new Point2D.Double(centerCoodinate.x,centerCoodinate.y - radius);
+    Point2D.Double topAreaCoodinate = new Point2D.Double(centerCoodinate.x,centerCoodinate.y - radius - SpiroConstruct.TAP_AREA_RADIUS/2);
     tapAreaCoodinateList.add(topAreaCoodinate);
-    Point2D.Double rightAreaCoodinate = new Point2D.Double(centerCoodinate.x + radius,centerCoodinate.y);
+    Point2D.Double rightAreaCoodinate = new Point2D.Double(centerCoodinate.x + radius - SpiroConstruct.TAP_AREA_RADIUS/2,centerCoodinate.y);
     tapAreaCoodinateList.add(rightAreaCoodinate);
-    Point2D.Double bottomAreaCoodinate = new Point2D.Double(centerCoodinate.x,centerCoodinate.y + radius);
+    Point2D.Double bottomAreaCoodinate = new Point2D.Double(centerCoodinate.x,centerCoodinate.y + radius - SpiroConstruct.TAP_AREA_RADIUS/2);
     tapAreaCoodinateList.add(bottomAreaCoodinate);
-    Point2D.Double leftAreaCoodinate = new Point2D.Double(centerCoodinate.x - radius,centerCoodinate.y);
+    Point2D.Double leftAreaCoodinate = new Point2D.Double(centerCoodinate.x - radius - SpiroConstruct.TAP_AREA_RADIUS/2,centerCoodinate.y);
     tapAreaCoodinateList.add(leftAreaCoodinate);
   }
   public ArrayList<Point2D.Double> tapAreaCoodinateList()
