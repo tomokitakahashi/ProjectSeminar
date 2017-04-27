@@ -14,6 +14,7 @@ public class SpiroController extends Controller
   public void mouseDragged(MouseEvent aMouseEvent)
   {
     this.getSpiroModel().draggedSpur(aMouseEvent.getPoint());
+    this.getSpiroView().update();
     return;
   }
 
@@ -34,6 +35,12 @@ public class SpiroController extends Controller
   {
     SpiroModel spiroModel = (SpiroModel)model;
     return spiroModel;
+  }
+
+  private SpiroView getSpiroView()
+  {
+    SpiroView spiroView = (SpiroView)view;
+    return spiroView;
   }
 
 }

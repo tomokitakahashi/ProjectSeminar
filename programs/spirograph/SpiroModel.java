@@ -36,7 +36,7 @@ public class SpiroModel extends Model
       Point2D.Double coodinate = spurModel.tapAreaCoodinateList().get(index);
       double x = coodinate.x - aPoint.x;
       double y = coodinate.y - aPoint.y;
-      if(x*x + y*y <= SpiroConstruct.TAP_AREA_RADIUS*SpiroConstruct.TAP_AREA_RADIUS)
+      if(x*x + y*y <= SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2)
       {
         moveSpurEnabled = true;
       }
@@ -48,7 +48,7 @@ public class SpiroModel extends Model
   {
     if(moveSpurEnabled)
     {
-      System.out.println(aPoint);
+      spurModel.updateByEvent(aPoint);
     }
     return;
   }

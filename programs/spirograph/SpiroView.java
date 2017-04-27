@@ -55,7 +55,7 @@ public class SpiroView extends View
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
       Point2D.Double areaCoodinate = tapAreaCoodinateList.get(index);
-      aGraphics.drawOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS,SpiroConstruct.TAP_AREA_RADIUS);
+      aGraphics.drawOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;
   }
