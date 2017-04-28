@@ -32,7 +32,9 @@ public class GearModel extends Object
     tapAreaCoodinateList.add(bottomAreaCoodinate);
     Point2D.Double leftAreaCoodinate = new Point2D.Double(centerCoodinate.x - radius - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
     tapAreaCoodinateList.add(leftAreaCoodinate);
+    return;
   }
+
   public ArrayList<Point2D.Double> tapAreaCoodinateList()
   {
     return tapAreaCoodinateList;

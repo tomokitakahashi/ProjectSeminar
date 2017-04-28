@@ -62,9 +62,9 @@ public class Example extends Object
 		aWindow.toFront();
 
 		// メニュー用 テスト
-
+		Thread animationThread = new Thread(aSpiroView);
 		Dimension aMenuDimension = new Dimension(SpiroConstruct.MENU_WINDOW.width,SpiroConstruct.MENU_WINDOW.height);
-		MenuController aMenuController = new MenuController();
+		MenuController aMenuController = new MenuController(animationThread);
 		MenuModel aMenuModel = new MenuModel();
 		MenuView aMenuView = new MenuView(aMenuModel,aMenuController);
 		JFrame aMenuWindow = new JFrame("Menu");

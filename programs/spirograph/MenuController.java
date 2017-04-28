@@ -6,9 +6,12 @@ import javax.swing.SwingUtilities;
 
 public class MenuController extends Controller implements ActionListener
 {
-  public MenuController()
+  public Thread animationThread;
+
+  public MenuController(Thread aThread)
   {
     super();
+    animationThread = aThread;
     return;
   }
 
@@ -50,6 +53,7 @@ public class MenuController extends Controller implements ActionListener
   private void tappedStartButton()
   {
     System.out.println("tappedStartButton");
+    animationThread.start();
     //MenuModel aMenuModel = (MenuModel)model;
     // if(aMenuModel.isStop())
     // {
