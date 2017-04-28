@@ -6,6 +6,7 @@ import java.awt.Point;
 
 public class SpiroModel extends Model
 {
+  public Boolean isStop;
   // スピログラフで描かれた軌跡モデル
   public SpiroLocusModel spiroLocusModel;
 
@@ -17,15 +18,18 @@ public class SpiroModel extends Model
 
   private Boolean moveSpurEnabled;
 
-  private Boolean movePinionEnabled = false;
+  private Boolean movePinionEnabled;
 
   public SpiroModel()
   {
     super();
-    Point2D.Double aCenterCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
     double aRadius = 250.0;
-    spurModel = new SpurModel(aCenterCoodinate,aRadius);
+    Point2D.Double spurCenterCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
+    Point2D.Double pinionCenterCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x + 2 * aRadius / 3,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
+    spurModel = new SpurModel(spurCenterCoodinate,aRadius);
+    pinionModel = new PinionModel(pinionCenterCoodinate,aRadius/3);
     moveSpurEnabled = false;
+    isStop = true;
     return;
   }
 
@@ -46,9 +50,13 @@ public class SpiroModel extends Model
 
   public void draggedSpur(Point aPoint)
   {
+    if(!isStop) { return; }
+
     if(moveSpurEnabled)
     {
+      //System.out.println(pinionRatio);
       spurModel.updateByEvent(aPoint);
+      pinionModel.updateByEvent(aPoint);
     }
     return;
   }
