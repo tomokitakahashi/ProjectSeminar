@@ -1,6 +1,8 @@
 package spirograph;
 
+
 import java.awt.Point;
+import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
@@ -24,17 +26,22 @@ public class GearModel extends Object
   private void initializeTapArea()
   {
     tapAreaCoodinateList = new ArrayList<Point2D.Double>();
-    Point2D.Double topAreaCoodinate = new Point2D.Double(centerCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - radius - SpiroConstruct.TAP_AREA_RADIUS);
+    Point2D.Double topAreaCoodinate = new Point2D.Double(centerCoodinate.x,centerCoodinate.y - radius);
     tapAreaCoodinateList.add(topAreaCoodinate);
-    Point2D.Double rightAreaCoodinate = new Point2D.Double(centerCoodinate.x + radius - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
+    Point2D.Double rightAreaCoodinate = new Point2D.Double(centerCoodinate.x + radius,centerCoodinate.y);
     tapAreaCoodinateList.add(rightAreaCoodinate);
-    Point2D.Double bottomAreaCoodinate = new Point2D.Double(centerCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y + radius - SpiroConstruct.TAP_AREA_RADIUS);
+    Point2D.Double bottomAreaCoodinate = new Point2D.Double(centerCoodinate.x,centerCoodinate.y + radius);
     tapAreaCoodinateList.add(bottomAreaCoodinate);
-    Point2D.Double leftAreaCoodinate = new Point2D.Double(centerCoodinate.x - radius - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
+    Point2D.Double leftAreaCoodinate = new Point2D.Double(centerCoodinate.x - radius,centerCoodinate.y);
     tapAreaCoodinateList.add(leftAreaCoodinate);
     return;
   }
-
+  public Point2D.Double drawTapAreaCoodinate(Integer index)
+  {
+    Point2D.Double tapAreaCoodinate = tapAreaCoodinateList.get(index);
+    Point2D.Double drawCoodinate = new Point2D.Double(tapAreaCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,tapAreaCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
+    return drawCoodinate;
+  }
   public ArrayList<Point2D.Double> tapAreaCoodinateList()
   {
     return tapAreaCoodinateList;
@@ -91,6 +98,30 @@ public class GearModel extends Object
       coodinate.x = Math.cos(radian) * radius + centerCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS;
       coodinate.y = Math.sin(radian) * radius + centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS;
     }
+  }
+
+  public Point2D.Double drawGearCoodinate()
+  {
+    Point2D.Double coodinate = new Point2D.Double(centerCoodinate.x - radius, centerCoodinate.y - radius);
+    return coodinate;
+  }
+
+  public Dimension drawGearDimension()
+  {
+    Dimension dimension = new Dimension((int)radius * 2,(int)radius * 2);
+    return dimension;
+  }
+
+  public Point2D.Double drawGearCenterCoodinate()
+  {
+    Point2D.Double coodinate = new Point2D.Double(centerCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
+    return coodinate;
+  }
+
+  public Dimension drawGearCenterDimension()
+  {
+    Dimension dimension = new Dimension(SpiroConstruct.TAP_AREA_RADIUS * 2,SpiroConstruct.TAP_AREA_RADIUS * 2);
+    return dimension;
   }
 
   public String toString()

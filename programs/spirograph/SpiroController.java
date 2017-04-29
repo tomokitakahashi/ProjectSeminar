@@ -2,8 +2,10 @@ package spirograph;
 
 import java.awt.event.MouseEvent;
 
-public class SpiroController extends Controller
+public class SpiroController extends Controller implements MenuActionListener
 {
+  private Thread animationThread;
+
   public SpiroController()
   {
     super();
@@ -31,6 +33,27 @@ public class SpiroController extends Controller
     this.getSpiroModel().resetEnabledValue();
     return;
   }
+
+  // メニューからスタートが押された際にデリゲートを通じて通知される
+  public void animationStart()
+  {
+    this.getSpiroModel().setStop(false);
+    this.getSpiroView().restart();
+    return;
+  }
+  // メニューからストップが押された際にデリゲートを通じて通知される
+  public void animationStop()
+  {
+    this.getSpiroModel().setStop(true);
+    return;
+  }
+
+  public void setAnimationThread(Thread aThread)
+  {
+    animationThread = aThread;
+    return;
+  }
+
   private SpiroModel getSpiroModel()
   {
     SpiroModel spiroModel = (SpiroModel)model;

@@ -60,11 +60,14 @@ public class Example extends Object
 		aWindow.setLocation(x, y);
 		aWindow.setVisible(true);
 		aWindow.toFront();
+		aSpiroController.setAnimationThread(new Thread(aSpiroView));
+		Thread aThread = new Thread(aSpiroView);
+		aThread.start();
 
 		// メニュー用 テスト
-		Thread animationThread = new Thread(aSpiroView);
 		Dimension aMenuDimension = new Dimension(SpiroConstruct.MENU_WINDOW.width,SpiroConstruct.MENU_WINDOW.height);
-		MenuController aMenuController = new MenuController(animationThread);
+		MenuController aMenuController = new MenuController();
+		aMenuController.setMenuActionListener(aSpiroController);
 		MenuModel aMenuModel = new MenuModel();
 		MenuView aMenuView = new MenuView(aMenuModel,aMenuController);
 		JFrame aMenuWindow = new JFrame("Menu");

@@ -6,12 +6,11 @@ import javax.swing.SwingUtilities;
 
 public class MenuController extends Controller implements ActionListener
 {
-  public Thread animationThread;
+  private MenuActionListener menuActionListener = null;
 
-  public MenuController(Thread aThread)
+  public MenuController()
   {
     super();
-    animationThread = aThread;
     return;
   }
 
@@ -20,6 +19,12 @@ public class MenuController extends Controller implements ActionListener
   public void setView(View aView)
   {
     view = aView;
+    return;
+  }
+
+  public void setMenuActionListener(MenuActionListener aListener)
+  {
+    menuActionListener = aListener;
     return;
   }
 
@@ -53,12 +58,8 @@ public class MenuController extends Controller implements ActionListener
   private void tappedStartButton()
   {
     System.out.println("tappedStartButton");
-    animationThread.start();
-    //MenuModel aMenuModel = (MenuModel)model;
-    // if(aMenuModel.isStop())
-    // {
-    //   aMenuModel.setStop(false);
-    // }
+    if(menuActionListener == null ){ return; }
+    menuActionListener.animationStart();
     return;
   }
 
@@ -66,8 +67,8 @@ public class MenuController extends Controller implements ActionListener
   private void tappedStopButton()
   {
     System.out.println("tappedStopButton");
-    //MenuModel aMenuModel = (MenuModel)model;
-    //aMenuModel.setStop(true);
+    if(menuActionListener == null ){ return; }
+    menuActionListener.animationStop();
     return;
   }
 
