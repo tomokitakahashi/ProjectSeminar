@@ -12,4 +12,10 @@ public class SpurModel extends GearModel
     return;
   }
 
+  @Override
+  public void updateCenterByPick(Point aPoint)
+  {
+
+  }
+
 }

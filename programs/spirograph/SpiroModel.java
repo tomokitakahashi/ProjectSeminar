@@ -32,6 +32,17 @@ public class SpiroModel extends Model
     return;
   }
 
+  public void dataRestart()
+  {
+    pinionModel.dataReset();
+    return;
+  }
+
+  public void dataReset()
+  {
+    return;
+  }
+
   // ピニオンギアのモデルを応答する
   public PinionModel getPinionModel()
   {
@@ -74,9 +85,10 @@ public class SpiroModel extends Model
     double distanceX = spurModel.centerCoodinate().x - pinionModel.centerCoodinate().x;
     double distanceY = spurModel.centerCoodinate().y - pinionModel.centerCoodinate().y ;
     double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
-    pinionModel.spinManager(aRadian,spurModel.radius,distance);
-    pinionModel.centerMoveManager(aRadian,distance,spurModel.centerCoodinate());
-    pinionModel.pencilMoveManager(aRadian,spurModel.radius,distance);
+    pinionModel.animationManager(aRadian,spurModel.radius,distance);
+    //pinionModel.spinManager(aRadian,spurModel.radius,distance);
+    //pinionModel.centerMoveManager(aRadian,distance,spurModel.centerCoodinate());
+    //pinionModel.pencilMoveManager(aRadian,spurModel.radius,distance);
     return;
   }
 

@@ -7,13 +7,15 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 
-public class GearModel extends Object
+abstract public class GearModel extends Object
 {
   protected Point2D.Double centerCoodinate;
 
   protected double radius;
 
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
+
+  abstract void updateCenterByPick(Point aPoint);
 
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {

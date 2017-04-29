@@ -48,6 +48,7 @@ public class SpiroView extends View implements Runnable
 
   public synchronized void restart()
   {
+    this.getSpiroModel().dataRestart();
     this.notify();
     return;
   }
@@ -67,7 +68,6 @@ public class SpiroView extends View implements Runnable
   private void drawPinionGear(Graphics aGraphics)
   {
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
-    System.out.println(pinionModel.drawGearCenterCoodinate().x);
     aGraphics.setColor(Color.black);
     aGraphics.drawOval((int)pinionModel.drawGearCoodinate().x,(int)pinionModel.drawGearCoodinate().y,pinionModel.drawGearDimension().width,pinionModel.drawGearDimension().height);
     aGraphics.drawOval((int)pinionModel.drawGearCenterCoodinate().x,(int)pinionModel.drawGearCenterCoodinate().y,pinionModel.drawGearCenterDimension().width,pinionModel.drawGearCenterDimension().height);
