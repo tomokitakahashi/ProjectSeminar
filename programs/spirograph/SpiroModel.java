@@ -73,9 +73,8 @@ public class SpiroModel extends Model
   {
     double distanceX = spurModel.centerCoodinate().x - pinionModel.centerCoodinate().x;
     double distanceY = spurModel.centerCoodinate().y - pinionModel.centerCoodinate().y ;
-    Point2D.Double pinionCenterCoodinate = pinionModel.centerCoodinate();
     double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
-    pinionModel.spinManager(aRadian,distance);
+    pinionModel.spinManager(aRadian,spurModel.radius,distance);
     pinionModel.centerMoveManager(aRadian,distance,spurModel.centerCoodinate());
     pinionModel.pencilMoveManager(aRadian,spurModel.radius,distance);
     return;
@@ -83,11 +82,10 @@ public class SpiroModel extends Model
 
   public void draggedSpur(Point aPoint)
   {
-    if(!isStop) return; 
+    if(!isStop) return;
 
     if(moveSpurEnabled)
     {
-      //System.out.println(pinionRatio);
       spurModel.updateByEvent(aPoint);
       pinionModel.updateByEvent(aPoint);
     }

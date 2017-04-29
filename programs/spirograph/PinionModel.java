@@ -25,13 +25,14 @@ public class PinionModel extends GearModel
     return;
   }
 
-  public void spinManager(double radian, double distance)
+  public void spinManager(double radian,double spurRadius,double distance)
   {
-    double addRadian = Math.toRadians(90.0);
-    System.out.println(addRadian);
+    double spinRate = (spurRadius-radius) / (radius*2);
+    //double pinionTheta = (radius-distance)/radius * radian + Math.toRadians(90);
+    double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
-      double pinionTheta = (radius-distance)/radius * radian + addRadian * index;
+      double pinionTheta = (radius-distance)/radius * (radian * spinRate) + addRadian * (index-1);
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
       coodinate.x = radius*Math.cos(pinionTheta) + distance*Math.cos(radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
       coodinate.y = radius*Math.sin(pinionTheta) + distance*Math.sin(radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
@@ -41,9 +42,9 @@ public class PinionModel extends GearModel
 
   public void pencilMoveManager(double radian,double spurRadius,double distance)
   {
-    double pinionTheta = (radius-distance)/radius * radian;
-    pencilCoodinate.x = (spurRadius - radius) * Math.cos(pinionTheta) - SpiroConstruct.PENCIL_RADIUS * Math.cos(((spurRadius - radius)/SpiroConstruct.PENCIL_RADIUS)*pinionTheta) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-    pencilCoodinate.y = (spurRadius - radius) * Math.sin(pinionTheta) - SpiroConstruct.PENCIL_RADIUS * Math.sin(((spurRadius - radius)/SpiroConstruct.PENCIL_RADIUS)*pinionTheta) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+    double testD = Math.sqrt((centerCoodinate.x - pencilCoodinate.x) * (centerCoodinate.x - pencilCoodinate.x) + (centerCoodinate.y - pencilCoodinate.y) * (centerCoodinate.y - pencilCoodinate.y));
+    pencilCoodinate.x = (spurRadius - radius)*Math.cos(radian) + 30*Math.cos((spurRadius - radius)/radius*radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+    pencilCoodinate.y = (spurRadius - radius)*Math.sin(radian) - 30*Math.sin((spurRadius - radius)/radius*radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
     return;
   }
 

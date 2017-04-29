@@ -28,7 +28,7 @@ public class SpiroView extends View implements Runnable
     {
       try {
         synchronized(this){
-          if (this.getSpiroModel().isStop() || ra > 360 ) {
+          if (this.getSpiroModel().isStop() || ra % 360 < 0.1 ) {
             wait();
           }
         }
@@ -38,14 +38,9 @@ public class SpiroView extends View implements Runnable
       double radian = Math.toRadians(ra);
       this.getSpiroModel().updateByRadian(radian);
       this.update();
-      ra += 1;
-      if(ra > 360){
-        System.out.println(ra);
-        ra = 0.000;
-        break;
-      }
+      ra += 0.1;
       try {
-        Thread.sleep(10);
+        Thread.sleep(1);
       } catch (Exception e) {
       }
     }
@@ -106,7 +101,11 @@ public class SpiroView extends View implements Runnable
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
       Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
-      aGraphics.setColor(Color.white);
+      if(index == 1){
+        aGraphics.setColor(Color.black);
+      } else {
+        aGraphics.setColor(Color.white);
+      }
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;
