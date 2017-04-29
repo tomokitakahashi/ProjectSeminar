@@ -32,17 +32,6 @@ public class SpiroModel extends Model
     return;
   }
 
-  public void dataRestart()
-  {
-    pinionModel.dataReset();
-    return;
-  }
-
-  public void dataReset()
-  {
-    return;
-  }
-
   // ピニオンギアのモデルを応答する
   public PinionModel getPinionModel()
   {
@@ -56,6 +45,7 @@ public class SpiroModel extends Model
 
   public void setStop(Boolean aBool)
   {
+    if (aBool) pinionModel.dataReset();
     isStop = aBool;
     return;
   }

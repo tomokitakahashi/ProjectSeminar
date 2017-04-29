@@ -19,6 +19,7 @@ public class PinionModel extends GearModel
   {
     super(aCenterCoodinate,aRadius);
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
+    this.dataReset();
     return;
   }
 

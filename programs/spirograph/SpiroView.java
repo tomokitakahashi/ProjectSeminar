@@ -22,35 +22,25 @@ public class SpiroView extends View implements Runnable
 
   public void run()
   {
-    double ra = 0.000;
+    double spurRadian = 0.000;
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
     while(true)
     {
-      try {
-        synchronized(this){
-          if (this.getSpiroModel().isStop() || ra % 360 < 0.1 ) {
-            wait();
-          }
-        }
-      }catch (InterruptedException anException) {
-        anException.printStackTrace();
+      if (!this.getSpiroModel().isStop())
+      {
+        System.out.println("aaa");
+        double radian = Math.toRadians(sparRadian);
+        this.getSpiroModel().updateByRadian(radian);
+        this.update();
+        spurRadian += 0.1;
+      } else {
+
       }
-      double radian = Math.toRadians(ra);
-      this.getSpiroModel().updateByRadian(radian);
-      this.update();
-      ra += 0.1;
       try {
         Thread.sleep(1);
-      } catch (Exception e) {
+      } catch (Exception anException) {
       }
     }
-  }
-
-  public synchronized void restart()
-  {
-    this.getSpiroModel().dataRestart();
-    this.notify();
-    return;
   }
 
   @Override

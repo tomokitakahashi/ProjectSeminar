@@ -4,8 +4,6 @@ import java.awt.event.MouseEvent;
 
 public class SpiroController extends Controller implements MenuActionListener
 {
-  private Thread animationThread;
-
   public SpiroController()
   {
     super();
@@ -37,20 +35,14 @@ public class SpiroController extends Controller implements MenuActionListener
   // メニューからスタートが押された際にデリゲートを通じて通知される
   public void animationStart()
   {
+    System.out.println("animationStart");
     this.getSpiroModel().setStop(false);
-    this.getSpiroView().restart();
     return;
   }
   // メニューからストップが押された際にデリゲートを通じて通知される
   public void animationStop()
   {
     this.getSpiroModel().setStop(true);
-    return;
-  }
-
-  public void setAnimationThread(Thread aThread)
-  {
-    animationThread = aThread;
     return;
   }
 
