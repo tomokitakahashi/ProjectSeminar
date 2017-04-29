@@ -13,7 +13,7 @@ public class SpiroController extends Controller implements MenuActionListener
   @Override
   public void mouseDragged(MouseEvent aMouseEvent)
   {
-    this.getSpiroModel().draggedSpur(aMouseEvent.getPoint());
+    this.getSpiroModel().updateByDrag(aMouseEvent.getPoint());
     this.getSpiroView().update();
     return;
   }
@@ -21,14 +21,14 @@ public class SpiroController extends Controller implements MenuActionListener
   @Override
   public void mousePressed(MouseEvent aMouseEvent)
 	{
-    this.getSpiroModel().updateTapArea(aMouseEvent.getPoint());
+    this.getSpiroModel().updateByPress(aMouseEvent.getPoint());
 		return;
 	}
 
   @Override
   public void mouseReleased(MouseEvent aMouseEvent)
   {
-    this.getSpiroModel().resetEnabledValue();
+    this.getSpiroModel().updateByRelease(aMouseEvent.getPoint());
     return;
   }
 

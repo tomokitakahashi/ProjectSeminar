@@ -29,13 +29,13 @@ public class SpiroView extends View implements Runnable
       if (!this.getSpiroModel().isStop())
       {
         System.out.println("aaa");
-        double radian = Math.toRadians(sparRadian);
+        double radian = Math.toRadians(spurRadian);
         this.getSpiroModel().updateByRadian(radian);
-        this.update();
         spurRadian += 0.1;
       } else {
 
       }
+      this.update();
       try {
         Thread.sleep(1);
       } catch (Exception anException) {
@@ -91,11 +91,11 @@ public class SpiroView extends View implements Runnable
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
       Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
-      if(index == 1){
-        aGraphics.setColor(Color.black);
-      } else {
+      // if(index == 1){
+      //   aGraphics.setColor(Color.black);
+      // } else {
         aGraphics.setColor(Color.white);
-      }
+      //}
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;

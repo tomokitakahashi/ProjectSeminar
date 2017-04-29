@@ -18,16 +18,11 @@ public class SpiroModel extends Model
 
   private double gearDistance;
 
-  private Boolean moveSpurEnabled;
-
-  private Boolean movePinionEnabled;
-
   public SpiroModel()
   {
     super();
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
-    moveSpurEnabled = false;
     isStop = true;
     return;
   }
@@ -55,48 +50,34 @@ public class SpiroModel extends Model
     return isStop;
   }
 
-  public void updateTapArea(Point aPoint)
-  {
-    for(Integer index = 0; index < spurModel.tapAreaCoodinateList().size(); index++)
-    {
-      Point2D.Double coodinate = spurModel.tapAreaCoodinateList().get(index);
-      double x = coodinate.x - aPoint.x;
-      double y = coodinate.y - aPoint.y;
-      if(x*x + y*y <= SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2)
-      {
-        moveSpurEnabled = true;
-      }
-    }
-    return;
-  }
-
   public void updateByRadian(double aRadian)
   {
     double distanceX = spurModel.centerCoodinate().x - pinionModel.centerCoodinate().x;
     double distanceY = spurModel.centerCoodinate().y - pinionModel.centerCoodinate().y ;
     double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
     pinionModel.animationManager(aRadian,spurModel.radius,distance);
-    //pinionModel.spinManager(aRadian,spurModel.radius,distance);
-    //pinionModel.centerMoveManager(aRadian,distance,spurModel.centerCoodinate());
-    //pinionModel.pencilMoveManager(aRadian,spurModel.radius,distance);
     return;
   }
 
-  public void draggedSpur(Point aPoint)
+  public void updateByPress(Point aPoint)
   {
-    if(!isStop) return;
-
-    if(moveSpurEnabled)
-    {
-      spurModel.updateByEvent(aPoint);
-      pinionModel.updateByEvent(aPoint);
-    }
+    spurModel.updateByPress(aPoint);
+    pinionModel.updateByPress(aPoint);
     return;
   }
 
-  public void resetEnabledValue()
+  public void updateByDrag(Point aPoint)
   {
-    moveSpurEnabled = false;
-    movePinionEnabled = false;
+    spurModel.updateByDrag(aPoint);
+    pinionModel.updateByDrag(aPoint);
+    return;
   }
+
+  public void updateByRelease(Point aPoint)
+  {
+    spurModel.updateByRelease(aPoint);
+    pinionModel.updateByRelease(aPoint);
+    return;
+  }
+
 }
