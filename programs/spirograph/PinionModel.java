@@ -6,12 +6,6 @@ import java.util.ArrayList;
 
 public class PinionModel extends GearModel
 {
-  // 初期表示時の縦線を格納しておくArrayList
-  private ArrayList<Point2D.Double> verticalLineCoodinate;
-
-  // 初期表示時の横線を格納しておくArrayList
-  private ArrayList<Point2D.Double> horizontalLineCoodinate;
-
   // 鉛筆の点の座標を格納しておくプロパティ
   private Point2D.Double pencilCoodinate;
 
@@ -19,33 +13,45 @@ public class PinionModel extends GearModel
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
     super(aCenterCoodinate,aRadius);
+    pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
     return;
   }
 
-  // 縦線の座標リストを応答する
-  public ArrayList<Point2D.Double> verticalLineCoodinate()
+  public void centerMoveManager(double radian,double distance,Point2D.Double aSpurCenterCoodinate)
   {
-    return verticalLineCoodinate;
-  }
-
-  // 縦線の座標リストをセットする
-  public void verticalLineCoodinate(ArrayList<Point2D.Double> aLineCoodinate)
-  {
-    verticalLineCoodinate = aLineCoodinate;
+    centerCoodinate.x = Math.cos(radian) * distance + aSpurCenterCoodinate.x;
+    centerCoodinate.y = Math.sin(radian) * distance + aSpurCenterCoodinate.y;
+    //this.pencilMoveManager(radian,distance);
     return;
   }
 
-  // 横線の座標リストを応答する
-  public ArrayList<Point2D.Double> horizontalLineCoodinate()
+  public void spinManager(double radian,double spurRadius,double distance)
   {
-    return horizontalLineCoodinate;
+    double spinRate = (spurRadius-radius) / (radius*2);
+    //double pinionTheta = (radius-distance)/radius * radian + Math.toRadians(90);
+    double addRadian = Math.toRadians(90);
+    for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
+    {
+      double pinionTheta = (radius-distance)/radius * (radian * spinRate) + addRadian * (index-1);
+      Point2D.Double coodinate = tapAreaCoodinateList.get(index);
+      coodinate.x = radius*Math.cos(pinionTheta) + distance*Math.cos(radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+      coodinate.y = radius*Math.sin(pinionTheta) + distance*Math.sin(radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+    }
+    return;
   }
 
-  // 横線の座標リストを応答する
-  public void horizontalLineCoodinate(ArrayList<Point2D.Double> aLineCoodinate)
+  public void pencilMoveManager(double radian,double spurRadius,double distance)
   {
-    horizontalLineCoodinate = aLineCoodinate;
+    double testD = Math.sqrt((centerCoodinate.x - pencilCoodinate.x) * (centerCoodinate.x - pencilCoodinate.x) + (centerCoodinate.y - pencilCoodinate.y) * (centerCoodinate.y - pencilCoodinate.y));
+    pencilCoodinate.x = (spurRadius - radius)*Math.cos(radian) + 30*Math.cos((spurRadius - radius)/radius*radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+    pencilCoodinate.y = (spurRadius - radius)*Math.sin(radian) - 30*Math.sin((spurRadius - radius)/radius*radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
     return;
+  }
+
+  public Point2D.Double drawPencilCoodinate()
+  {
+    Point2D.Double coodinate = new Point2D.Double(SpiroConstruct.PENCIL_CENTER.x - SpiroConstruct.PENCIL_RADIUS,SpiroConstruct.PENCIL_CENTER.y - SpiroConstruct.PENCIL_RADIUS);
+    return coodinate;
   }
 
   public Point2D.Double pencilCoodinate()

@@ -9,9 +9,6 @@ import java.util.ArrayList;
 
 public class SpiroView extends View implements Runnable
 {
-  public double pinionGearX;
-  public double pinionGearY;
-
   public SpiroView(SpiroModel aSpiroModel)
   {
     super(aSpiroModel);
@@ -20,77 +17,95 @@ public class SpiroView extends View implements Runnable
   public SpiroView(SpiroModel aSpiroModel,SpiroController aSpiroController)
   {
     super(aSpiroModel,aSpiroController);
-    pinionGearX = this.getSpiroModel().pinionModel.centerCoodinate().x;
-    pinionGearY = this.getSpiroModel().pinionModel.centerCoodinate().y;
     return;
   }
 
   public void run()
   {
-    Integer ra = 0;
-    SpurModel spurModel = this.getSpiroModel().spurModel;
+    double ra = 0.000;
+    SpurModel spurModel = this.getSpiroModel().getSpurModel();
     while(true)
     {
+      try {
+        synchronized(this){
+          if (this.getSpiroModel().isStop() || ra % 360 < 0.1 ) {
+            wait();
+          }
+        }
+      }catch (InterruptedException anException) {
+        anException.printStackTrace();
+      }
       double radian = Math.toRadians(ra);
-      pinionGearX = Math.cos(radian) * (250*2/3) + spurModel.centerCoodinate().x;
-      pinionGearY = Math.sin(radian) * (250*2/3) + spurModel.centerCoodinate().y;
+      this.getSpiroModel().updateByRadian(radian);
       this.update();
-      ra ++;
-      try{
-        Thread.sleep(10);
+      ra += 0.1;
+      try {
+        Thread.sleep(1);
       } catch (Exception e) {
       }
-
     }
+  }
+
+  public synchronized void restart()
+  {
+    this.notify();
+    return;
   }
 
   @Override
   public void paintComponent(Graphics aGraphics)
   {
-    Point2D.Double spurCenterCoodinate = this.getSpiroModel().spurModel.centerCoodinate();
-    Point2D.Double pinionCenterCoodinate = this.getSpiroModel().pinionModel.centerCoodinate();
+    SpurModel spurModel = this.getSpiroModel().getSpurModel();
+    PinionModel pinionModel = this.getSpiroModel().getPinionModel();
     aGraphics.setColor(Color.black);
-    aGraphics.drawLine((int)spurCenterCoodinate.x,(int)spurCenterCoodinate.y,(int)pinionGearX,(int)pinionGearY);
+    this.drawAxis(aGraphics);
     this.drawSpurGear(aGraphics);
     this.drawPinionGear(aGraphics);
     return;
   }
 
-  private void drawCircle(Graphics aGraphics,Integer x,Integer y,Integer radius)
-  {
-    x = x - radius;
-    y = y - radius;
-    aGraphics.drawOval(x,y,radius*2,radius*2);
-  }
-
   private void drawPinionGear(Graphics aGraphics)
   {
-    int radius = (int)this.getSpiroModel().pinionModel.radius();
+    PinionModel pinionModel = this.getSpiroModel().getPinionModel();
+    System.out.println(pinionModel.drawGearCenterCoodinate().x);
     aGraphics.setColor(Color.black);
-    aGraphics.drawOval((int)pinionGearX - radius,(int)pinionGearY - radius, radius*2, radius*2);
-    aGraphics.drawOval((int)pinionGearX - SpiroConstruct.TAP_AREA_RADIUS,(int)pinionGearY - SpiroConstruct.TAP_AREA_RADIUS,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
-    this.drawTapArea(aGraphics,this.getSpiroModel().pinionModel.tapAreaCoodinateList());
+    aGraphics.drawOval((int)pinionModel.drawGearCoodinate().x,(int)pinionModel.drawGearCoodinate().y,pinionModel.drawGearDimension().width,pinionModel.drawGearDimension().height);
+    aGraphics.drawOval((int)pinionModel.drawGearCenterCoodinate().x,(int)pinionModel.drawGearCenterCoodinate().y,pinionModel.drawGearCenterDimension().width,pinionModel.drawGearCenterDimension().height);
+    aGraphics.drawOval((int)pinionModel.drawPencilCoodinate().x,(int)pinionModel.drawPencilCoodinate().y,SpiroConstruct.PENCIL_RADIUS*2,SpiroConstruct.PENCIL_RADIUS*2);
+    aGraphics.drawLine((int)pinionModel.tapAreaCoodinateList().get(0).x,(int)pinionModel.tapAreaCoodinateList().get(0).y,(int)pinionModel.tapAreaCoodinateList().get(2).x,(int)pinionModel.tapAreaCoodinateList().get(2).y);
+    aGraphics.drawLine((int)pinionModel.tapAreaCoodinateList().get(1).x,(int)pinionModel.tapAreaCoodinateList().get(1).y,(int)pinionModel.tapAreaCoodinateList().get(3).x,(int)pinionModel.tapAreaCoodinateList().get(3).y);
+    this.drawTapArea(aGraphics,pinionModel);
     return;
   }
 
   private void drawSpurGear(Graphics aGraphics)
   {
-    int x = (int)this.getSpiroModel().spurModel.centerCoodinate().x;
-    int y = (int)this.getSpiroModel().spurModel.centerCoodinate().y;
-    int radius = (int)this.getSpiroModel().spurModel.radius();
+    SpurModel spurModel = this.getSpiroModel().getSpurModel();
     aGraphics.setColor(Color.black);
-    aGraphics.drawOval(x - radius,y - radius, radius*2, radius*2);
-    aGraphics.drawOval(x - SpiroConstruct.TAP_AREA_RADIUS,y - SpiroConstruct.TAP_AREA_RADIUS,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
-    this.drawTapArea(aGraphics,this.getSpiroModel().spurModel.tapAreaCoodinateList());
+    aGraphics.drawOval((int)spurModel.drawGearCoodinate().x,(int)spurModel.drawGearCoodinate().y, spurModel.drawGearDimension().width,spurModel.drawGearDimension().height);
+    aGraphics.drawOval((int)spurModel.drawGearCenterCoodinate().x,(int)spurModel.drawGearCenterCoodinate().y,spurModel.drawGearCenterDimension().width,spurModel.drawGearCenterDimension().height);
+    this.drawTapArea(aGraphics,spurModel);
     return;
   }
 
-  private void drawTapArea(Graphics aGraphics, ArrayList<Point2D.Double> aTapAreaCoodinateList)
+  private void drawAxis(Graphics aGraphics)
   {
-    for(Integer index = 0; index < aTapAreaCoodinateList.size();index++)
+    SpurModel spurModel = this.getSpiroModel().getSpurModel();
+    PinionModel pinionModel = this.getSpiroModel().getPinionModel();
+    aGraphics.drawLine((int)spurModel.centerCoodinate().x,(int)spurModel.centerCoodinate().y,(int)pinionModel.centerCoodinate().x,(int)pinionModel.centerCoodinate().y);
+    return;
+  }
+
+  private void drawTapArea(Graphics aGraphics, GearModel aGear)
+  {
+    for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
-      Point2D.Double areaCoodinate = aTapAreaCoodinateList.get(index);
-      aGraphics.setColor(Color.white);
+      Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
+      if(index == 1){
+        aGraphics.setColor(Color.black);
+      } else {
+        aGraphics.setColor(Color.white);
+      }
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;

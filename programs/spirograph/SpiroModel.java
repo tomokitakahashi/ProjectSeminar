@@ -8,13 +8,15 @@ public class SpiroModel extends Model
 {
   public Boolean isStop;
   // スピログラフで描かれた軌跡モデル
-  public SpiroLocusModel spiroLocusModel;
+  private SpiroLocusModel spiroLocusModel;
 
   // スピログラフのスパーギアモデル
-  public SpurModel spurModel;
+  private SpurModel spurModel;
 
   // スピログラフのピニオンモデル
-  public PinionModel pinionModel;
+  private PinionModel pinionModel;
+
+  private double gearDistance;
 
   private Boolean moveSpurEnabled;
 
@@ -23,14 +25,33 @@ public class SpiroModel extends Model
   public SpiroModel()
   {
     super();
-    double aRadius = 250.0;
-    Point2D.Double spurCenterCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
-    Point2D.Double pinionCenterCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x + 2 * aRadius / 3,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
-    spurModel = new SpurModel(spurCenterCoodinate,aRadius);
-    pinionModel = new PinionModel(pinionCenterCoodinate,aRadius/3);
+    spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
+    pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     moveSpurEnabled = false;
     isStop = true;
     return;
+  }
+
+  // ピニオンギアのモデルを応答する
+  public PinionModel getPinionModel()
+  {
+    return pinionModel;
+  }
+  // スパーギアのモデルを応答
+  public SpurModel getSpurModel()
+  {
+    return spurModel;
+  }
+
+  public void setStop(Boolean aBool)
+  {
+    isStop = aBool;
+    return;
+  }
+
+  public Boolean isStop()
+  {
+    return isStop;
   }
 
   public void updateTapArea(Point aPoint)
@@ -48,13 +69,23 @@ public class SpiroModel extends Model
     return;
   }
 
+  public void updateByRadian(double aRadian)
+  {
+    double distanceX = spurModel.centerCoodinate().x - pinionModel.centerCoodinate().x;
+    double distanceY = spurModel.centerCoodinate().y - pinionModel.centerCoodinate().y ;
+    double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+    pinionModel.spinManager(aRadian,spurModel.radius,distance);
+    pinionModel.centerMoveManager(aRadian,distance,spurModel.centerCoodinate());
+    pinionModel.pencilMoveManager(aRadian,spurModel.radius,distance);
+    return;
+  }
+
   public void draggedSpur(Point aPoint)
   {
-    if(!isStop) { return; }
+    if(!isStop) return;
 
     if(moveSpurEnabled)
     {
-      //System.out.println(pinionRatio);
       spurModel.updateByEvent(aPoint);
       pinionModel.updateByEvent(aPoint);
     }
