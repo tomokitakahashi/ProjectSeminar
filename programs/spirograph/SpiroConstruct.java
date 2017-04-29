@@ -15,7 +15,7 @@ public class SpiroConstruct {
   //各円の初期中心座標
   public static final Point2D.Double SPIRO_WINDOW_CENTER = new Point2D.Double(375,300);
   public static final Point2D.Double PINION_CENTER = new Point2D.Double(555,300);
-  public static final Point2D.Double PENCIL_CENTER = new Point2D.Double(585,300);
+  public static final Point2D.Double PENCIL_CENTER = new Point2D.Double(585,290);
 
   // 各円の初期半径
   public static final Integer TAP_AREA_RADIUS = 4;

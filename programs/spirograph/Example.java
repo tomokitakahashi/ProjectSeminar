@@ -60,7 +60,6 @@ public class Example extends Object
 		aWindow.setLocation(x, y);
 		aWindow.setVisible(true);
 		aWindow.toFront();
-		aSpiroController.setAnimationThread(new Thread(aSpiroView));
 		Thread aThread = new Thread(aSpiroView);
 		aThread.start();
 

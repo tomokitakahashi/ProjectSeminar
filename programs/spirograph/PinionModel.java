@@ -3,48 +3,70 @@ package spirograph;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
+import java.awt.Point;
 
 public class PinionModel extends GearModel
 {
   // 鉛筆の点の座標を格納しておくプロパティ
   private Point2D.Double pencilCoodinate;
 
+  private double pencilRadian;
+
+  private double pencilDistance;
+
   // コンストラクタ
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
     super(aCenterCoodinate,aRadius);
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
+    this.dataReset();
     return;
   }
 
-  public void centerMoveManager(double radian,double distance,Point2D.Double aSpurCenterCoodinate)
+  public void dataReset()
   {
-    centerCoodinate.x = Math.cos(radian) * distance + aSpurCenterCoodinate.x;
-    centerCoodinate.y = Math.sin(radian) * distance + aSpurCenterCoodinate.y;
-    //this.pencilMoveManager(radian,distance);
+    pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x);
+    double distanceX = centerCoodinate.x - pencilCoodinate.x;
+    double distanceY = centerCoodinate.y - pencilCoodinate.y;
+    pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
     return;
   }
 
-  public void spinManager(double radian,double spurRadius,double distance)
+
+  // ピニオンギアがアニメーションした際に座標値などを更新するメソッド
+  public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
-    double spinRate = (spurRadius-radius) / (radius*2);
-    //double pinionTheta = (radius-distance)/radius * radian + Math.toRadians(90);
+    double spinRate = (aSpurRadius-radius) / (radius*2);
+    double pinionTheta = (radius-aGearDistance)/radius * (aRadian * spinRate);
+    this.centerMoveManager(aRadian,aGearDistance);
+    this.spinManager(aRadian,pinionTheta,aGearDistance);
+    this.pencilMoveManager(aRadian,pinionTheta,aGearDistance);
+    return;
+  }
+
+  private void centerMoveManager(double aRadian,double aGearDistance)
+  {
+    centerCoodinate.x = Math.cos(aRadian) * aGearDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+    centerCoodinate.y = Math.sin(aRadian) * aGearDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+    return;
+  }
+
+  private void spinManager(double aRadian,double aPinionTheta,double aGearDistance)
+  {
     double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
-      double pinionTheta = (radius-distance)/radius * (radian * spinRate) + addRadian * (index-1);
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
-      coodinate.x = radius*Math.cos(pinionTheta) + distance*Math.cos(radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-      coodinate.y = radius*Math.sin(pinionTheta) + distance*Math.sin(radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+      coodinate.x = radius*Math.cos(aPinionTheta+(addRadian * (index-1))) + aGearDistance*Math.cos(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+      coodinate.y = radius*Math.sin(aPinionTheta+(addRadian * (index-1))) + aGearDistance*Math.sin(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
     }
     return;
   }
 
-  public void pencilMoveManager(double radian,double spurRadius,double distance)
+  private void pencilMoveManager(double aRadian,double aPinionTheta,double aGearDistance)
   {
-    double testD = Math.sqrt((centerCoodinate.x - pencilCoodinate.x) * (centerCoodinate.x - pencilCoodinate.x) + (centerCoodinate.y - pencilCoodinate.y) * (centerCoodinate.y - pencilCoodinate.y));
-    pencilCoodinate.x = (spurRadius - radius)*Math.cos(radian) + 30*Math.cos((spurRadius - radius)/radius*radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-    pencilCoodinate.y = (spurRadius - radius)*Math.sin(radian) - 30*Math.sin((spurRadius - radius)/radius*radian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+    pencilCoodinate.x = Math.cos(aPinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
+    pencilCoodinate.y = Math.sin(aPinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
     return;
   }
 
@@ -54,14 +76,16 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
-  public Point2D.Double pencilCoodinate()
+  public void updateCenterByDrag(Point aPoint)
   {
-    return pencilCoodinate;
-  }
-
-  public void pencilCoodinate(Point2D.Double aPencilCoodinate)
-  {
-    pencilCoodinate = aPencilCoodinate;
+    if(10 < aPoint.x || centerCoodinate.x < SpiroConstruct.SPIRO_WINDOW.width - 10)
+    {
+      centerCoodinate.x = aPoint.x;
+    }
+    if(30 < aPoint.y || centerCoodinate.y < SpiroConstruct.SPIRO_WINDOW.height - 10)
+    {
+      centerCoodinate.y = aPoint.y;
+    }
     return;
   }
 

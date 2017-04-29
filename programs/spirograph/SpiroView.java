@@ -22,34 +22,25 @@ public class SpiroView extends View implements Runnable
 
   public void run()
   {
-    double ra = 0.000;
+    double spurRadian = 0.000;
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
     while(true)
     {
-      try {
-        synchronized(this){
-          if (this.getSpiroModel().isStop() || ra % 360 < 0.1 ) {
-            wait();
-          }
-        }
-      }catch (InterruptedException anException) {
-        anException.printStackTrace();
+      if (!this.getSpiroModel().isStop())
+      {
+        System.out.println("aaa");
+        double radian = Math.toRadians(spurRadian);
+        this.getSpiroModel().updateByRadian(radian);
+        spurRadian += 0.1;
+      } else {
+
       }
-      double radian = Math.toRadians(ra);
-      this.getSpiroModel().updateByRadian(radian);
       this.update();
-      ra += 0.1;
       try {
         Thread.sleep(1);
-      } catch (Exception e) {
+      } catch (Exception anException) {
       }
     }
-  }
-
-  public synchronized void restart()
-  {
-    this.notify();
-    return;
   }
 
   @Override
@@ -67,7 +58,6 @@ public class SpiroView extends View implements Runnable
   private void drawPinionGear(Graphics aGraphics)
   {
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
-    System.out.println(pinionModel.drawGearCenterCoodinate().x);
     aGraphics.setColor(Color.black);
     aGraphics.drawOval((int)pinionModel.drawGearCoodinate().x,(int)pinionModel.drawGearCoodinate().y,pinionModel.drawGearDimension().width,pinionModel.drawGearDimension().height);
     aGraphics.drawOval((int)pinionModel.drawGearCenterCoodinate().x,(int)pinionModel.drawGearCenterCoodinate().y,pinionModel.drawGearCenterDimension().width,pinionModel.drawGearCenterDimension().height);
@@ -101,11 +91,11 @@ public class SpiroView extends View implements Runnable
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
       Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
-      if(index == 1){
-        aGraphics.setColor(Color.black);
-      } else {
+      // if(index == 1){
+      //   aGraphics.setColor(Color.black);
+      // } else {
         aGraphics.setColor(Color.white);
-      }
+      //}
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;

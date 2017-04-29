@@ -4,8 +4,6 @@ import java.awt.event.MouseEvent;
 
 public class SpiroController extends Controller implements MenuActionListener
 {
-  private Thread animationThread;
-
   public SpiroController()
   {
     super();
@@ -15,7 +13,7 @@ public class SpiroController extends Controller implements MenuActionListener
   @Override
   public void mouseDragged(MouseEvent aMouseEvent)
   {
-    this.getSpiroModel().draggedSpur(aMouseEvent.getPoint());
+    this.getSpiroModel().updateByDrag(aMouseEvent.getPoint());
     this.getSpiroView().update();
     return;
   }
@@ -23,34 +21,28 @@ public class SpiroController extends Controller implements MenuActionListener
   @Override
   public void mousePressed(MouseEvent aMouseEvent)
 	{
-    this.getSpiroModel().updateTapArea(aMouseEvent.getPoint());
+    this.getSpiroModel().updateByPress(aMouseEvent.getPoint());
 		return;
 	}
 
   @Override
   public void mouseReleased(MouseEvent aMouseEvent)
   {
-    this.getSpiroModel().resetEnabledValue();
+    this.getSpiroModel().updateByRelease(aMouseEvent.getPoint());
     return;
   }
 
   // メニューからスタートが押された際にデリゲートを通じて通知される
   public void animationStart()
   {
+    System.out.println("animationStart");
     this.getSpiroModel().setStop(false);
-    this.getSpiroView().restart();
     return;
   }
   // メニューからストップが押された際にデリゲートを通じて通知される
   public void animationStop()
   {
     this.getSpiroModel().setStop(true);
-    return;
-  }
-
-  public void setAnimationThread(Thread aThread)
-  {
-    animationThread = aThread;
     return;
   }
 
