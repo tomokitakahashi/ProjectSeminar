@@ -16,6 +16,8 @@ public class SpiroModel extends Model
   // スピログラフのピニオンモデル
   private PinionModel pinionModel;
 
+  private double axisDegree;
+
   private double gearDistance;
 
   public SpiroModel()
@@ -24,6 +26,10 @@ public class SpiroModel extends Model
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     isStop = true;
+    axisDegree = 0.0;
+    double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
+    double distanceY = (pinionModel.centerCoodinate().y - spurModel.centerCoodinate().y);
+    gearDistance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
     return;
   }
 
@@ -38,9 +44,26 @@ public class SpiroModel extends Model
     return spurModel;
   }
 
+  public double radian()
+  {
+    return axisDegree;
+  }
+  public void setRadian()
+  {
+    axisDegree += 0.1;
+    return;
+  }
+
   public void setStop(Boolean aBool)
   {
-    if (aBool) pinionModel.dataReset();
+    if (aBool)
+    {
+      pinionModel.dataReset();
+      spurModel.dataReset();
+    }
+    double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
+    double distanceY = (pinionModel.centerCoodinate().y - spurModel.centerCoodinate().y);
+    gearDistance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
     isStop = aBool;
     return;
   }
@@ -50,19 +73,16 @@ public class SpiroModel extends Model
     return isStop;
   }
 
-  public void updateByRadian(double aRadian)
+  public void updateByAnimation()
   {
-    double distanceX = spurModel.centerCoodinate().x - pinionModel.centerCoodinate().x;
-    double distanceY = spurModel.centerCoodinate().y - pinionModel.centerCoodinate().y ;
-    double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
-    pinionModel.animationManager(aRadian,spurModel.radius,distance);
+    pinionModel.animationManager(Math.toRadians(axisDegree),spurModel.radius,gearDistance);
     return;
   }
 
   public void updateByPress(Point aPoint)
   {
-    spurModel.updateByPress(aPoint);
-    pinionModel.updateByPress(aPoint);
+    spurModel.judgePressArea(aPoint);
+    pinionModel.judgePressArea(aPoint);
     return;
   }
 
@@ -70,6 +90,17 @@ public class SpiroModel extends Model
   {
     spurModel.updateByDrag(aPoint);
     pinionModel.updateByDrag(aPoint);
+    this.updateRelative();
+    return;
+  }
+
+  public void updateRelative()
+  {
+    double radian = Math.toRadians(axisDegree);
+    double spurRadius = spurModel.radius();
+    double newDistance = gearDistance * spurModel.radius()/spurModel.previousRadius;
+    Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
+    pinionModel.updateRelativeCenter(radian,coodinate);
     return;
   }
 

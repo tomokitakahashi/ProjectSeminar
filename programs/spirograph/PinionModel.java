@@ -23,8 +23,11 @@ public class PinionModel extends GearModel
     return;
   }
 
+  @Override
   public void dataReset()
   {
+    previousRadius = radius;
+    previousCenterCoodinate = centerCoodinate;
     pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x);
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
@@ -32,12 +35,9 @@ public class PinionModel extends GearModel
     return;
   }
 
-
-  // ピニオンギアがアニメーションした際に座標値などを更新するメソッド
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
-    double spinRate = (aSpurRadius-radius) / (radius*2);
-    double pinionTheta = (radius-aGearDistance)/radius * (aRadian * spinRate);
+    double pinionTheta = -aGearDistance /  radius * aRadian;
     this.centerMoveManager(aRadian,aGearDistance);
     this.spinManager(aRadian,pinionTheta,aGearDistance);
     this.pencilMoveManager(aRadian,pinionTheta,aGearDistance);
@@ -72,20 +72,15 @@ public class PinionModel extends GearModel
 
   public Point2D.Double drawPencilCoodinate()
   {
-    Point2D.Double coodinate = new Point2D.Double(SpiroConstruct.PENCIL_CENTER.x - SpiroConstruct.PENCIL_RADIUS,SpiroConstruct.PENCIL_CENTER.y - SpiroConstruct.PENCIL_RADIUS);
+    Point2D.Double coodinate = new Point2D.Double(pencilCoodinate.x - SpiroConstruct.PENCIL_RADIUS,pencilCoodinate.y - SpiroConstruct.PENCIL_RADIUS);
     return coodinate;
   }
 
-  public void updateCenterByDrag(Point aPoint)
+  public void updateRelativeCenter(double radian,Point2D.Double pointCoodinate)
   {
-    if(10 < aPoint.x || centerCoodinate.x < SpiroConstruct.SPIRO_WINDOW.width - 10)
-    {
-      centerCoodinate.x = aPoint.x;
-    }
-    if(30 < aPoint.y || centerCoodinate.y < SpiroConstruct.SPIRO_WINDOW.height - 10)
-    {
-      centerCoodinate.y = aPoint.y;
-    }
+    centerCoodinate.x = Math.cos(radian+Math.toRadians(180)) * radius + pointCoodinate.x;
+    centerCoodinate.y = Math.sin(radian+Math.toRadians(180)) * radius + pointCoodinate.y;
+    this.updateTapArea();
     return;
   }
 

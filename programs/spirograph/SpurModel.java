@@ -12,17 +12,10 @@ public class SpurModel extends GearModel
     return;
   }
 
-  public void updateCenterByDrag(Point aPoint)
+  @Override
+  public void dataReset()
   {
-
-    if(10 < aPoint.x && centerCoodinate.x < SpiroConstruct.SPIRO_WINDOW.width - 10)
-    {
-      centerCoodinate.x = aPoint.x;
-    }
-    if(30 < aPoint.y && centerCoodinate.y < SpiroConstruct.SPIRO_WINDOW.height - 10)
-    {
-      centerCoodinate.y = aPoint.y;
-    }
+    previousRadius = radius;
     return;
   }
 
