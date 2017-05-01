@@ -143,7 +143,7 @@ abstract public class GearModel extends Object
     this.radius(newRadius);
   }
 
-  private void updateTapArea()
+  public void updateTapArea()
   {
     double newRadius = -radius;
     for(Integer index = 0; index < 4; index ++)

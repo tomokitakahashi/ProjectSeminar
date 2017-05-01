@@ -81,12 +81,11 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
-  public void updateTest(double rate,double radian,double distance)
+  public void updateTest(double radian,Point2D.Double pointCoodinate)
   {
-    double newDistance = distance * rate;
-    System.out.println(newDistance);
-    centerCoodinate.x = Math.cos(radian) * newDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-    centerCoodinate.y = Math.sin(radian) * newDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+    centerCoodinate.x = Math.cos(radian+Math.toRadians(180)) * radius + pointCoodinate.x;
+    centerCoodinate.y = Math.sin(radian+Math.toRadians(180)) * radius + pointCoodinate.y;
+    this.updateTapArea();
     return;
   }
 
