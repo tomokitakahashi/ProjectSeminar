@@ -94,13 +94,17 @@ public class SpiroModel extends Model
   {
     spurModel.updateByDrag(aPoint);
     pinionModel.updateByDrag(aPoint);
-    //pinionModel.updateRadiusByDrag(spurModel.radius()/spurModel.previousRadius);
-    //System.out.println(spurModel.radius()/spurModel.previousRadius);
+    this.updateRelative();
+    return;
+  }
+
+  public void updateRelative()
+  {
     double radian = Math.toRadians(axisRadian);
     double spurRadius = spurModel.radius();
     double newDistance = gearDistance * spurModel.radius()/spurModel.previousRadius;
     Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
-    pinionModel.updateTest(radian,coodinate);
+    pinionModel.updateRelativeCenter(radian,coodinate);
     return;
   }
 

@@ -26,6 +26,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  @Override
   public void dataReset()
   {
     previousRadius = radius;
@@ -77,35 +78,16 @@ public class PinionModel extends GearModel
 
   public Point2D.Double drawPencilCoodinate()
   {
-    Point2D.Double coodinate = new Point2D.Double(SpiroConstruct.PENCIL_CENTER.x - SpiroConstruct.PENCIL_RADIUS,SpiroConstruct.PENCIL_CENTER.y - SpiroConstruct.PENCIL_RADIUS);
+    Point2D.Double coodinate = new Point2D.Double(pencilCoodinate.x - SpiroConstruct.PENCIL_RADIUS,pencilCoodinate.y - SpiroConstruct.PENCIL_RADIUS);
     return coodinate;
   }
 
-  public void updateTest(double radian,Point2D.Double pointCoodinate)
+  public void updateRelativeCenter(double radian,Point2D.Double pointCoodinate)
   {
     centerCoodinate.x = Math.cos(radian+Math.toRadians(180)) * radius + pointCoodinate.x;
     centerCoodinate.y = Math.sin(radian+Math.toRadians(180)) * radius + pointCoodinate.y;
     this.updateTapArea();
     return;
   }
-
-  @Override
-  public void updateCenterByPick(Point aPoint)
-  {
-    // contactPointCoodinate.x = Math.cos(aRadian) * aSpurRadius;
-    // contactPointCoodinate.y = Math.sin(aRadian) * aSpurRadius;
-  }
-
-
-  @Override
-  public void updateRadiusByDrag(double aRadius)
-  {
-    //System.out.println(aRadius);
-    // centerCoodinate.x = previousCenterCoodinate.x * aRadius;
-    // centerCoodinate.y = previousCenterCoodinate.y * aRadius;
-    return;
-  }
-
-
 
 }

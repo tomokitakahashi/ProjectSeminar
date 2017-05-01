@@ -12,21 +12,10 @@ public class SpurModel extends GearModel
     return;
   }
 
+  @Override
   public void dataReset()
   {
     previousRadius = radius;
-    return;
-  }
-  @Override
-  public void updateCenterByPick(Point aPoint)
-  {
-
-  }
-
-  @Override
-  public void updateRadiusByDrag(double aRadius)
-  {
-
     return;
   }
 

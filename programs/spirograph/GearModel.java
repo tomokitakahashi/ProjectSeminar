@@ -23,9 +23,7 @@ abstract public class GearModel extends Object
 
   private Boolean centerMoveEnabled;
 
-  abstract void updateCenterByPick(Point aPoint);
-
-  abstract void updateRadiusByDrag(double aRadius);
+  abstract void dataReset();
 
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
@@ -35,6 +33,7 @@ abstract public class GearModel extends Object
     radius = aRadius;
     previousRadius = aRadius;
     radiusAbjustEnabled = false;
+    centerMoveEnabled = false;
     this.initializeTapArea();
   }
 
@@ -112,11 +111,11 @@ abstract public class GearModel extends Object
   {
     if(radiusAbjustEnabled)
     {
-      //System.out.println(tappedAreaIndex);
-      double x = centerCoodinate.x - aPoint.x;
-      double y = centerCoodinate.y - aPoint.y;
-      double newRadius = Math.sqrt(x*x+y*y);
-      radius = newRadius;
+      this.updateRadiusByDrag(aPoint);
+    }
+    else if (centerMoveEnabled)
+    {
+      this.updateCenterByDrag(aPoint);
     }
     this.updateTapArea();
     return;
@@ -141,6 +140,20 @@ abstract public class GearModel extends Object
     double y = centerCoodinate.y - aPoint.y;
     double newRadius = Math.sqrt(x*x+y*y);
     this.radius(newRadius);
+  }
+
+  private void updateRadiusByDrag(Point aPoint)
+  {
+    double x = centerCoodinate.x - aPoint.x;
+    double y = centerCoodinate.y - aPoint.y;
+    double newRadius = Math.sqrt(x*x+y*y);
+    radius = newRadius;
+    return;
+  }
+
+  private void updateCenterByDrag(Point aPoint)
+  {
+    return;
   }
 
   public void updateTapArea()
