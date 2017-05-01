@@ -14,17 +14,22 @@ public class PinionModel extends GearModel
 
   private double pencilDistance;
 
+  public Point2D.Double contactPointCoodinate;
+
   // コンストラクタ
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
     super(aCenterCoodinate,aRadius);
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
+    contactPointCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x + SpiroConstruct.SPUR_RADIUS,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
     this.dataReset();
     return;
   }
 
   public void dataReset()
   {
+    previousRadius = radius;
+    previousCenterCoodinate = centerCoodinate;
     pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x);
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
@@ -32,10 +37,10 @@ public class PinionModel extends GearModel
     return;
   }
 
-
-  // ピニオンギアがアニメーションした際に座標値などを更新するメソッド
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
+    contactPointCoodinate.x = Math.cos(aRadian) * aSpurRadius;
+    contactPointCoodinate.y = Math.sin(aRadian) * aSpurRadius;
     double spinRate = (aSpurRadius-radius) / (radius*2);
     double pinionTheta = (radius-aGearDistance)/radius * (aRadian * spinRate);
     this.centerMoveManager(aRadian,aGearDistance);
@@ -76,17 +81,32 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
-  public void updateCenterByDrag(Point aPoint)
+  public void updateTest(double rate,double radian,double distance)
   {
-    if(10 < aPoint.x || centerCoodinate.x < SpiroConstruct.SPIRO_WINDOW.width - 10)
-    {
-      centerCoodinate.x = aPoint.x;
-    }
-    if(30 < aPoint.y || centerCoodinate.y < SpiroConstruct.SPIRO_WINDOW.height - 10)
-    {
-      centerCoodinate.y = aPoint.y;
-    }
+    double newDistance = distance * rate;
+    System.out.println(newDistance);
+    centerCoodinate.x = Math.cos(radian) * newDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+    centerCoodinate.y = Math.sin(radian) * newDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
     return;
   }
+
+  @Override
+  public void updateCenterByPick(Point aPoint)
+  {
+    // contactPointCoodinate.x = Math.cos(aRadian) * aSpurRadius;
+    // contactPointCoodinate.y = Math.sin(aRadian) * aSpurRadius;
+  }
+
+
+  @Override
+  public void updateRadiusByDrag(double aRadius)
+  {
+    //System.out.println(aRadius);
+    // centerCoodinate.x = previousCenterCoodinate.x * aRadius;
+    // centerCoodinate.y = previousCenterCoodinate.y * aRadius;
+    return;
+  }
+
+
 
 }

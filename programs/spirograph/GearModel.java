@@ -13,23 +13,28 @@ abstract public class GearModel extends Object
 
   protected double radius;
 
+  protected double previousRadius;
+
+  protected Point2D.Double previousCenterCoodinate;
+
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
 
   private Boolean radiusAbjustEnabled;
 
   private Boolean centerMoveEnabled;
 
-  private Integer tappedAreaIndex;
+  abstract void updateCenterByPick(Point aPoint);
 
-  abstract void updateCenterByDrag(Point aPoint);
+  abstract void updateRadiusByDrag(double aRadius);
 
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
     super();
     centerCoodinate = aCenterCoodinate;
+    previousCenterCoodinate = aCenterCoodinate;
     radius = aRadius;
+    previousRadius = aRadius;
     radiusAbjustEnabled = false;
-    centerMoveEnabled = false;
     this.initializeTapArea();
   }
 
@@ -82,8 +87,7 @@ abstract public class GearModel extends Object
   {
     return centerCoodinate;
   }
-
-  public void updateByPress(Point aPoint)
+  public void judgePressArea(Point aPoint)
   {
     double tapRange = SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2;
     for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
@@ -92,7 +96,6 @@ abstract public class GearModel extends Object
       double tapPoint = (coodinate.x - aPoint.x) * (coodinate.x - aPoint.x) + (coodinate.y - aPoint.y) * (coodinate.y - aPoint.y);
       if(tapPoint <= tapRange)
       {
-        tappedAreaIndex = index;
         radiusAbjustEnabled = true;
         return;
       }
@@ -109,17 +112,13 @@ abstract public class GearModel extends Object
   {
     if(radiusAbjustEnabled)
     {
-      System.out.println(tappedAreaIndex);
+      //System.out.println(tappedAreaIndex);
       double x = centerCoodinate.x - aPoint.x;
       double y = centerCoodinate.y - aPoint.y;
       double newRadius = Math.sqrt(x*x+y*y);
       radius = newRadius;
     }
-    else if(centerMoveEnabled)
-    {
-      this.updateCenterByDrag(aPoint);
-    }
-    this.updateTapAreaByEvent();
+    this.updateTapArea();
     return;
   }
 
@@ -130,6 +129,12 @@ abstract public class GearModel extends Object
     return;
   }
 
+  public void updateByEvent(Point aPoint)
+  {
+    this.updateRadius(aPoint);
+    this.updateTapArea();
+  }
+
   private void updateRadius(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;
@@ -138,7 +143,7 @@ abstract public class GearModel extends Object
     this.radius(newRadius);
   }
 
-  private void updateTapAreaByEvent()
+  private void updateTapArea()
   {
     double newRadius = -radius;
     for(Integer index = 0; index < 4; index ++)
@@ -152,11 +157,10 @@ abstract public class GearModel extends Object
       else
       {
         coodinate.x = centerCoodinate.x - newRadius;
-        coodinate.y = centerCoodinate.y;
+        coodinate.y = coodinate.y;
       }
       if(index == 1) { newRadius *= -1; }
     }
-    System.out.println(centerCoodinate);
   }
 
   public Point2D.Double drawGearCoodinate()

@@ -22,16 +22,13 @@ public class SpiroView extends View implements Runnable
 
   public void run()
   {
-    double spurRadian = 0.000;
-    SpurModel spurModel = this.getSpiroModel().getSpurModel();
     while(true)
     {
       if (!this.getSpiroModel().isStop())
       {
-        System.out.println("aaa");
-        double radian = Math.toRadians(spurRadian);
-        this.getSpiroModel().updateByRadian(radian);
-        spurRadian += 0.1;
+        double radian = Math.toRadians(this.getSpiroModel().radian());
+        this.getSpiroModel().updateByRadian();
+        this.getSpiroModel().setRadian();
       } else {
 
       }
@@ -59,6 +56,7 @@ public class SpiroView extends View implements Runnable
   {
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
     aGraphics.setColor(Color.black);
+    //System.out.println(pinionModel.contactPointCoodinate);
     aGraphics.drawOval((int)pinionModel.drawGearCoodinate().x,(int)pinionModel.drawGearCoodinate().y,pinionModel.drawGearDimension().width,pinionModel.drawGearDimension().height);
     aGraphics.drawOval((int)pinionModel.drawGearCenterCoodinate().x,(int)pinionModel.drawGearCenterCoodinate().y,pinionModel.drawGearCenterDimension().width,pinionModel.drawGearCenterDimension().height);
     aGraphics.drawOval((int)pinionModel.drawPencilCoodinate().x,(int)pinionModel.drawPencilCoodinate().y,SpiroConstruct.PENCIL_RADIUS*2,SpiroConstruct.PENCIL_RADIUS*2);
