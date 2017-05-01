@@ -26,8 +26,7 @@ public class SpiroView extends View implements Runnable
     {
       if (!this.getSpiroModel().isStop())
       {
-        double radian = Math.toRadians(this.getSpiroModel().radian());
-        this.getSpiroModel().updateByRadian();
+        this.getSpiroModel().updateByAnimation();
         this.getSpiroModel().setRadian();
       } else {
 

@@ -14,14 +14,11 @@ public class PinionModel extends GearModel
 
   private double pencilDistance;
 
-  public Point2D.Double contactPointCoodinate;
-
   // コンストラクタ
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
     super(aCenterCoodinate,aRadius);
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
-    contactPointCoodinate = new Point2D.Double(SpiroConstruct.SPIRO_WINDOW_CENTER.x + SpiroConstruct.SPUR_RADIUS,SpiroConstruct.SPIRO_WINDOW_CENTER.y);
     this.dataReset();
     return;
   }
@@ -40,10 +37,7 @@ public class PinionModel extends GearModel
 
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
-    contactPointCoodinate.x = Math.cos(aRadian) * aSpurRadius;
-    contactPointCoodinate.y = Math.sin(aRadian) * aSpurRadius;
-    double spinRate = (aSpurRadius-radius) / (radius*2);
-    double pinionTheta = (radius-aGearDistance)/radius * (aRadian * spinRate);
+    double pinionTheta = -aGearDistance /  radius * aRadian;
     this.centerMoveManager(aRadian,aGearDistance);
     this.spinManager(aRadian,pinionTheta,aGearDistance);
     this.pencilMoveManager(aRadian,pinionTheta,aGearDistance);
