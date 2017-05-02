@@ -153,6 +153,8 @@ abstract public class GearModel extends Object
 
   private void updateCenterByDrag(Point aPoint)
   {
+    System.out.println("updateCenterByDrag");
+    
     return;
   }
 

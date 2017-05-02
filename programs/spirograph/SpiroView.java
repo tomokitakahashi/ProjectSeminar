@@ -20,6 +20,7 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  // アニメーションをするスレッドのためのメソッド
   public void run()
   {
     while(true)
@@ -27,7 +28,7 @@ public class SpiroView extends View implements Runnable
       if (!this.getSpiroModel().isStop())
       {
         this.getSpiroModel().updateByAnimation();
-        this.getSpiroModel().setRadian();
+        this.getSpiroModel().setDegree();
       } else {
 
       }

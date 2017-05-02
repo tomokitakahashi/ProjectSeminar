@@ -45,17 +45,17 @@ public class SpiroModel extends Model
     return spurModel;
   }
 
-
-  public double radian()
+  public double degree()
   {
     return axisDegree;
   }
-  public void setRadian()
+
+  public void setDegree()
   {
     axisDegree += 0.1;
     return;
   }
-
+  // アニメーションが止まっているかを設定するメソッド
   public void setStop(Boolean aBool)
   {
     if (aBool)
