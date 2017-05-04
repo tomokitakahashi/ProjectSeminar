@@ -52,6 +52,7 @@ public class MenuController extends Controller implements ActionListener
     {
       this.tappedClearButton();
     }
+    return;
   }
 
   // スタートボタンを押した時のアクションゲッター
@@ -76,8 +77,6 @@ public class MenuController extends Controller implements ActionListener
   private void tappedSaveButton()
   {
     System.out.println("tappedSaveButton");
-    // MenuModel aMenuModel = (MenuModel)model;
-    // aMenuModel.save();
     return;
   }
 
@@ -85,8 +84,6 @@ public class MenuController extends Controller implements ActionListener
   private void tappedLoadButton()
   {
     System.out.println("tappedLoadButton");
-    // MenuModel aMenuModel = (MenuModel)model;
-    // aMenuModel.load();
     return;
   }
 
@@ -94,8 +91,6 @@ public class MenuController extends Controller implements ActionListener
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
-    // MenuModel aMenuModel = (MenuModel)model;
-    // aMenuModel.clear();
     return;
   }
 

@@ -20,6 +20,7 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  // アニメーションをするスレッドのためのメソッド
   public void run()
   {
     while(true)
@@ -27,7 +28,7 @@ public class SpiroView extends View implements Runnable
       if (!this.getSpiroModel().isStop())
       {
         this.getSpiroModel().updateByAnimation();
-        this.getSpiroModel().setRadian();
+        this.getSpiroModel().setDegree();
       } else {
 
       }
@@ -88,11 +89,7 @@ public class SpiroView extends View implements Runnable
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
       Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
-      // if(index == 1){
-      //   aGraphics.setColor(Color.black);
-      // } else {
-        aGraphics.setColor(Color.white);
-      //}
+      aGraphics.setColor(Color.white);
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;
