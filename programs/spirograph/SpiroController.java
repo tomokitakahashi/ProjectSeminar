@@ -37,6 +37,7 @@ public class SpiroController extends Controller implements MenuActionListener
   {
     System.out.println("animationStart");
     this.getSpiroModel().setStop(false);
+    this.getSpiroModel().restartModel();
     return;
   }
   // メニューからストップが押された際にデリゲートを通じて通知される

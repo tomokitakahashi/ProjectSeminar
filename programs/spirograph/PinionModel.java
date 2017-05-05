@@ -16,10 +16,15 @@ public class PinionModel extends GearModel
 
   private double pinionTheta;
 
+  private double previousTheta;
+
+  private double increaseRate;
   // コンストラクタ
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
     super(aCenterCoodinate,aRadius);
+    pinionTheta = 0.0;
+    previousTheta = 0.0;
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
     this.dataReset();
     return;
@@ -28,21 +33,25 @@ public class PinionModel extends GearModel
   @Override
   public void dataReset()
   {
-    previousRadius = radius;
-    previousCenterCoodinate = centerCoodinate;
     pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x);
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+    previousTheta = pinionTheta;
     return;
   }
-
+  public void restart(double aGearDistance)
+  {
+     increaseRate = (-aGearDistance /  radius * Math.toRadians(0.1)) - (-aGearDistance /  radius * 0);
+     return;
+  }
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
-    pinionTheta = -aGearDistance /  radius * aRadian;
+    pinionTheta += increaseRate;
     this.centerMoveManager(aRadian,aGearDistance);
-    this.spinManager(aRadian,pinionTheta,aGearDistance);
-    this.pencilMoveManager(aRadian,pinionTheta,aGearDistance);
+    this.spinManager(aRadian,aGearDistance);
+    this.pencilMoveManager(aRadian,aGearDistance);
+    System.out.println("animation " + pinionTheta);
     return;
   }
 
@@ -53,22 +62,24 @@ public class PinionModel extends GearModel
     return;
   }
 
-  private void spinManager(double aRadian,double aPinionTheta,double aGearDistance)
+  private void spinManager(double aRadian,double aGearDistance)
   {
     double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
-      coodinate.x = radius*Math.cos(aPinionTheta+(addRadian * (index-1))) + aGearDistance*Math.cos(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-      coodinate.y = radius*Math.sin(aPinionTheta+(addRadian * (index-1))) + aGearDistance*Math.sin(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
+      coodinate.x = Math.cos(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.x;
+      coodinate.y = Math.sin(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.y;
+      // coodinate.x = radius*Math.cos(pinionTheta+(addRadian * (index-1))) + aGearDistance*Math.cos(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+      // coodinate.y = radius*Math.sin(pinionTheta+(addRadian * (index-1))) + aGearDistance*Math.sin(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
     }
     return;
   }
 
-  private void pencilMoveManager(double aRadian,double aPinionTheta,double aGearDistance)
+  private void pencilMoveManager(double aRadian,double aGearDistance)
   {
-    pencilCoodinate.x = Math.cos(aPinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
-    pencilCoodinate.y = Math.sin(aPinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
+    pencilCoodinate.x = Math.cos(pinionTheta) * pencilDistance + centerCoodinate.x;
+    pencilCoodinate.y = Math.sin(pinionTheta) * pencilDistance + centerCoodinate.y;
     return;
   }
 
@@ -78,16 +89,21 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
-  public void updateRelative(double aRadian,Point2D.Double pointCoodinate)
+  public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
   {
+    System.out.println("relative  " + pinionTheta);
+    //pinionTheta = -aGearDistance /  radius * aRadian;
+    System.out.println("test");
     centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
     centerCoodinate.y = Math.sin(aRadian+Math.toRadians(180)) * radius + pointCoodinate.y;
+    pencilCoodinate.x = Math.cos(pinionTheta) * pencilDistance + centerCoodinate.x;
+    pencilCoodinate.y = Math.sin(pinionTheta) * pencilDistance + centerCoodinate.y;
     double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
-      coodinate.x = Math.cos(pinionTheta + (addRadian * (index-1))) * radius + centerCoodinate.x;
-      coodinate.y = Math.sin(pinionTheta + (addRadian * (index-1))) * radius + centerCoodinate.y;
+      coodinate.x = Math.cos(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.x;
+      coodinate.y = Math.sin(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.y;
     }
     return;
   }
