@@ -76,11 +76,18 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
-  public void updateRelativeCenter(double radian,Point2D.Double pointCoodinate)
+  public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
   {
-    centerCoodinate.x = Math.cos(radian+Math.toRadians(180)) * radius + pointCoodinate.x;
-    centerCoodinate.y = Math.sin(radian+Math.toRadians(180)) * radius + pointCoodinate.y;
-    this.updateTapArea();
+    centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
+    centerCoodinate.y = Math.sin(aRadian+Math.toRadians(180)) * radius + pointCoodinate.y;
+    double addRadian = Math.toRadians(90);
+    double pinionTheta = -aGearDistance /  radius * aRadian;
+    for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
+    {
+      Point2D.Double coodinate = tapAreaCoodinateList.get(index);
+      coodinate.x = Math.cos(pinionTheta + (addRadian * (index-1))) * radius + centerCoodinate.x;
+      coodinate.y = Math.sin(pinionTheta + (addRadian * (index-1))) * radius + centerCoodinate.y;
+    }
     return;
   }
 
