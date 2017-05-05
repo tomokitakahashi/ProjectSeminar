@@ -151,7 +151,7 @@ abstract public class GearModel extends Object
     return;
   }
 
-  private void updateCenterByDrag(Point aPoint)
+  public void updateCenterByDrag(Point aPoint)
   {
     System.out.println("updateCenterByDrag");
     centerCoodinate.x = aPoint.x;
@@ -173,7 +173,7 @@ abstract public class GearModel extends Object
       else
       {
         coodinate.x = centerCoodinate.x - newRadius;
-        coodinate.y = coodinate.y;
+        coodinate.y = centerCoodinate.y;
       }
       if(index == 1) { newRadius *= -1; }
     }
