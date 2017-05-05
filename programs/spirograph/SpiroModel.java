@@ -76,6 +76,11 @@ public class SpiroModel extends Model
     return isStop;
   }
 
+  public void restartModel()
+  {
+    pinionModel.restart(gearDistance);
+    return;
+  }
   //アニメーションでモデルを更新するメソッド
   public void updateByAnimation()
   {
@@ -115,7 +120,7 @@ public class SpiroModel extends Model
     double spurRadius = spurModel.radius();
     double newDistance = gearDistance * spurModel.radius()/spurModel.previousRadius;
     Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
-    pinionModel.updateRelative(radian,coodinate);
+    pinionModel.updateRelative(radian,coodinate,spurRadius);
     return;
   }
 
