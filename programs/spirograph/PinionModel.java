@@ -167,8 +167,8 @@ public class PinionModel extends GearModel
     }
     if(!pencilMoveEnabled)
     {
-      pencilCoodinate.x = Math.cos(pinionTheta) * pencilDistance + centerCoodinate.x;
-      pencilCoodinate.y = Math.sin(pinionTheta) * pencilDistance + centerCoodinate.y;
+      pencilCoodinate.x = Math.cos(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
+      pencilCoodinate.y = Math.sin(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
     }
     double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
