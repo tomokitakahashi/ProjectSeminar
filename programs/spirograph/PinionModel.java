@@ -14,6 +14,8 @@ public class PinionModel extends GearModel
 
   private double pencilDistance;
 
+  private double pinionTheta;
+
   // コンストラクタ
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
@@ -37,7 +39,7 @@ public class PinionModel extends GearModel
 
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
-    double pinionTheta = -aGearDistance /  radius * aRadian;
+    pinionTheta = -aGearDistance /  radius * aRadian;
     this.centerMoveManager(aRadian,aGearDistance);
     this.spinManager(aRadian,pinionTheta,aGearDistance);
     this.pencilMoveManager(aRadian,pinionTheta,aGearDistance);
@@ -76,12 +78,11 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
-  public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
+  public void updateRelative(double aRadian,Point2D.Double pointCoodinate)
   {
     centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
     centerCoodinate.y = Math.sin(aRadian+Math.toRadians(180)) * radius + pointCoodinate.y;
     double addRadian = Math.toRadians(90);
-    double pinionTheta = -aGearDistance /  radius * aRadian;
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);

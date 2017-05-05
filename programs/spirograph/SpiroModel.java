@@ -115,7 +115,7 @@ public class SpiroModel extends Model
     double spurRadius = spurModel.radius();
     double newDistance = gearDistance * spurModel.radius()/spurModel.previousRadius;
     Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
-    pinionModel.updateRelative(radian,coodinate,gearDistance);
+    pinionModel.updateRelative(radian,coodinate);
     return;
   }
 
