@@ -26,6 +26,7 @@ public class SpiroModel extends Model
   public SpiroModel()
   {
     super();
+    spiroLocusModel = new SpiroLocusModel();
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     isStop = true;
@@ -43,6 +44,11 @@ public class SpiroModel extends Model
   public SpurModel getSpurModel()
   {
     return spurModel;
+  }
+
+  public SpiroLocusModel getSpiroLocusModel()
+  {
+    return spiroLocusModel;
   }
 
   public double degree()

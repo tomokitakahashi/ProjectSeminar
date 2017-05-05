@@ -14,9 +14,9 @@ public class PinionModel extends GearModel
 
   private double pencilDistance;
 
-  private double pinionTheta;
+  private Boolean pencilMoveEnabled;
 
-  private double previousTheta;
+  private double pinionTheta;
 
   private double increaseRate;
   // コンストラクタ
@@ -24,8 +24,8 @@ public class PinionModel extends GearModel
   {
     super(aCenterCoodinate,aRadius);
     pinionTheta = 0.0;
-    previousTheta = 0.0;
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
+    pencilMoveEnabled = false;
     this.dataReset();
     return;
   }
@@ -37,13 +37,12 @@ public class PinionModel extends GearModel
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
-    previousTheta = pinionTheta;
     return;
   }
   public void restart(double aGearDistance)
   {
-     increaseRate = (-aGearDistance /  radius * Math.toRadians(0.1)) - (-aGearDistance /  radius * 0);
-     return;
+    increaseRate = -aGearDistance /  radius * Math.toRadians(0.1);
+    return;
   }
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
@@ -70,16 +69,14 @@ public class PinionModel extends GearModel
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
       coodinate.x = Math.cos(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.x;
       coodinate.y = Math.sin(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.y;
-      // coodinate.x = radius*Math.cos(pinionTheta+(addRadian * (index-1))) + aGearDistance*Math.cos(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-      // coodinate.y = radius*Math.sin(pinionTheta+(addRadian * (index-1))) + aGearDistance*Math.sin(aRadian) + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
     }
     return;
   }
 
   private void pencilMoveManager(double aRadian,double aGearDistance)
   {
-    pencilCoodinate.x = Math.cos(pinionTheta) * pencilDistance + centerCoodinate.x;
-    pencilCoodinate.y = Math.sin(pinionTheta) * pencilDistance + centerCoodinate.y;
+    pencilCoodinate.x = Math.cos(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
+    pencilCoodinate.y = Math.sin(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
     return;
   }
 
@@ -89,15 +86,90 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
+  @Override
+  public void judgePressArea(Point aPoint)
+  {
+    double tapRange = SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2;
+    double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
+    double pencilTapPoint = (pencilCoodinate.x - aPoint.x) * (pencilCoodinate.x - aPoint.x) + (pencilCoodinate.y - aPoint.y) * (pencilCoodinate.y - aPoint.y);
+    for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
+    {
+      Point2D.Double coodinate = tapAreaCoodinateList.get(index);
+      double tapPoint = (coodinate.x - aPoint.x) * (coodinate.x - aPoint.x) + (coodinate.y - aPoint.y) * (coodinate.y - aPoint.y);
+      if(tapPoint <= tapRange)
+      {
+        radiusAbjustEnabled = true;
+        return;
+      }
+    }
+    if(centerTapPoint <= tapRange)
+    {
+      centerMoveEnabled = true;
+    }
+    if(pencilTapPoint <= tapRange)
+    {
+      pencilMoveEnabled = true;
+    }
+    return;
+  }
+
+  @Override
+  public void updateByRelease(Point aPoint)
+  {
+    this.dataReset();
+    centerMoveEnabled = false;
+    radiusAbjustEnabled = false;
+    pencilMoveEnabled = false;
+    return;
+  }
+
+  @Override
+  public void updateByDrag(Point aPoint)
+  {
+    if(radiusAbjustEnabled)
+    {
+      this.updateRadiusByDrag(aPoint);
+    }
+    else if (centerMoveEnabled)
+    {
+      this.updateCenterByDrag(aPoint);
+    }
+    else if (pencilMoveEnabled)
+    {
+      this.updatePencilCenterByDrag(aPoint);
+    }
+    this.updateTapArea();
+    return;
+  }
+
+  private void updatePencilCenterByDrag(Point aPoint)
+  {
+    double distanceX = centerCoodinate.x - aPoint.x;
+    double distanceY = centerCoodinate.y - aPoint.y;
+    double distance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
+    if(distance <= radius)
+    {
+      pencilCoodinate.x = aPoint.x;
+      pencilCoodinate.y = aPoint.y;
+    }
+    return;
+  }
+
   public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
   {
     System.out.println("relative  " + pinionTheta);
     //pinionTheta = -aGearDistance /  radius * aRadian;
     System.out.println("test");
-    centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
-    centerCoodinate.y = Math.sin(aRadian+Math.toRadians(180)) * radius + pointCoodinate.y;
-    pencilCoodinate.x = Math.cos(pinionTheta) * pencilDistance + centerCoodinate.x;
-    pencilCoodinate.y = Math.sin(pinionTheta) * pencilDistance + centerCoodinate.y;
+    if(!centerMoveEnabled)
+    {
+      centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
+      centerCoodinate.y = Math.sin(aRadian+Math.toRadians(180)) * radius + pointCoodinate.y;
+    }
+    if(!pencilMoveEnabled)
+    {
+      pencilCoodinate.x = Math.cos(pinionTheta) * pencilDistance + centerCoodinate.x;
+      pencilCoodinate.y = Math.sin(pinionTheta) * pencilDistance + centerCoodinate.y;
+    }
     double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {

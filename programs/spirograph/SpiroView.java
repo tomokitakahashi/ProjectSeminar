@@ -52,11 +52,20 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  private void drawLocus(Graphics aGraphics)
+  {
+    SpiroLocusModel spiroLocusModel = this.getSpiroModel().getSpiroLocusModel();
+    for(Integer index = 0; index < spiroLocusModel.locusList().size();index ++)
+    {
+      //aGraphics.drawOval();
+    }
+    return;
+  }
+
   private void drawPinionGear(Graphics aGraphics)
   {
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
     aGraphics.setColor(Color.black);
-    //System.out.println(pinionModel.contactPointCoodinate);
     aGraphics.drawOval((int)pinionModel.drawGearCoodinate().x,(int)pinionModel.drawGearCoodinate().y,pinionModel.drawGearDimension().width,pinionModel.drawGearDimension().height);
     aGraphics.drawOval((int)pinionModel.drawGearCenterCoodinate().x,(int)pinionModel.drawGearCenterCoodinate().y,pinionModel.drawGearCenterDimension().width,pinionModel.drawGearCenterDimension().height);
     aGraphics.drawOval((int)pinionModel.drawPencilCoodinate().x,(int)pinionModel.drawPencilCoodinate().y,SpiroConstruct.PENCIL_RADIUS*2,SpiroConstruct.PENCIL_RADIUS*2);
