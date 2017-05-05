@@ -97,8 +97,13 @@ public class SpiroView extends View implements Runnable
   {
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
+
       Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
       aGraphics.setColor(Color.white);
+      if(index == 1)
+      {
+        aGraphics.setColor(Color.black);
+      }
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
     return;

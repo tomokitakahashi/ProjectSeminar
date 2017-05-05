@@ -33,7 +33,10 @@ public class PinionModel extends GearModel
   @Override
   public void dataReset()
   {
+    Point2D.Double axisPoint = tapAreaCoodinateList.get(1);
+    double axisRadian = Math.atan2(centerCoodinate.y-axisPoint.y,centerCoodinate.x-axisPoint.x);
     pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x);
+    pencilRadian -= (axisRadian + Math.toRadians(180));
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
@@ -50,7 +53,6 @@ public class PinionModel extends GearModel
     this.centerMoveManager(aRadian,aGearDistance);
     this.spinManager(aRadian,aGearDistance);
     this.pencilMoveManager(aRadian,aGearDistance);
-    System.out.println("animation " + pinionTheta);
     return;
   }
 
@@ -157,9 +159,6 @@ public class PinionModel extends GearModel
 
   public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
   {
-    System.out.println("relative  " + pinionTheta);
-    //pinionTheta = -aGearDistance /  radius * aRadian;
-    System.out.println("test");
     if(!centerMoveEnabled)
     {
       centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
