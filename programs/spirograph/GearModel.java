@@ -19,11 +19,13 @@ abstract public class GearModel extends Object
 
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
 
-  private Boolean radiusAbjustEnabled;
+  protected Boolean radiusAbjustEnabled;
 
-  private Boolean centerMoveEnabled;
+  protected Boolean centerMoveEnabled;
 
   abstract void dataReset();
+
+  abstract void judgePressArea(Point aPoint);
 
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
@@ -86,26 +88,6 @@ abstract public class GearModel extends Object
   {
     return centerCoodinate;
   }
-  public void judgePressArea(Point aPoint)
-  {
-    double tapRange = SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2;
-    for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
-    {
-      Point2D.Double coodinate = tapAreaCoodinateList.get(index);
-      double tapPoint = (coodinate.x - aPoint.x) * (coodinate.x - aPoint.x) + (coodinate.y - aPoint.y) * (coodinate.y - aPoint.y);
-      if(tapPoint <= tapRange)
-      {
-        radiusAbjustEnabled = true;
-        return;
-      }
-    }
-    double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
-    if(centerTapPoint <= tapRange)
-    {
-      centerMoveEnabled = true;
-    }
-    return;
-  }
 
   public void updateByDrag(Point aPoint)
   {
@@ -134,7 +116,7 @@ abstract public class GearModel extends Object
     this.updateTapArea();
   }
 
-  private void updateRadius(Point aPoint)
+  protected void updateRadius(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;
     double y = centerCoodinate.y - aPoint.y;
@@ -142,7 +124,7 @@ abstract public class GearModel extends Object
     this.radius(newRadius);
   }
 
-  private void updateRadiusByDrag(Point aPoint)
+  protected void updateRadiusByDrag(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;
     double y = centerCoodinate.y - aPoint.y;

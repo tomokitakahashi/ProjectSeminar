@@ -19,7 +19,7 @@ public class SpiroConstruct {
 
   // 各円の初期半径
   public static final Integer TAP_AREA_RADIUS = 4;
-  public static final Integer PENCIL_RADIUS = 6;
+  public static final Integer PENCIL_RADIUS = 4;
   public static final Integer SPUR_RADIUS = 240;
   public static final Integer PINION_RADIUS = 60;
 
