@@ -30,6 +30,8 @@ public class PinionModel extends GearModel
     return;
   }
 
+  //各プロパティのリセッター
+  //リスタートなどの際に再セットする
   @Override
   public void dataReset()
   {
@@ -47,6 +49,8 @@ public class PinionModel extends GearModel
     increaseRate = -aGearDistance /  radius * Math.toRadians(0.1);
     return;
   }
+
+  // アニメーション全体を制御するメソッド
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
     pinionTheta += increaseRate;
@@ -56,6 +60,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  // ピニオンギアの中心アニメーションを制御するメソッド
   private void centerMoveManager(double aRadian,double aGearDistance)
   {
     centerCoodinate.x = Math.cos(aRadian) * aGearDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
@@ -63,6 +68,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  // ピニオンギアの回転を制御するメソッド
   private void spinManager(double aRadian,double aGearDistance)
   {
     double addRadian = Math.toRadians(90);
@@ -75,6 +81,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  // 鉛筆のアニメーションを制御するメソッド
   private void pencilMoveManager(double aRadian,double aGearDistance)
   {
     pencilCoodinate.x = Math.cos(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
@@ -82,12 +89,14 @@ public class PinionModel extends GearModel
     return;
   }
 
+  // 鉛筆を描写する座標を応答する
   public Point2D.Double drawPencilCoodinate()
   {
     Point2D.Double coodinate = new Point2D.Double(pencilCoodinate.x - SpiroConstruct.PENCIL_RADIUS,pencilCoodinate.y - SpiroConstruct.PENCIL_RADIUS);
     return coodinate;
   }
 
+  // マウスイベントの有効箇所を判断するメソッド
   @Override
   public void judgePressArea(Point aPoint)
   {
@@ -115,6 +124,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  //マウスリリースの際の処理
   @Override
   public void updateByRelease(Point aPoint)
   {
@@ -125,6 +135,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  // マウスドラッグの際の処理
   @Override
   public void updateByDrag(Point aPoint)
   {
