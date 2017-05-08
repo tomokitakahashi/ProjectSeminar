@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JColorChooser;
 
 /**
  * 例題プログラム。
@@ -78,6 +79,15 @@ public class Example extends Object
 		aMenuWindow.setBounds(0,0,aMenuDimension.width,aMenuDimension.height);
 		aMenuWindow.setVisible(true);
 		aMenuWindow.toFront();
+
+		// for JColorChooser
+		JFrame aColorMenuWindow = new JFrame("ColorChooser");
+		aColorMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		aColorMenuWindow.setBounds(10, 10, 300, 200);
+		aColorMenuWindow.setTitle("タイトル");
+		aColorMenuWindow.setVisible(true);
+		JColorChooser colorchooser = new JColorChooser();
+		aColorMenuWindow.getContentPane().add(colorchooser);
 
 	}
 }
