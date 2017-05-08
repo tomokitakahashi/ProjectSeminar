@@ -23,9 +23,13 @@ public class SpiroModel extends Model
   // ギア同士の距離
   private double gearDistance;
 
+  // メニューのモデル (セーブなどは)
+  private MenuModel menuModel;
+
   public SpiroModel()
   {
     super();
+    menuModel = null;
     spiroLocusModel = new SpiroLocusModel();
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
@@ -127,6 +131,15 @@ public class SpiroModel extends Model
     double newDistance = gearDistance * spurModel.radius()/spurModel.previousRadius;
     Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
     pinionModel.updateRelative(radian,coodinate,spurRadius);
+    return;
+  }
+
+  //MenuModelをセットするメソッド
+  //ファイルシステムに関する処理はMenuModel内で行うため
+  //SpiroModelとMenuModelは「関係」している必要がある
+  public void setMenuModel(MenuModel aMenuModel)
+  {
+    menuModel = aMenuModel;
     return;
   }
 
