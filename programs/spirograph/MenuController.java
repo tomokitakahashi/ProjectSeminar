@@ -3,8 +3,12 @@ package spirograph;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.Color;
 
-public class MenuController extends Controller implements ActionListener
+public class MenuController extends Controller implements ActionListener, ChangeListener
 {
   private MenuActionListener menuActionListener = null;
 
@@ -91,6 +95,13 @@ public class MenuController extends Controller implements ActionListener
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
+    return;
+  }
+
+  // 色が選択され設定色が変化した時に呼ばれるメソッド
+  public void stateChanged(ChangeEvent aEvent)
+  {
+    System.out.println("selected any color");
     return;
   }
 

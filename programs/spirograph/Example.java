@@ -82,11 +82,12 @@ public class Example extends Object
 
 		// for JColorChooser
 		JFrame aColorMenuWindow = new JFrame("ColorChooser");
+		JColorChooser colorchooser = new JColorChooser();
+		colorchooser.getSelectionModel().addChangeListener(aMenuController);
 		aColorMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		aColorMenuWindow.setBounds(10, 10, 300, 200);
-		aColorMenuWindow.setTitle("タイトル");
+		aColorMenuWindow.setTitle("スピログラフの色選択");
 		aColorMenuWindow.setVisible(true);
-		JColorChooser colorchooser = new JColorChooser();
 		aColorMenuWindow.getContentPane().add(colorchooser);
 
 	}
