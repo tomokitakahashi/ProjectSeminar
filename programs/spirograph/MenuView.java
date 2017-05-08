@@ -10,22 +10,12 @@ import java.awt.event.ActionEvent;
 
 public class MenuView extends View
 {
-  // 描写するボタンのタイトルリスト
-  private ArrayList<String> buttonTitleList;
-
   // MenuViewのコンストラクタ
   public MenuView(MenuModel aMenuModel)
   {
     super(aMenuModel);
-    buttonTitleList = new ArrayList<String>(){
-      {
-        add("Start");
-        add("Stop");
-        add("Save");
-        add("Load");
-        add("Clear");
-      }
-    };
+    model = aMenuModel;
+    controller = new MenuController();
     return;
   }
 
@@ -35,19 +25,8 @@ public class MenuView extends View
     super(aMenuModel,aMenuController);
     model = aMenuModel;
     controller = aMenuController;
-    buttonTitleList = new ArrayList<String>(){
-      {
-        add("Start");
-        add("Stop");
-        add("Save");
-        add("Load");
-        add("Clear");
-      }
-    };
     return;
   }
-
-
   // Componentを表示させるためのメソッドggjyouiji
   @Override
   public void paintComponent(Graphics aGraphics)
@@ -56,10 +35,11 @@ public class MenuView extends View
     panel.setLayout(null);
     Dimension aMenuViewSize = this.getSize();
     panel.setBounds(0,0,aMenuViewSize.width,aMenuViewSize.height);
+    MenuModel menuModel = (MenuModel)model;
     MenuController menuController = (MenuController)controller;
     Integer bottonCount = 5;
-    for (Integer index = 0;index < buttonTitleList.size() ;index++ ) {
-      String aTitle = buttonTitleList.get(index);
+    for (Integer index = 0;index < menuModel.getButtonTitleList().size() ;index++ ) {
+      String aTitle = menuModel.getButtonTitleList().get(index);
       Integer width = aMenuViewSize.width - SpiroConstruct.MENU_BUTTON_MARGIN * 2;
       Integer height =  (aMenuViewSize.height - SpiroConstruct.MENU_BUTTON_MARGIN*(bottonCount+1))/bottonCount;
       JButton aButton = new JButton(aTitle);

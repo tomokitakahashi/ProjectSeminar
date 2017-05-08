@@ -1,18 +1,48 @@
 package spirograph;
 
-import javax.swing.JButton;
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class MenuModel extends Model
 {
 
-  public Boolean isStop;
+  private SpiroModel spiroModel;
+
+  // メニューに表示させるArrayList
+  private ArrayList<String> buttonTitleList;
+
+  //スピログラフの奇跡の色を保持しておく
+  private Color selectedColor;
 
   // MenuModel のコンストラクタ
-  public MenuModel()
+  public MenuModel(SpiroModel aSpiroModel)
   {
     super();
-    isStop = true;
+    selectedColor = Color.black;
+    spiroModel = aSpiroModel;
+    spiroModel.setMenuModel(this);
+    buttonTitleList = new ArrayList<String>() {
+      {
+        add("Start");
+        add("Stop");
+        add("Save");
+        add("Load");
+        add("Clear");
+      }
+    };
     return;
   }
+
+  // 選択されている色を応答する
+  public Color getSelectedColor()
+  {
+    return selectedColor;
+  }
+
+  // 表示するボタンのタイトルリストを応答する
+  public ArrayList<String> getButtonTitleList()
+  {
+    return buttonTitleList;
+  }
+
 }

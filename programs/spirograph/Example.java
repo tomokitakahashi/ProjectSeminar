@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JColorChooser;
 
 /**
  * 例題プログラム。
@@ -67,7 +68,7 @@ public class Example extends Object
 		Dimension aMenuDimension = new Dimension(SpiroConstruct.MENU_WINDOW.width,SpiroConstruct.MENU_WINDOW.height);
 		MenuController aMenuController = new MenuController();
 		aMenuController.setMenuActionListener(aSpiroController);
-		MenuModel aMenuModel = new MenuModel();
+		MenuModel aMenuModel = new MenuModel(aSpiroModel);
 		MenuView aMenuView = new MenuView(aMenuModel,aMenuController);
 		JFrame aMenuWindow = new JFrame("Menu");
 		aMenuWindow.getContentPane().add(aMenuView);
@@ -78,6 +79,16 @@ public class Example extends Object
 		aMenuWindow.setBounds(0,0,aMenuDimension.width,aMenuDimension.height);
 		aMenuWindow.setVisible(true);
 		aMenuWindow.toFront();
+
+		// for JColorChooser
+		JFrame aColorMenuWindow = new JFrame("ColorChooser");
+		JColorChooser colorchooser = new JColorChooser();
+		colorchooser.getSelectionModel().addChangeListener(aMenuController);
+		aColorMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		aColorMenuWindow.setBounds(10, 10, 300, 200);
+		aColorMenuWindow.setTitle("スピログラフの色選択");
+		aColorMenuWindow.setVisible(true);
+		aColorMenuWindow.getContentPane().add(colorchooser);
 
 	}
 }
