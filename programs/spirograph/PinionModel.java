@@ -8,7 +8,7 @@ import java.awt.Point;
 public class PinionModel extends GearModel
 {
   // 鉛筆の点の座標を格納しておくプロパティ
-  private Point2D.Double pencilCoodinate;
+  public Point2D.Double pencilCoodinate;
 
   private double pencilRadian;
 

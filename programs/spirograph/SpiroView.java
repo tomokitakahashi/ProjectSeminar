@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 public class SpiroView extends View implements Runnable
 {
+  // テスト用
+  private ArrayList<Point2D.Double> spiroList = new ArrayList<Point2D.Double>();
+
   public SpiroView(SpiroModel aSpiroModel)
   {
     super(aSpiroModel);
@@ -29,6 +32,7 @@ public class SpiroView extends View implements Runnable
       {
         this.getSpiroModel().updateByAnimation();
         this.getSpiroModel().setDegree();
+        spiroList.add(this.getSpiroModel().getPinionModel().pencilCoodinate);
       } else {
 
       }
@@ -43,12 +47,14 @@ public class SpiroView extends View implements Runnable
   @Override
   public void paintComponent(Graphics aGraphics)
   {
+    super.paintComponent(aGraphics);
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
     aGraphics.setColor(Color.black);
     this.drawAxis(aGraphics);
     this.drawSpurGear(aGraphics);
     this.drawPinionGear(aGraphics);
+    this.drawSpiro(aGraphics);
     return;
   }
 
@@ -62,6 +68,18 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  private void drawSpiro(Graphics aGraphics)
+  {
+    for(Integer index = 0;index < spiroList.size();index++)
+    {
+      Point2D.Double coodinate = spiroList.get(index);
+      aGraphics.setColor(Color.blue);
+      aGraphics.fillOval((int)coodinate.x - 5,(int)coodinate.y - 5,10,10);
+    }
+    return;
+  }
+
+  // ピニオンギア描写メソッド
   private void drawPinionGear(Graphics aGraphics)
   {
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
@@ -75,6 +93,7 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  // スパーギア描写メソッド
   private void drawSpurGear(Graphics aGraphics)
   {
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
@@ -85,6 +104,7 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  //軸線描写メソッド
   private void drawAxis(Graphics aGraphics)
   {
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
@@ -93,11 +113,11 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  //マウスイベント取得エリア描写メソッド
   private void drawTapArea(Graphics aGraphics, GearModel aGear)
   {
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
     {
-
       Point2D.Double areaCoodinate = aGear.drawTapAreaCoodinate(index);
       aGraphics.setColor(Color.white);
       if(index == 1)
@@ -109,6 +129,7 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  // SpiroModelにキャストして応答するメソッド
   public SpiroModel getSpiroModel()
   {
     SpiroModel spiroModel = (SpiroModel)model;
