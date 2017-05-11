@@ -8,7 +8,7 @@ public class SpiroModel extends Model
 {
   // Viewのアニメーションが止まっているかの状態保存
   public Boolean isStop;
-  
+
   // スピログラフで描かれた軌跡モデル
   private SpiroLocusModel spiroLocusModel;
 
@@ -87,6 +87,7 @@ public class SpiroModel extends Model
     return isStop;
   }
 
+  // リスタートした時に再設定するメソッド
   public void restartModel()
   {
     pinionModel.restart(gearDistance);
@@ -96,6 +97,7 @@ public class SpiroModel extends Model
   public void updateByAnimation()
   {
     pinionModel.animationManager(Math.toRadians(axisDegree),spurModel.radius,gearDistance);
+    spiroLocusModel.locusList().add(pinionModel.pencilLocusCoodinate());
     return;
   }
 

@@ -27,8 +27,6 @@ public class SpiroView extends View implements Runnable
     {
       if (!this.getSpiroModel().isStop())
       {
-        Point2D.Double coodinate = this.getSpiroModel().getPinionModel().pencilLocusCoodinate();
-        this.getSpiroModel().getSpiroLocusModel().addCoodinate(coodinate);
         this.getSpiroModel().updateByAnimation();
         this.getSpiroModel().setDegree();
       } else {

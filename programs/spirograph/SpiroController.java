@@ -47,12 +47,14 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
+  // スピロモデルを応答するメソッド
   private SpiroModel getSpiroModel()
   {
     SpiroModel spiroModel = (SpiroModel)model;
     return spiroModel;
   }
 
+  // スピロビューを応答するメソッド
   private SpiroView getSpiroView()
   {
     SpiroView spiroView = (SpiroView)view;

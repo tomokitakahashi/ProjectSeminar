@@ -44,6 +44,8 @@ public class PinionModel extends GearModel
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
     return;
   }
+
+  // リスタートした時に鉛筆の移動割合を再格納するメソッド
   public void restart(double aGearDistance)
   {
     increaseRate = -aGearDistance /  radius * Math.toRadians(0.1);
@@ -160,6 +162,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  // 鉛筆のドラッグによって移動させるメソッド
   private void updatePencilCenterByDrag(Point aPoint)
   {
     double distanceX = centerCoodinate.x - aPoint.x;
@@ -173,6 +176,7 @@ public class PinionModel extends GearModel
     return;
   }
 
+  //すべてのデータに基づいて最新のデータを更新するメソッド
   public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
   {
     if(!centerMoveEnabled)
