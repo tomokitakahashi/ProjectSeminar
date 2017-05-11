@@ -63,32 +63,46 @@ abstract public class GearModel extends Object
     return tapAreaCoodinateList;
   }
 
-  // ギアの半径を設定する
+  /**
+  ギアの半径を設定する
+  @param aRadius 半径
+  **/
   public void radius(double aRadius)
   {
     radius = aRadius;
     return;
   }
 
-  // ギアの半径を応答する
+  /**
+  ギアの半径を応答する
+  **/
   public double radius()
   {
     return radius;
   }
 
-  // ギアの中心座標を設定する
+  /**
+  ギアの中心座標を設定する
+  @param aCenterCoodinate 中心座標
+  **/
   public void centerCoodinate(Point2D.Double aCenterCoodinate)
   {
     centerCoodinate = aCenterCoodinate;
     return;
   }
 
-  // ギアの中心座標を応答する
+  /**
+  ギアの中心座標を応答する
+  **/
   public Point2D.Double centerCoodinate()
   {
     return centerCoodinate;
   }
 
+  /**
+  ドラッグイベントによってモデルをアップデートするメソッド
+  @param aPoint ドラッグ位置
+  **/
   public void updateByDrag(Point aPoint)
   {
     if(radiusAbjustEnabled)
@@ -103,6 +117,10 @@ abstract public class GearModel extends Object
     return;
   }
 
+  /**
+  マウスカーソルリリースエベントによってモデルをアップデートするメソッド
+  @param aPoint リリース位置
+  **/
   public void updateByRelease(Point aPoint)
   {
     centerMoveEnabled = false;
@@ -110,12 +128,20 @@ abstract public class GearModel extends Object
     return;
   }
 
+  /**
+  イベント全般に対してモデルをアップデートするメソッド
+  @param aPoint マウス位置
+  **/
   public void updateByEvent(Point aPoint)
   {
     this.updateRadius(aPoint);
     this.updateTapArea();
   }
 
+  /**
+  拡大拡小イベントによって半径をアップデートするメソッド
+  @param aPoint マウス位置
+  **/
   protected void updateRadius(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;

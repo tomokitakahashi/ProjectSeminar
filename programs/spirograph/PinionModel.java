@@ -98,6 +98,7 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
+  // 鉛筆によって描かれた軌跡の座標を再オブジェクト化して返す
   public Point2D.Double pencilLocusCoodinate()
   {
     return new Point2D.Double(pencilCoodinate.x,pencilCoodinate.y);
