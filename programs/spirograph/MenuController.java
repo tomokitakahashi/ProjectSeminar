@@ -26,6 +26,7 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
+  // メニューのアクションリスナーを登録するメソッド
   public void setMenuActionListener(MenuActionListener aListener)
   {
     menuActionListener = aListener;

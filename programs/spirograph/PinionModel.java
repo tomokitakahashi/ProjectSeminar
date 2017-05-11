@@ -8,7 +8,7 @@ import java.awt.Point;
 public class PinionModel extends GearModel
 {
   // 鉛筆の点の座標を格納しておくプロパティ
-  private Point2D.Double pencilCoodinate;
+  public Point2D.Double pencilCoodinate;
 
   private double pencilRadian;
 
@@ -94,6 +94,11 @@ public class PinionModel extends GearModel
   {
     Point2D.Double coodinate = new Point2D.Double(pencilCoodinate.x - SpiroConstruct.PENCIL_RADIUS,pencilCoodinate.y - SpiroConstruct.PENCIL_RADIUS);
     return coodinate;
+  }
+
+  public Point2D.Double pencilLocusCoodinate()
+  {
+    return new Point2D.Double(pencilCoodinate.x,pencilCoodinate.y);
   }
 
   // マウスイベントの有効箇所を判断するメソッド

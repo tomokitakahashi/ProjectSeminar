@@ -7,6 +7,7 @@ import java.util.ArrayList;
 // スピログラフの描かれた軌跡のモデル
 public class SpiroLocusModel extends Object
 {
+  // 鉛筆によって描かれた座標値を格納しておくリスト
   private ArrayList<Point2D.Double> locusList;
 
   public SpiroLocusModel()
@@ -14,9 +15,17 @@ public class SpiroLocusModel extends Object
     locusList = new ArrayList<Point2D.Double>();
   }
 
+  // 軌跡の座標値リストを応答するメソッド
   public ArrayList<Point2D.Double> locusList()
   {
     return locusList;
   }
-  
+
+  public void addCoodinate(Point2D.Double aCoodinate)
+  {
+    ArrayList<Point2D.Double> clone = new ArrayList<Point2D.Double>(locusList);
+    clone.add(aCoodinate);
+    locusList = clone;
+    return;
+  }
 }
