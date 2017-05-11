@@ -21,4 +21,11 @@ public class SpiroLocusModel extends Object
     return locusList;
   }
 
+  public void addCoodinate(Point2D.Double aCoodinate)
+  {
+    ArrayList<Point2D.Double> clone = new ArrayList<Point2D.Double>(locusList);
+    clone.add(aCoodinate);
+    locusList = clone;
+    return;
+  }
 }

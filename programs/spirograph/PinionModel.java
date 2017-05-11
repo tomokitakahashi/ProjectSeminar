@@ -96,6 +96,11 @@ public class PinionModel extends GearModel
     return coodinate;
   }
 
+  public Point2D.Double pencilLocusCoodinate()
+  {
+    return new Point2D.Double(pencilCoodinate.x,pencilCoodinate.y);
+  }
+
   // マウスイベントの有効箇所を判断するメソッド
   @Override
   public void judgePressArea(Point aPoint)

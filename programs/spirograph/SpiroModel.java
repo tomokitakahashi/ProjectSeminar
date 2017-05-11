@@ -8,6 +8,7 @@ public class SpiroModel extends Model
 {
   // Viewのアニメーションが止まっているかの状態保存
   public Boolean isStop;
+  
   // スピログラフで描かれた軌跡モデル
   private SpiroLocusModel spiroLocusModel;
 

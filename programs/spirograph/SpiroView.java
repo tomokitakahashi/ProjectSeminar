@@ -9,9 +9,6 @@ import java.util.ArrayList;
 
 public class SpiroView extends View implements Runnable
 {
-  // テスト用
-  private ArrayList<Point2D.Double> spiroList = new ArrayList<Point2D.Double>();
-
   public SpiroView(SpiroModel aSpiroModel)
   {
     super(aSpiroModel);
@@ -30,9 +27,10 @@ public class SpiroView extends View implements Runnable
     {
       if (!this.getSpiroModel().isStop())
       {
+        Point2D.Double coodinate = this.getSpiroModel().getPinionModel().pencilLocusCoodinate();
+        this.getSpiroModel().getSpiroLocusModel().addCoodinate(coodinate);
         this.getSpiroModel().updateByAnimation();
         this.getSpiroModel().setDegree();
-        spiroList.add(this.getSpiroModel().getPinionModel().pencilCoodinate);
       } else {
 
       }
@@ -50,31 +48,23 @@ public class SpiroView extends View implements Runnable
     super.paintComponent(aGraphics);
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
+    this.drawLocus(aGraphics);
     aGraphics.setColor(Color.black);
     this.drawAxis(aGraphics);
     this.drawSpurGear(aGraphics);
     this.drawPinionGear(aGraphics);
-    this.drawSpiro(aGraphics);
     return;
   }
 
+  // スピログラフの軌跡描画メソッド
   private void drawLocus(Graphics aGraphics)
   {
     SpiroLocusModel spiroLocusModel = this.getSpiroModel().getSpiroLocusModel();
     for(Integer index = 0; index < spiroLocusModel.locusList().size();index ++)
     {
-      //aGraphics.drawOval();
-    }
-    return;
-  }
-
-  private void drawSpiro(Graphics aGraphics)
-  {
-    for(Integer index = 0;index < spiroList.size();index++)
-    {
-      Point2D.Double coodinate = spiroList.get(index);
-      aGraphics.setColor(Color.blue);
-      aGraphics.fillOval((int)coodinate.x - 5,(int)coodinate.y - 5,10,10);
+      Point2D.Double coodinate = spiroLocusModel.locusList().get(index);
+      aGraphics.setColor(Color.yellow);
+      aGraphics.fillOval((int)coodinate.x - 3,(int)coodinate.y - 3,5,5);
     }
     return;
   }
