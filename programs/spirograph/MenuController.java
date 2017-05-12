@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.JColorChooser;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.Color;
@@ -11,6 +12,8 @@ import java.awt.Color;
 public class MenuController extends Controller implements ActionListener, ChangeListener
 {
   private MenuActionListener menuActionListener = null;
+
+  private JColorChooser colorChooser = null;
 
   public MenuController()
   {
@@ -102,8 +105,20 @@ public class MenuController extends Controller implements ActionListener, Change
   // 色が選択され設定色が変化した時に呼ばれるメソッド
   public void stateChanged(ChangeEvent aEvent)
   {
-    System.out.println("selected any color");
+    if(menuActionListener == null ){ return; }
+    menuActionListener.changedColor(colorChooser.getColor());
     return;
   }
 
+  public MenuModel getMenuModel()
+  {
+    return (MenuModel)model;
+  }
+
+  // 色の選択があった時にColorChooserから最新の色を取得するために外部からColorChooserを登録するメソッド
+  public void setColorChooser(JColorChooser aColorChooser)
+  {
+    colorChooser = aColorChooser;
+    return;
+  }
 }

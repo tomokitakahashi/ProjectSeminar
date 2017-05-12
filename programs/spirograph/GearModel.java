@@ -9,24 +9,34 @@ import java.util.ArrayList;
 
 abstract public class GearModel extends Object
 {
+  // ギアの中心座標
   protected Point2D.Double centerCoodinate;
 
+  // ギアの半径
   protected double radius;
 
+  // アニメーションするために、前の半径を格納するプロパティ
   protected double previousRadius;
 
+  // アニメーションするために、前の中心座標を格納しておくプロパティ
   protected Point2D.Double previousCenterCoodinate;
 
+  // マウスイベントを取得する部分の座標を格納しておくArrayList
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
 
+  // 半径の拡大拡小が可能かどうかを格納するプロパティ
   protected Boolean radiusAbjustEnabled;
 
+  // 中心が移動できるかどうかを格納しておくプロパティ
   protected Boolean centerMoveEnabled;
 
+  // リスタート時などにデータの再設定、リセットを行うメソッド
   abstract void dataReset();
 
+  // マウスのイベントが有効エリアにあるかどうかを判別するメソッド
   abstract void judgePressArea(Point aPoint);
 
+  // GearModelのコンストラクタ
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
     super();
@@ -63,32 +73,46 @@ abstract public class GearModel extends Object
     return tapAreaCoodinateList;
   }
 
-  // ギアの半径を設定する
+  /**
+  ギアの半径を設定する
+  @param aRadius 半径
+  **/
   public void radius(double aRadius)
   {
     radius = aRadius;
     return;
   }
 
-  // ギアの半径を応答する
+  /**
+  ギアの半径を応答する
+  **/
   public double radius()
   {
     return radius;
   }
 
-  // ギアの中心座標を設定する
+  /**
+  ギアの中心座標を設定する
+  @param aCenterCoodinate 中心座標
+  **/
   public void centerCoodinate(Point2D.Double aCenterCoodinate)
   {
     centerCoodinate = aCenterCoodinate;
     return;
   }
 
-  // ギアの中心座標を応答する
+  /**
+  ギアの中心座標を応答する
+  **/
   public Point2D.Double centerCoodinate()
   {
     return centerCoodinate;
   }
 
+  /**
+  ドラッグイベントによってモデルをアップデートするメソッド
+  @param aPoint ドラッグ位置
+  **/
   public void updateByDrag(Point aPoint)
   {
     if(radiusAbjustEnabled)
@@ -103,6 +127,10 @@ abstract public class GearModel extends Object
     return;
   }
 
+  /**
+  マウスカーソルリリースエベントによってモデルをアップデートするメソッド
+  @param aPoint リリース位置
+  **/
   public void updateByRelease(Point aPoint)
   {
     centerMoveEnabled = false;
@@ -110,12 +138,20 @@ abstract public class GearModel extends Object
     return;
   }
 
+  /**
+  イベント全般に対してモデルをアップデートするメソッド
+  @param aPoint マウス位置
+  **/
   public void updateByEvent(Point aPoint)
   {
     this.updateRadius(aPoint);
     this.updateTapArea();
   }
 
+  /**
+  拡大拡小イベントによって半径をアップデートするメソッド
+  @param aPoint マウス位置
+  **/
   protected void updateRadius(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;

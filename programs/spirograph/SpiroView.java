@@ -61,7 +61,8 @@ public class SpiroView extends View implements Runnable
     for(Integer index = 0; index < spiroLocusModel.locusList().size();index ++)
     {
       Point2D.Double coodinate = spiroLocusModel.locusList().get(index);
-      aGraphics.setColor(Color.yellow);
+      Color spiroColor = this.getSpiroModel().getSpiroColor();
+      aGraphics.setColor(spiroColor);
       aGraphics.fillOval((int)coodinate.x - 3,(int)coodinate.y - 3,5,5);
     }
     return;

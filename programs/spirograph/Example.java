@@ -90,5 +90,8 @@ public class Example extends Object
 		aColorMenuWindow.setVisible(true);
 		aColorMenuWindow.getContentPane().add(colorchooser);
 
+		// JColorChooserをMenuControllerに登録
+		aMenuController.setColorChooser(colorchooser);
+
 	}
 }

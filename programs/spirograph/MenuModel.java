@@ -33,6 +33,12 @@ public class MenuModel extends Model
     return;
   }
 
+  public void setSelectedColor(Color aColor)
+  {
+    selectedColor = aColor;
+    return;
+  }
+
   // 選択されている色を応答する
   public Color getSelectedColor()
   {
@@ -44,5 +50,4 @@ public class MenuModel extends Model
   {
     return buttonTitleList;
   }
-
 }
