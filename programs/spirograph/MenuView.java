@@ -37,7 +37,7 @@ public class MenuView extends View
     panel.setBounds(0,0,aMenuViewSize.width,aMenuViewSize.height);
     MenuModel menuModel = (MenuModel)model;
     MenuController menuController = (MenuController)controller;
-    Integer bottonCount = 5;
+    Integer bottonCount = 6;
     for (Integer index = 0;index < menuModel.getButtonTitleList().size() ;index++ ) {
       String aTitle = menuModel.getButtonTitleList().get(index);
       Integer width = aMenuViewSize.width - SpiroConstruct.MENU_BUTTON_MARGIN * 2;

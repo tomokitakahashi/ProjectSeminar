@@ -41,6 +41,7 @@ public class SpiroModel extends Model
     isStop = true;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+    selectedColor = Color.black;
     return;
   }
 
@@ -108,6 +109,7 @@ public class SpiroModel extends Model
   //マウスプレスに応じてモデルを更新するメソッド
   public void updateByPress(Point aPoint)
   {
+    if(!isStop) return;
     spurModel.judgePressArea(aPoint);
     pinionModel.judgePressArea(aPoint);
     return;
@@ -116,6 +118,7 @@ public class SpiroModel extends Model
   // マウスドラッグに応じてモデルを更新するメソッド
   public void updateByDrag(Point aPoint)
   {
+    if(!isStop) return;
     spurModel.updateByDrag(aPoint);
     pinionModel.updateByDrag(aPoint);
     this.updateRelative();
@@ -125,8 +128,10 @@ public class SpiroModel extends Model
   // マウスリリースに応じてモデルを更新するメソッド
   public void updateByRelease(Point aPoint)
   {
+    if(!isStop) return;
     spurModel.updateByRelease(aPoint);
     pinionModel.updateByRelease(aPoint);
+
     return;
   }
 
