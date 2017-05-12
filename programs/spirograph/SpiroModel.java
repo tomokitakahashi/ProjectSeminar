@@ -3,6 +3,7 @@ package spirograph;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.awt.Point;
+import java.awt.Color;
 
 public class SpiroModel extends Model
 {
@@ -26,6 +27,9 @@ public class SpiroModel extends Model
 
   // メニューのモデル (セーブなどは)
   private MenuModel menuModel;
+
+  // スピログラフの選択色
+  private Color selectedColor;
 
   public SpiroModel()
   {
@@ -143,6 +147,17 @@ public class SpiroModel extends Model
   public void setMenuModel(MenuModel aMenuModel)
   {
     menuModel = aMenuModel;
+    return;
+  }
+
+  public Color getSpiroColor()
+  {
+    return selectedColor;
+  }
+
+  public void setSpiroColor(Color aColor)
+  {
+    selectedColor = aColor;
     return;
   }
 

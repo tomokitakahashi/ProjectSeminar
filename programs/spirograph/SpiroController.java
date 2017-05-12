@@ -1,6 +1,7 @@
 package spirograph;
 
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class SpiroController extends Controller implements MenuActionListener
 {
@@ -44,6 +45,11 @@ public class SpiroController extends Controller implements MenuActionListener
   public void animationStop()
   {
     this.getSpiroModel().setStop(true);
+    return;
+  }
+  public void changedColor(Color aColor)
+  {
+    this.getSpiroModel().setSpiroColor(aColor);
     return;
   }
 
