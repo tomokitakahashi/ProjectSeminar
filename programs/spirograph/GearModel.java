@@ -9,24 +9,34 @@ import java.util.ArrayList;
 
 abstract public class GearModel extends Object
 {
+  // ギアの中心座標
   protected Point2D.Double centerCoodinate;
 
+  // ギアの半径
   protected double radius;
 
+  // アニメーションするために、前の半径を格納するプロパティ
   protected double previousRadius;
 
+  // アニメーションするために、前の中心座標を格納しておくプロパティ
   protected Point2D.Double previousCenterCoodinate;
 
+  // マウスイベントを取得する部分の座標を格納しておくArrayList
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
 
+  // 半径の拡大拡小が可能かどうかを格納するプロパティ
   protected Boolean radiusAbjustEnabled;
 
+  // 中心が移動できるかどうかを格納しておくプロパティ
   protected Boolean centerMoveEnabled;
 
+  // リスタート時などにデータの再設定、リセットを行うメソッド
   abstract void dataReset();
 
+  // マウスのイベントが有効エリアにあるかどうかを判別するメソッド
   abstract void judgePressArea(Point aPoint);
 
+  // GearModelのコンストラクタ
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
     super();
