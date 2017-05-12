@@ -44,8 +44,6 @@ public class SpiroView extends View implements Runnable
   public void paintComponent(Graphics aGraphics)
   {
     super.paintComponent(aGraphics);
-    SpurModel spurModel = this.getSpiroModel().getSpurModel();
-    PinionModel pinionModel = this.getSpiroModel().getPinionModel();
     this.drawLocus(aGraphics);
     aGraphics.setColor(Color.black);
     this.drawAxis(aGraphics);
@@ -61,8 +59,8 @@ public class SpiroView extends View implements Runnable
     for(Integer index = 0; index < spiroLocusModel.locusList().size();index ++)
     {
       Point2D.Double coodinate = spiroLocusModel.locusList().get(index);
-      Color spiroColor = this.getSpiroModel().getSpiroColor();
-      aGraphics.setColor(spiroColor);
+      Color color = spiroLocusModel.locusColorList().get(index);
+      aGraphics.setColor(color);
       aGraphics.fillOval((int)coodinate.x - 3,(int)coodinate.y - 3,5,5);
     }
     return;

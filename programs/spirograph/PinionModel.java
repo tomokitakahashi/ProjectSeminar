@@ -16,9 +16,15 @@ public class PinionModel extends GearModel
 
   private Boolean pencilMoveEnabled;
 
+  private Boolean changedPosition;
+
   private double pinionTheta;
 
-  private double increaseRate;
+  private double changeRate;
+
+  // ピニオンギアの回転する際のradianの増加、減少かを決定する
+  private double spinDirection;
+
   // コンストラクタ
   public PinionModel(Point2D.Double aCenterCoodinate, double aRadius)
   {
@@ -26,7 +32,18 @@ public class PinionModel extends GearModel
     pinionTheta = 0.0;
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
     pencilMoveEnabled = false;
+    changedPosition = false;
     this.dataReset();
+    return;
+  }
+
+  public void changeCenterPosition(double axisDegree, double aDistance)
+  {
+
+    this.updateCurrentCenter(Math.toRadians(axisDegree),aDistance+radius*2,SpiroConstruct.SPIRO_WINDOW_CENTER);
+    this.updateCurrentPencil();
+    this.updateCurrentTapArea();
+    changeRate *= -1;
     return;
   }
 
@@ -48,49 +65,19 @@ public class PinionModel extends GearModel
   // リスタートした時に鉛筆の移動割合を再格納するメソッド
   public void restart(double aGearDistance)
   {
-    increaseRate = -aGearDistance /  radius * Math.toRadians(0.1);
+    changeRate = -aGearDistance /  radius * Math.toRadians(0.1);
     return;
   }
 
   // アニメーション全体を制御するメソッド
   public void animationManager(double aRadian,double aSpurRadius,double aGearDistance)
   {
-    pinionTheta += increaseRate;
-    this.centerMoveManager(aRadian,aGearDistance);
-    this.spinManager(aRadian,aGearDistance);
-    this.pencilMoveManager(aRadian,aGearDistance);
+    pinionTheta += changeRate;
+    this.updateCurrentCenter(aRadian,aGearDistance,SpiroConstruct.SPIRO_WINDOW_CENTER);
+    this.updateCurrentTapArea();
+    this.updateCurrentPencil();
     return;
   }
-
-  // ピニオンギアの中心アニメーションを制御するメソッド
-  private void centerMoveManager(double aRadian,double aGearDistance)
-  {
-    centerCoodinate.x = Math.cos(aRadian) * aGearDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-    centerCoodinate.y = Math.sin(aRadian) * aGearDistance + SpiroConstruct.SPIRO_WINDOW_CENTER.y;
-    return;
-  }
-
-  // ピニオンギアの回転を制御するメソッド
-  private void spinManager(double aRadian,double aGearDistance)
-  {
-    double addRadian = Math.toRadians(90);
-    for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
-    {
-      Point2D.Double coodinate = tapAreaCoodinateList.get(index);
-      coodinate.x = Math.cos(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.x;
-      coodinate.y = Math.sin(pinionTheta+(addRadian * (index-1))) * radius + centerCoodinate.y;
-    }
-    return;
-  }
-
-  // 鉛筆のアニメーションを制御するメソッド
-  private void pencilMoveManager(double aRadian,double aGearDistance)
-  {
-    pencilCoodinate.x = Math.cos(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
-    pencilCoodinate.y = Math.sin(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
-    return;
-  }
-
   // 鉛筆を描写する座標を応答する
   public Point2D.Double drawPencilCoodinate()
   {
@@ -108,8 +95,8 @@ public class PinionModel extends GearModel
   @Override
   public void judgePressArea(Point aPoint)
   {
+    previousCenterCoodinate = centerCoodinate;
     double tapRange = SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2;
-    double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
     double pencilTapPoint = (pencilCoodinate.x - aPoint.x) * (pencilCoodinate.x - aPoint.x) + (pencilCoodinate.y - aPoint.y) * (pencilCoodinate.y - aPoint.y);
     for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
     {
@@ -120,10 +107,6 @@ public class PinionModel extends GearModel
         radiusAbjustEnabled = true;
         return;
       }
-    }
-    if(centerTapPoint <= tapRange)
-    {
-      centerMoveEnabled = true;
     }
     if(pencilTapPoint <= tapRange)
     {
@@ -151,10 +134,6 @@ public class PinionModel extends GearModel
     {
       this.updateRadiusByDrag(aPoint);
     }
-    else if (centerMoveEnabled)
-    {
-      this.updateCenterByDrag(aPoint);
-    }
     else if (pencilMoveEnabled)
     {
       this.updatePencilCenterByDrag(aPoint);
@@ -177,19 +156,55 @@ public class PinionModel extends GearModel
     return;
   }
 
-  //すべてのデータに基づいて最新のデータを更新するメソッド
-  public void updateRelative(double aRadian,Point2D.Double pointCoodinate,double aGearDistance)
+  /**
+  * すべてのデータに基づいて最新のデータを更新するメソッド
+  * 外部からアップデートの指示がされる場合に呼ばれる
+  * 主に拡大拡小、中心の移動などイベントによる場合
+  * @param aRadian 基準となる角度
+  * @param aPointCoodinate イベントによって定められた基準点
+  **/
+  public void updateCurrent(double aRadian,Point2D.Double aPointCoodinate)
   {
     if(!centerMoveEnabled)
     {
-      centerCoodinate.x = Math.cos(aRadian+Math.toRadians(180)) * radius + pointCoodinate.x;
-      centerCoodinate.y = Math.sin(aRadian+Math.toRadians(180)) * radius + pointCoodinate.y;
+      this.updateCurrentCenter(aRadian+Math.toRadians(180),radius,aPointCoodinate);
     }
     if(!pencilMoveEnabled)
     {
-      pencilCoodinate.x = Math.cos(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
-      pencilCoodinate.y = Math.sin(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
+      this.updateCurrentPencil();
     }
+    this.updateCurrentTapArea();
+    return;
+  }
+
+  /**
+  * 最新の中心座標を更新するメソッド (角度と距離より)
+  * @param aRadian 中心座標を定める角度
+  * @param aDistance 距離 (ギア同士)
+  * @param aStandardCoodinate 基準となる点 (JFrameでは左上が(0,0)のため)
+  **/
+  private void updateCurrentCenter(double aRadian, double aDistance ,Point2D.Double aStandardCoodinate)
+  {
+    centerCoodinate.x = Math.cos(aRadian) * aDistance + aStandardCoodinate.x;
+    centerCoodinate.y = Math.sin(aRadian) * aDistance + aStandardCoodinate.y;
+    return;
+  }
+
+  /**
+  * 最新の鉛筆の座標を更新するメソッド
+  **/
+  private void updateCurrentPencil()
+  {
+    pencilCoodinate.x = Math.cos(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.x;
+    pencilCoodinate.y = Math.sin(pinionTheta + pencilRadian) * pencilDistance + centerCoodinate.y;
+    return;
+  }
+
+  /**
+  * 最新のタップエリアの座標を更新するメソッド
+  **/
+  private void updateCurrentTapArea()
+  {
     double addRadian = Math.toRadians(90);
     for(Integer index = 0; index < tapAreaCoodinateList.size();index++)
     {

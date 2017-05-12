@@ -25,7 +25,9 @@ public class SpurModel extends GearModel
   @Override
   public void judgePressArea(Point aPoint)
   {
+    previousCenterCoodinate = centerCoodinate;
     double tapRange = SpiroConstruct.TAP_AREA_RADIUS*2*SpiroConstruct.TAP_AREA_RADIUS*2;
+    double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
     for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
     {
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
@@ -36,7 +38,6 @@ public class SpurModel extends GearModel
         return;
       }
     }
-    double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
     if(centerTapPoint <= tapRange)
     {
       centerMoveEnabled = true;
