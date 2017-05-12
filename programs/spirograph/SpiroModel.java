@@ -99,14 +99,14 @@ public class SpiroModel extends Model
 
   public void changePinionPosition()
   {
-    pinionModel.changeCenterPosition(axisDegree,gearDistance);
+    pinionModel.changeCenterPosition(Math.toRadians(axisDegree),gearDistance);
     this.updateGearDistance();
     return;
   }
   //アニメーションでモデルを更新するメソッド
   public void updateByAnimation()
   {
-    pinionModel.animationManager(Math.toRadians(axisDegree),spurModel.radius,gearDistance);
+    pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance);
     spiroLocusModel.locusList().add(pinionModel.pencilLocusCoodinate());
     spiroLocusModel.locusColorList().add(selectedColor);
     return;
