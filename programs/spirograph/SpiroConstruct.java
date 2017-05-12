@@ -10,7 +10,7 @@ public class SpiroConstruct {
 
   // ウィンドウサイズ
   public static final Dimension SPIRO_WINDOW = new Dimension(750,600);
-  public static final Dimension MENU_WINDOW = new Dimension(200,300);
+  public static final Dimension MENU_WINDOW = new Dimension(200,400);
 
   //各円の初期中心座標
   public static final Point2D.Double SPIRO_WINDOW_CENTER = new Point2D.Double(375,300);
@@ -23,23 +23,7 @@ public class SpiroConstruct {
   public static final Integer SPUR_RADIUS = 240;
   public static final Integer PINION_RADIUS = 60;
 
-  // メニューに表示するボタン群を定値として持っておく
-  public static enum MENU_COMMAND {
-    Start("Start",0),Stop("Stop",1),Save("Save",2),Load("Load",3),Clear("Clear",4);
-    private final String label;
-    private final Integer index;
-    private MENU_COMMAND(String aLabel,Integer aIndex)
-    {
-      label = aLabel;
-      index = aIndex;
-    }
-    public String toString()
-    {
-      return label;
-    }
-    public Integer getIndex()
-    {
-      return index;
-    }
-  }
+  // イベント関係定数
+  public static final double TAP_AREA_RANGE = 64;
+
 }

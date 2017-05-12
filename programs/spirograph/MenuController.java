@@ -60,6 +60,10 @@ public class MenuController extends Controller implements ActionListener, Change
     {
       this.tappedClearButton();
     }
+    else if(aCommand.equals("Position"))
+    {
+      this.tappedPositionButton();
+    }
     return;
   }
 
@@ -99,6 +103,14 @@ public class MenuController extends Controller implements ActionListener, Change
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
+    return;
+  }
+
+  private void tappedPositionButton()
+  {
+    System.out.println("tappedPositionButton");
+    if(menuActionListener == null){ return ;}
+    menuActionListener.changedPosition();
     return;
   }
 

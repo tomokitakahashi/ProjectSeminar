@@ -41,6 +41,7 @@ public class SpiroModel extends Model
     isStop = true;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
+    selectedColor = Color.black;
     return;
   }
 
@@ -78,9 +79,7 @@ public class SpiroModel extends Model
       pinionModel.dataReset();
       spurModel.dataReset();
     }
-    double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
-    double distanceY = (pinionModel.centerCoodinate().y - spurModel.centerCoodinate().y);
-    gearDistance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
+    this.updateGearDistance();
     isStop = aBool;
     return;
   }
@@ -97,17 +96,26 @@ public class SpiroModel extends Model
     pinionModel.restart(gearDistance);
     return;
   }
+
+  public void changePinionPosition()
+  {
+    pinionModel.changeCenterPosition(Math.toRadians(axisDegree),gearDistance);
+    this.updateGearDistance();
+    return;
+  }
   //アニメーションでモデルを更新するメソッド
   public void updateByAnimation()
   {
-    pinionModel.animationManager(Math.toRadians(axisDegree),spurModel.radius,gearDistance);
+    pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance);
     spiroLocusModel.locusList().add(pinionModel.pencilLocusCoodinate());
+    spiroLocusModel.locusColorList().add(selectedColor);
     return;
   }
 
   //マウスプレスに応じてモデルを更新するメソッド
   public void updateByPress(Point aPoint)
   {
+    if(!isStop) return;
     spurModel.judgePressArea(aPoint);
     pinionModel.judgePressArea(aPoint);
     return;
@@ -116,28 +124,38 @@ public class SpiroModel extends Model
   // マウスドラッグに応じてモデルを更新するメソッド
   public void updateByDrag(Point aPoint)
   {
+    if(!isStop) return;
     spurModel.updateByDrag(aPoint);
     pinionModel.updateByDrag(aPoint);
-    this.updateRelative();
+    this.updateCurrent();
     return;
   }
 
   // マウスリリースに応じてモデルを更新するメソッド
   public void updateByRelease(Point aPoint)
   {
+    if(!isStop) return;
     spurModel.updateByRelease(aPoint);
     pinionModel.updateByRelease(aPoint);
     return;
   }
 
   // イベントによる最新の座標等を更新するメソッド
-  public void updateRelative()
+  public void updateCurrent()
   {
     double radian = Math.toRadians(axisDegree);
     double spurRadius = spurModel.radius();
     double newDistance = gearDistance * spurModel.radius()/spurModel.previousRadius;
     Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
-    pinionModel.updateRelative(radian,coodinate,spurRadius);
+    pinionModel.updateCurrent(radian,coodinate);
+    return;
+  }
+
+  private void updateGearDistance()
+  {
+    double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
+    double distanceY = (pinionModel.centerCoodinate().y - spurModel.centerCoodinate().y);
+    gearDistance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
     return;
   }
 

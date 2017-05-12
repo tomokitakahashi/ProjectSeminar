@@ -28,6 +28,7 @@ public class MenuModel extends Model
         add("Save");
         add("Load");
         add("Clear");
+        add("Position");
       }
     };
     return;

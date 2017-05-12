@@ -53,6 +53,12 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
+  public void changedPosition()
+  {
+    this.getSpiroModel().changePinionPosition();
+    return;
+  }
+
   // スピロモデルを応答するメソッド
   private SpiroModel getSpiroModel()
   {

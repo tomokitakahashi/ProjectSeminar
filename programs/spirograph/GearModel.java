@@ -49,6 +49,32 @@ abstract public class GearModel extends Object
     this.initializeTapArea();
   }
 
+  /**
+  * タップした箇所が円の周りの4点上のいずれかに該当しているかどうかを判断するメソッド
+  * @param aPoint タップしたポイント
+  **/
+  protected Boolean validateAroundTapArea(Point aPoint)
+  {
+    for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
+    {
+      Point2D.Double coodinate = tapAreaCoodinateList.get(index);
+      double tapPoint = (coodinate.x - aPoint.x) * (coodinate.x - aPoint.x) + (coodinate.y - aPoint.y) * (coodinate.y - aPoint.y);
+      if(tapPoint <= SpiroConstruct.TAP_AREA_RANGE) { return true; }
+    }
+    return false;
+  }
+
+  /**
+  * タップした箇所が中心上であるかどうかを判断するメソッドe
+  * @param aPoint タップしたポイント
+  **/
+  protected Boolean validateCenterTapArea(Point aPoint)
+  {
+    double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
+    if(centerTapPoint <= SpiroConstruct.TAP_AREA_RANGE) { return true; }
+    return false;
+  }
+  
   private void initializeTapArea()
   {
     tapAreaCoodinateList = new ArrayList<Point2D.Double>();
