@@ -88,14 +88,15 @@ public class MenuController extends Controller implements ActionListener, Change
   // セーブボタンを押した時のアクションゲッター
   private void tappedSaveButton()
   {
-    System.out.println("tappedSaveButton");
+    this.getMenuModel().save();
     return;
   }
 
-  // クリアボタンを押した時のアクションゲッター
+  // ロードボタンを押した時のアクションゲッター
   private void tappedLoadButton()
   {
-    System.out.println("tappedLoadButton");
+
+    this.getMenuModel().load("");
     return;
   }
 

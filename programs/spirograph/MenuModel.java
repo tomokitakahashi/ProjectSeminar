@@ -34,21 +34,40 @@ public class MenuModel extends Model
     return;
   }
 
+  /**
+  * スピログラフの選択されている色を格納する
+  * @param aColor 選択色
+  **/
   public void setSelectedColor(Color aColor)
   {
     selectedColor = aColor;
     return;
   }
 
-  // 選択されている色を応答する
+  /**
+  * 選択されている色を応答する
+  **/
   public Color getSelectedColor()
   {
     return selectedColor;
   }
 
-  // 表示するボタンのタイトルリストを応答する
+  /**
+  * 表示するボタンのタイトルリストを応答する
+  **/
   public ArrayList<String> getButtonTitleList()
   {
     return buttonTitleList;
+  }
+
+  public void save()
+  {
+    return;
+  }
+
+  public void load(String aFileName)
+  {
+    
+    return;
   }
 }

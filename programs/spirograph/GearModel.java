@@ -36,7 +36,11 @@ abstract public class GearModel extends Object
   // マウスのイベントが有効エリアにあるかどうかを判別するメソッド
   abstract void judgePressArea(Point aPoint);
 
-  // GearModelのコンストラクタ
+  /**
+  * GearModelのコンストラクタ
+  * @param aCenterCoodinate 初期中心座標
+  * @param aRadius 初期半径
+  **/
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
     super();
@@ -74,7 +78,10 @@ abstract public class GearModel extends Object
     if(centerTapPoint <= SpiroConstruct.TAP_AREA_RANGE) { return true; }
     return false;
   }
-  
+
+  /**
+  * 円周上のタップエリアの初期座標設定
+  **/
   private void initializeTapArea()
   {
     tapAreaCoodinateList = new ArrayList<Point2D.Double>();
@@ -88,12 +95,21 @@ abstract public class GearModel extends Object
     tapAreaCoodinateList.add(leftAreaCoodinate);
     return;
   }
+
+  /**
+  * タップエリアの描くべき座標を返却する
+  * @param index インデックス
+  **/
   public Point2D.Double drawTapAreaCoodinate(Integer index)
   {
     Point2D.Double tapAreaCoodinate = tapAreaCoodinateList.get(index);
     Point2D.Double drawCoodinate = new Point2D.Double(tapAreaCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,tapAreaCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
     return drawCoodinate;
   }
+
+  /**
+  * タップエリアのリストを応答する
+  **/
   public ArrayList<Point2D.Double> tapAreaCoodinateList()
   {
     return tapAreaCoodinateList;
@@ -110,7 +126,7 @@ abstract public class GearModel extends Object
   }
 
   /**
-  ギアの半径を応答する
+  * ギアの半径を応答する
   **/
   public double radius()
   {
@@ -118,8 +134,8 @@ abstract public class GearModel extends Object
   }
 
   /**
-  ギアの中心座標を設定する
-  @param aCenterCoodinate 中心座標
+  * ギアの中心座標を設定する
+  * @param aCenterCoodinate 中心座標
   **/
   public void centerCoodinate(Point2D.Double aCenterCoodinate)
   {
@@ -136,8 +152,8 @@ abstract public class GearModel extends Object
   }
 
   /**
-  ドラッグイベントによってモデルをアップデートするメソッド
-  @param aPoint ドラッグ位置
+  * ドラッグイベントによってモデルをアップデートするメソッド
+  * @param aPoint ドラッグ位置
   **/
   public void updateByDrag(Point aPoint)
   {
@@ -154,8 +170,8 @@ abstract public class GearModel extends Object
   }
 
   /**
-  マウスカーソルリリースエベントによってモデルをアップデートするメソッド
-  @param aPoint リリース位置
+  * マウスカーソルリリースエベントによってモデルをアップデートするメソッド
+  * @param aPoint リリース位置
   **/
   public void updateByRelease(Point aPoint)
   {
@@ -165,27 +181,9 @@ abstract public class GearModel extends Object
   }
 
   /**
-  イベント全般に対してモデルをアップデートするメソッド
-  @param aPoint マウス位置
+  * 拡大拡小イベントによって半径をアップデートするメソッド
+  * @param aPoint マウス位置
   **/
-  public void updateByEvent(Point aPoint)
-  {
-    this.updateRadius(aPoint);
-    this.updateTapArea();
-  }
-
-  /**
-  拡大拡小イベントによって半径をアップデートするメソッド
-  @param aPoint マウス位置
-  **/
-  protected void updateRadius(Point aPoint)
-  {
-    double x = centerCoodinate.x - aPoint.x;
-    double y = centerCoodinate.y - aPoint.y;
-    double newRadius = Math.sqrt(x*x+y*y);
-    this.radius(newRadius);
-  }
-
   protected void updateRadiusByDrag(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;
@@ -195,6 +193,10 @@ abstract public class GearModel extends Object
     return;
   }
 
+  /**
+  * 中心のドラッグによって中心座標をアップデートする
+  * @param aPoint マウス位置
+  **/
   public void updateCenterByDrag(Point aPoint)
   {
     System.out.println("updateCenterByDrag");
