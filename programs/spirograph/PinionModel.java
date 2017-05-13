@@ -55,6 +55,7 @@ public class PinionModel extends GearModel
     pinionTheta = 0.0;
     pencilCoodinate = SpiroConstruct.PENCIL_CENTER;
     pencilMoveEnabled = false;
+    spinDirection = 1;
     this.dataReset();
     return;
   }
@@ -108,6 +109,7 @@ public class PinionModel extends GearModel
   **/
   public void animationManager(double aRadian,double aGearDistance)
   {
+    System.out.println(aRadian);
     pinionTheta += (changeRate * spinDirection);
     this.updateCurrentCenter(aRadian,aGearDistance,SpiroConstruct.SPIRO_WINDOW_CENTER);
     this.updateCurrentTapArea();
