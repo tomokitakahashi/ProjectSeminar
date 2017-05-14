@@ -5,25 +5,25 @@ import java.awt.Color;
 
 public class MenuModel extends Model
 {
-  /*
+  /**
   * スピログラフのモデルを格納しておく
-  */
+  **/
   private SpiroModel spiroModel;
 
-  /*
+  /**
   * メニューに表示させるタイトルリスト
-  */
+  **/
   private ArrayList<String> buttonTitleList;
 
-  /*
+  /**
   * スピログラフの軌跡の色を保持しておく
-  */
+  **/
   private Color selectedColor;
 
-  /*
+  /**
   * MenuModel のコンストラクタ
   * @param aSpiroModel スピログラフのモデル
-  */
+  **/
   public MenuModel(SpiroModel aSpiroModel)
   {
     super();
@@ -77,10 +77,10 @@ public class MenuModel extends Model
     return;
   }
 
-  /*
+  /**
   * ファイルロード指示メソッド
   * @param aFileName ファイル名
-  */
+  **/
   public void load(String aFileName)
   {
 
