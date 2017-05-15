@@ -45,7 +45,7 @@ public class Example extends Object
 		JFrame aWindow = new JFrame("SpiroGraph");
 		aWindow.getContentPane().add(aSpiroView);
 
-	// 高さはタイトルバーの高さを考慮してウィンドウの大きさを決定する。
+		// 高さはタイトルバーの高さを考慮してウィンドウの大きさを決定する。
 		aWindow.addNotify();
 		Integer titleBarHeight = aWindow.getInsets().top;
 		width = aSpiroDimension.width;

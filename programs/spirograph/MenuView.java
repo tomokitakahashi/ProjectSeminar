@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 
 public class MenuView extends View
 {
-  // MenuViewのコンストラクタ
+  /**
+  *  MenuViewのコンストラクタ
+  * @param aMenuModel メニューモデル
+  **/
   public MenuView(MenuModel aMenuModel)
   {
     super(aMenuModel);
@@ -19,7 +22,11 @@ public class MenuView extends View
     return;
   }
 
-  // MenuViewのコンストラクタ
+  /**
+  * MenuViewのコンストラクタ
+  * @param aMenuModel メニューモデル
+  * @param aMenuController メニューコントローラ
+  **/
   public MenuView(MenuModel aMenuModel, MenuController aMenuController)
   {
     super(aMenuModel,aMenuController);
@@ -27,7 +34,10 @@ public class MenuView extends View
     controller = aMenuController;
     return;
   }
-  // Componentを表示させるためのメソッドggjyouiji
+  /**
+  * Componentを表示させるためのメソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  **/
   @Override
   public void paintComponent(Graphics aGraphics)
   {
