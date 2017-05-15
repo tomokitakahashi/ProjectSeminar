@@ -3,6 +3,7 @@ package spirograph;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JFileChooser;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ public class MenuView extends View
   {
     super(aMenuModel);
     model = aMenuModel;
+    model.addDependent(this);
     controller = new MenuController();
     return;
   }
@@ -31,6 +33,7 @@ public class MenuView extends View
   {
     super(aMenuModel,aMenuController);
     model = aMenuModel;
+    model.addDependent(this);
     controller = aMenuController;
     return;
   }
@@ -62,6 +65,16 @@ public class MenuView extends View
       panel.add(aButton);
       this.add(panel);
     }
+    return;
+  }
+
+  /**
+  * ファイル選択のダイアログを表示するメソッド
+  **/
+  public void showDialog()
+  {
+    JFileChooser filechooser = new JFileChooser();
+    int selected = filechooser.showOpenDialog(this);
     return;
   }
 

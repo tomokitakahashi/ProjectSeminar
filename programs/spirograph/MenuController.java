@@ -7,6 +7,7 @@ import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.JColorChooser;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.JFileChooser;
 import java.awt.Color;
 
 public class MenuController extends Controller implements ActionListener, ChangeListener
@@ -23,7 +24,7 @@ public class MenuController extends Controller implements ActionListener, Change
 
   /**
   * MenuControllerではMouseListenerを使わないためOverrideしてviewのsetのみ
-  **/ 
+  **/
   @Override
   public void setView(View aView)
   {
@@ -101,6 +102,16 @@ public class MenuController extends Controller implements ActionListener, Change
   private void tappedSaveButton()
   {
     this.getMenuModel().save();
+    this.getMenuView().showDialog();
+
+    // if (selected == JFileChooser.APPROVE_OPTION){
+    //   File file = filechooser.getSelectedFile();
+    //   label.setText(file.getName());
+    // }else if (selected == JFileChooser.CANCEL_OPTION){
+    //   label.setText("キャンセルされました");
+    // }else if (selected == JFileChooser.ERROR_OPTION){
+    //   label.setText("エラー又は取消しがありました");
+    // }
     return;
   }
 
@@ -145,6 +156,11 @@ public class MenuController extends Controller implements ActionListener, Change
   public MenuModel getMenuModel()
   {
     return (MenuModel)model;
+  }
+
+  public MenuView getMenuView()
+  {
+    return (MenuView)view;
   }
 
   // 色の選択があった時にColorChooserから最新の色を取得するために外部からColorChooserを登録するメソッド
