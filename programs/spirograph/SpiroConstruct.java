@@ -11,6 +11,7 @@ public class SpiroConstruct {
   // ウィンドウサイズ
   public static final Dimension SPIRO_WINDOW = new Dimension(750,600);
   public static final Dimension MENU_WINDOW = new Dimension(200,400);
+  public static final Dimension FILE_WINDOW = new Dimension(750,600);
 
   //各円の初期中心座標
   public static final Point2D.Double SPIRO_WINDOW_CENTER = new Point2D.Double(375,300);

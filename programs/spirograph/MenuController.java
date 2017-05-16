@@ -102,16 +102,7 @@ public class MenuController extends Controller implements ActionListener, Change
   private void tappedSaveButton()
   {
     this.getMenuModel().save();
-    this.getMenuView().showDialog();
-
-    // if (selected == JFileChooser.APPROVE_OPTION){
-    //   File file = filechooser.getSelectedFile();
-    //   label.setText(file.getName());
-    // }else if (selected == JFileChooser.CANCEL_OPTION){
-    //   label.setText("キャンセルされました");
-    // }else if (selected == JFileChooser.ERROR_OPTION){
-    //   label.setText("エラー又は取消しがありました");
-    // }
+    this.getMenuView().showDialog(JFileChooser.DIRECTORIES_ONLY);
     return;
   }
 
@@ -122,6 +113,7 @@ public class MenuController extends Controller implements ActionListener, Change
   {
 
     this.getMenuModel().load("");
+    this.getMenuView().showDialog(JFileChooser.FILES_ONLY);
     return;
   }
 

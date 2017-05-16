@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Component;
 
 public class MenuView extends View
 {
@@ -71,9 +75,10 @@ public class MenuView extends View
   /**
   * ファイル選択のダイアログを表示するメソッド
   **/
-  public void showDialog()
+  public void showDialog(int aMode)
   {
     JFileChooser filechooser = new JFileChooser();
+    filechooser.setFileSelectionMode(aMode);
     int selected = filechooser.showOpenDialog(this);
     return;
   }
