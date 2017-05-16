@@ -7,6 +7,7 @@ import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.JColorChooser;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.JFileChooser;
 import java.awt.Color;
 
 public class MenuController extends Controller implements ActionListener, ChangeListener
@@ -21,7 +22,9 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
-  // MenuControllerではMouseListenerを使わないためOverrideしてviewのsetのみ
+  /**
+  * MenuControllerではMouseListenerを使わないためOverrideしてviewのsetのみ
+  **/
   @Override
   public void setView(View aView)
   {
@@ -29,14 +32,18 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
-  // メニューのアクションリスナーを登録するメソッド
+  /**
+  * メニューのアクションリスナーを登録するメソッド
+  **/
   public void setMenuActionListener(MenuActionListener aListener)
   {
     menuActionListener = aListener;
     return;
   }
 
-  // ボタンのアクションを取得するためのメソッド
+  /**
+  * ボタンのアクションを取得するためのメソッド
+  **/
   public void actionPerformed(ActionEvent aEvent)
   {
     String aCommand = aEvent.getActionCommand();
@@ -67,7 +74,9 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
-  // スタートボタンを押した時のアクションゲッター
+  /**
+  * スタートボタンを押した時のアクション
+  **/
   private void tappedStartButton()
   {
     System.out.println("tappedStartButton");
@@ -76,7 +85,9 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
-  // ストップボタンを押した時のアクションゲッター
+  /**
+  * ストップボタンを押した時のアクション
+  **/
   private void tappedStopButton()
   {
     System.out.println("tappedStopButton");
@@ -85,28 +96,39 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
-  // セーブボタンを押した時のアクションゲッター
+  /**
+  * セーブボタンを押した時のアクション
+  **/
   private void tappedSaveButton()
   {
     this.getMenuModel().save();
+    this.getMenuView().showDialog(JFileChooser.DIRECTORIES_ONLY);
     return;
   }
 
-  // ロードボタンを押した時のアクションゲッター
+  /**
+  * ロードボタンを押した時のアクション
+  **/
   private void tappedLoadButton()
   {
 
     this.getMenuModel().load("");
+    this.getMenuView().showDialog(JFileChooser.FILES_ONLY);
     return;
   }
 
-  // クリアボタンを押した時のアクションゲッター
+  /**
+  * クリアボタンを押した時のアクション
+  **/
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
     return;
   }
 
+  /**
+  * 内接・外接切り替えボタンを押した時のアクション
+  **/
   private void tappedPositionButton()
   {
     System.out.println("tappedPositionButton");
@@ -126,6 +148,11 @@ public class MenuController extends Controller implements ActionListener, Change
   public MenuModel getMenuModel()
   {
     return (MenuModel)model;
+  }
+
+  public MenuView getMenuView()
+  {
+    return (MenuView)view;
   }
 
   // 色の選択があった時にColorChooserから最新の色を取得するために外部からColorChooserを登録するメソッド
