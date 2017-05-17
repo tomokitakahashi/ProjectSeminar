@@ -6,14 +6,18 @@ import java.awt.Point;
 
 public class SpurModel extends GearModel
 {
-  // SpurMddelのコンストラクタ
+  /**
+  * SpurMddelのコンストラクタ
+  **/
   public SpurModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
     super(aCenterCoodinate,aRadius);
     return;
   }
 
-  // データのリセッター
+  /**
+  * データのリセッター
+  **/
   @Override
   public void dataReset()
   {
@@ -21,7 +25,10 @@ public class SpurModel extends GearModel
     return;
   }
 
-  // タップしたエリアが有効かどうかを判断するメソッド
+  /**
+  * タップしたエリアが有効かどうかを判断するメソッド
+  * @param aPoint タップ座標
+  **/
   @Override
   public void judgePressArea(Point aPoint)
   {
