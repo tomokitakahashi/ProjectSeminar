@@ -1,7 +1,9 @@
 package spirograph;
 
 import java.awt.Color;
-// メニューのアクションをスピログラフのコントローラに伝達するインターフェース
+/**
+* メニューのアクションをスピログラフのコントローラに伝達するインターフェース
+**/
 public interface MenuActionListener {
   public void animationStart();
   public void animationStop();
