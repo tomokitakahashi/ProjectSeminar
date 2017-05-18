@@ -97,42 +97,33 @@ public class MenuModel extends Model
     PinionModel pinionModel = spiroModel.getPinionModel();
 
     Document document = this.createDocument();
+    Element spirograph = document.createElement("spirograph");
+    document.appendChild(spirograph);
+
+    // SpiroModel to XML
+    Element spiro = document.createElement("spiroModel");
+    spirograph.appendChild(spiro);
+    Element axisDegree = document.createElement("axisDegree");
+    axisDegree.appendChild(document.createTextNode(String.valueOf(spiroModel.degree())));
+    spiro.appendChild(axisDegree);
+    Element gearDistance = document.createElement("gearDistance");
+    gearDistance.appendChild(document.createTextNode(String.valueOf(spiroModel.gearDistance())));
+    spiro.appendChild(gearDistance);
+
     // SpurModel to XML
-    // Element spurGear = document.createElement("spurGear");
-    // document.appendChild(spurGear);
+    Element spur = document.createElement("spurModel");
+    spirograph.appendChild(spur);
+    this.createGearXML(document,spur,spurModel);
 
-    // Element centerCoodinate = document.createElement("centerCoodinate");
-    // spurGear.appendChild(centerCoodinate);
-    // centerCoodinate.appendChild(document.createTextNode(String.valueOf(spurModel.centerCoodinate())));
-    //
-    // Element radius = document.createElement("radius");
-    // spurGear.appendChild(radius);
-    // radius.appendChild(document.createTextNode(String.valueOf(spurModel.radius())));
-    //
-    // Element tapAreaCoodinateList = document.createElement("tapAreaCoodinateList");
-    // spurGear.appendChild(tapAreaCoodinateList);
-    // System.out.println("tapArea");
-    // for(Integer index = 0; index < spurModel.tapAreaCoodinateList().size();index++)
-    // {
-    //   Element coodinate = document.createElement("coodinate");
-    //   Point2D.Double areaCoodinate = spurModel.tapAreaCoodinateList().get(index);
-    //   Element x = document.createElement("x");
-    //   x.appendChild(document.createTextNode(String.valueOf(areaCoodinate.x)));
-    //
-    //   Element y = document.createElement("y");
-    //   y.appendChild(document.createTextNode(String.valueOf(areaCoodinate.y)));
-    //   coodinate.appendChild(x);
-    //   coodinate.appendChild(y);
-    //   tapAreaCoodinateList.appendChild(coodinate);
-    // }
-
-
-
+    // PinionModel to XML
+    Element pinion = document.createElement("pinionModel");
+    spirograph.appendChild(pinion);
+    this.createGearXML(document,pinion,pinionModel);
 
 
     // SpiroLocusModel to XML
     Element locus = document.createElement("locus");
-    document.appendChild(locus);
+    spirograph.appendChild(locus);
     for(Integer index = 0; index < locusList.size(); index++)
     {
       Element coodinate = document.createElement("coodinate");
@@ -146,6 +137,41 @@ public class MenuModel extends Model
       locus.appendChild(coodinate);
     }
     write(aFile, document);
+    return;
+  }
+
+  private void createGearXML(Document aDocument,Element gearElement,GearModel aGearModel)
+  {
+    // For CenterCoodinate
+    Element centerCoodinate = aDocument.createElement("centerCoodinate");
+    gearElement.appendChild(centerCoodinate);
+    Element centerX = aDocument.createElement("x");
+    centerX.appendChild(aDocument.createTextNode(String.valueOf(aGearModel.centerCoodinate().x)));
+    Element centerY = aDocument.createElement("y");
+    centerY.appendChild(aDocument.createTextNode(String.valueOf(aGearModel.centerCoodinate().y)));
+    centerCoodinate.appendChild(centerX);
+    centerCoodinate.appendChild(centerY);
+
+    // For Radius
+    Element radius = aDocument.createElement("radius");
+    radius.appendChild(aDocument.createTextNode(String.valueOf(aGearModel.radius())));
+    gearElement.appendChild(radius);
+
+    // For TapArea
+    Element tapAreaCoodinateList = aDocument.createElement("tapAreaCoodinateList");
+    gearElement.appendChild(tapAreaCoodinateList);
+    for(Integer index = 0; index < aGearModel.tapAreaCoodinateList().size();index++)
+    {
+      Element coodinate = aDocument.createElement("coodinate");
+      Point2D.Double areaCoodinate = aGearModel.tapAreaCoodinateList().get(index);
+      Element x = aDocument.createElement("x");
+      x.appendChild(aDocument.createTextNode(String.valueOf(areaCoodinate.x)));
+      Element y = aDocument.createElement("y");
+      y.appendChild(aDocument.createTextNode(String.valueOf(areaCoodinate.y)));
+      coodinate.appendChild(x);
+      coodinate.appendChild(y);
+      tapAreaCoodinateList.appendChild(coodinate);
+    }
     return;
   }
 
