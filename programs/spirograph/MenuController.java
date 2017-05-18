@@ -9,6 +9,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JFileChooser;
 import java.awt.Color;
+import java.io.File;
 
 public class MenuController extends Controller implements ActionListener, ChangeListener
 {
@@ -101,8 +102,8 @@ public class MenuController extends Controller implements ActionListener, Change
   **/
   private void tappedSaveButton()
   {
-    this.getMenuModel().save("");
-    this.getMenuView().showSaveDialog(JFileChooser.DIRECTORIES_ONLY);
+    File file = this.getMenuView().showSaveDialog(JFileChooser.DIRECTORIES_ONLY);
+    this.getMenuModel().save(file);
     return;
   }
 

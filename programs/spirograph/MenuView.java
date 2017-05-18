@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.io.File;
 
 public class MenuView extends View
 {
@@ -91,22 +92,16 @@ public class MenuView extends View
   }
 
 
-  public void showSaveDialog(int aMode)
+  public File showSaveDialog(int aMode)
   {
     JFileChooser filechooser = new JFileChooser();
     filechooser.setFileSelectionMode(aMode);
-    int option = filechooser.showOpenDialog(this);
+    int option = filechooser.showSaveDialog(this);
     if(option == JFileChooser.APPROVE_OPTION)
     {
-
-    } else if(option == JFileChooser.CANCEL_OPTION)
-    {
-
-    } else
-    {
-
+      return filechooser.getSelectedFile();
     }
-    return;
+    return null;
   }
 
 
