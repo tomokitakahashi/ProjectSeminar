@@ -69,10 +69,11 @@ public class MenuModel extends Model
     return buttonTitleList;
   }
 
-  /*
+  /**
   * セーブ指示メソッド
-  */
-  public void save()
+  * @param aFileName ファイル名
+  **/
+  public void save(String aFileName)
   {
 
     return;
