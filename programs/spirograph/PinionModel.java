@@ -82,9 +82,6 @@ public class PinionModel extends GearModel
   @Override
   public void dataReset()
   {
-    Point2D.Double axisPoint = tapAreaCoodinateList.get(1);
-    double axisRadian = Math.atan2(centerCoodinate.y-axisPoint.y,centerCoodinate.x-axisPoint.x);
-    pencilRadian -= (axisRadian + Math.toRadians(180));
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);

@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.io.File;
 
 public class MenuView extends View
 {
@@ -72,15 +73,37 @@ public class MenuView extends View
     return;
   }
 
-  /**
-  * ファイル選択のダイアログを表示するメソッド
-  **/
-  public void showDialog(int aMode)
+  public void showLoadDialog(int aMode)
   {
     JFileChooser filechooser = new JFileChooser();
     filechooser.setFileSelectionMode(aMode);
-    int selected = filechooser.showOpenDialog(this);
+    int option = filechooser.showOpenDialog(this);
+    if(option == JFileChooser.APPROVE_OPTION)
+    {
+
+    } else if(option == JFileChooser.CANCEL_OPTION)
+    {
+
+    } else
+    {
+
+    }
     return;
   }
+
+
+  public File showSaveDialog(int aMode)
+  {
+    JFileChooser filechooser = new JFileChooser();
+    filechooser.setFileSelectionMode(aMode);
+    int option = filechooser.showSaveDialog(this);
+    if(option == JFileChooser.APPROVE_OPTION)
+    {
+      return filechooser.getSelectedFile();
+    }
+    return null;
+  }
+
+
 
 }

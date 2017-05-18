@@ -71,6 +71,12 @@ public class SpiroModel extends Model
     axisDegree += 0.1;
     return;
   }
+
+  public double gearDistance()
+  {
+    return gearDistance;
+  }
+
   // アニメーションが止まっているかを設定するメソッド
   public void setStop(Boolean aBool)
   {
