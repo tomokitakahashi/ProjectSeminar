@@ -67,7 +67,8 @@ public class PinionModel extends GearModel
   **/
   public void changeCenterPosition(double aRadian, double aGearDistance)
   {
-    this.updateCurrentCenter(aRadian,aGearDistance+radius*2,SpiroConstruct.SPIRO_WINDOW_CENTER);
+
+    this.updateCurrentCenter(aRadian,aGearDistance+spinDirection*radius*2,SpiroConstruct.SPIRO_WINDOW_CENTER);
     this.updateCurrentPencil();
     this.updateCurrentTapArea();
     spinDirection *= -1;

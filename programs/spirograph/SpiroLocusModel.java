@@ -30,4 +30,11 @@ public class SpiroLocusModel extends Object
   {
     return locusColorList;
   }
+
+  public void clear()
+  {
+    locusList.clear();
+    locusColorList.clear();
+    return;
+  }
 }

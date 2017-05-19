@@ -41,7 +41,7 @@ public class SpiroModel extends Model
     isStop = true;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
-    selectedColor = Color.black;
+    selectedColor = SpiroConstruct.RGB_INIT_COLOR;
     return;
   }
 
@@ -110,11 +110,18 @@ public class SpiroModel extends Model
     return;
   }
   //アニメーションでモデルを更新するメソッド
+  // MEMO: 色、軌跡のデータ更新
   public void updateByAnimation()
   {
     pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance);
+
+    // create Rainbow Color with HSB
+    int hsbColorBit = Color.HSBtoRGB((float)Math.toRadians(axisDegree),1,1);
+    Color rgbColor = new Color(hsbColorBit);
+
     spiroLocusModel.locusList().add(pinionModel.pencilLocusCoodinate());
-    spiroLocusModel.locusColorList().add(selectedColor);
+    spiroLocusModel.locusColorList().add(rgbColor);
+
     return;
   }
 
@@ -162,6 +169,12 @@ public class SpiroModel extends Model
     double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
     double distanceY = (pinionModel.centerCoodinate().y - spurModel.centerCoodinate().y);
     gearDistance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
+    return;
+  }
+
+  public void clearLocus()
+  {
+    spiroLocusModel.clear();
     return;
   }
 
