@@ -1,5 +1,6 @@
 package spirograph;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -27,4 +28,6 @@ public class SpiroConstruct {
   // イベント関係定数
   public static final double TAP_AREA_RANGE = 64;
 
+  // 色とりどりにする際の初期値
+  public static final Color RGB_INIT_COLOR = new Color(255,0,0);
 }

@@ -55,7 +55,15 @@ public class SpiroController extends Controller implements MenuActionListener
 
   public void changedPosition()
   {
+    if(!this.getSpiroModel().isStop()) return;
     this.getSpiroModel().changePinionPosition();
+    return;
+  }
+
+  public void clear()
+  {
+    if(!this.getSpiroModel().isStop()) return;
+    this.getSpiroModel().clearLocus();
     return;
   }
 

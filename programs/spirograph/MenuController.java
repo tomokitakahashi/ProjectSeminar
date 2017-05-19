@@ -102,6 +102,7 @@ public class MenuController extends Controller implements ActionListener, Change
   **/
   private void tappedSaveButton()
   {
+    if(!this.getMenuModel().showDialogEnabled()) return;
     File file = this.getMenuView().showSaveDialog(JFileChooser.DIRECTORIES_ONLY);
     this.getMenuModel().save(file);
     return;
@@ -112,7 +113,7 @@ public class MenuController extends Controller implements ActionListener, Change
   **/
   private void tappedLoadButton()
   {
-
+    if(!this.getMenuModel().showDialogEnabled()) return;
     this.getMenuModel().load("");
     this.getMenuView().showLoadDialog(JFileChooser.FILES_ONLY);
     return;
@@ -124,6 +125,8 @@ public class MenuController extends Controller implements ActionListener, Change
   private void tappedClearButton()
   {
     System.out.println("tappedClearButton");
+    if(menuActionListener == null) return;
+    menuActionListener.clear();
     return;
   }
 

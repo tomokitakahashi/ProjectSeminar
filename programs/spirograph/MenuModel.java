@@ -77,6 +77,11 @@ public class MenuModel extends Model
     return selectedColor;
   }
 
+  public boolean showDialogEnabled()
+  {
+    return spiroModel.isStop();
+  }
+
   /**
   * 表示するボタンのタイトルリストを応答する
   **/
@@ -91,8 +96,6 @@ public class MenuModel extends Model
   **/
   public void save(File aFile)
   {
-    // 保存に必要なデータを取得 (軌跡・スパーギア・ピニオンギア)
-    ArrayList<Point2D.Double> locusList = spiroModel.getSpiroLocusModel().locusList();
     SpurModel spurModel = spiroModel.getSpurModel();
     PinionModel pinionModel = spiroModel.getPinionModel();
 
@@ -120,26 +123,52 @@ public class MenuModel extends Model
     spirograph.appendChild(pinion);
     this.createGearXML(document,pinion,pinionModel);
 
+    // Element pencilCoodinate = document.createElement("pencilCoodinate");
+    // Element pencilX = document.createElement("x");
+    // pencilX.appendChild(pinionModel.pencilCoo);
+    // Element pencilY = document.createElement("y");
+
+
 
     // SpiroLocusModel to XML
-    Element locus = document.createElement("locus");
-    spirograph.appendChild(locus);
-    for(Integer index = 0; index < locusList.size(); index++)
-    {
-      Element coodinate = document.createElement("coodinate");
-      Point2D.Double locusCoodinate = locusList.get(index);
-      Element x = document.createElement("x");
-      x.appendChild(document.createTextNode(String.valueOf(locusCoodinate.x)));
-      Element y = document.createElement("y");
-      y.appendChild(document.createTextNode(String.valueOf(locusCoodinate.y)));
-      coodinate.appendChild(x);
-      coodinate.appendChild(y);
-      locus.appendChild(coodinate);
-    }
+    this.createLocusXML(document,spirograph);
     write(aFile, document);
     return;
   }
 
+
+  /**
+  * 描画済みの軌跡データのXMLを生成するメソッド
+  * @param aDocument ドキュメント
+  * @param parent 親ノードの要素
+  **/
+  private void createLocusXML(Document aDocument,Element parent)
+  {
+    ArrayList<Point2D.Double> locusList = spiroModel.getSpiroLocusModel().locusList();
+
+    Element locus = aDocument.createElement("locus");
+    parent.appendChild(locus);
+    for(Integer index = 0; index < locusList.size(); index++)
+    {
+      Element coodinate = aDocument.createElement("coodinate");
+      Point2D.Double locusCoodinate = locusList.get(index);
+      Element x = aDocument.createElement("x");
+      x.appendChild(aDocument.createTextNode(String.valueOf(locusCoodinate.x)));
+      Element y = aDocument.createElement("y");
+      y.appendChild(aDocument.createTextNode(String.valueOf(locusCoodinate.y)));
+      coodinate.appendChild(x);
+      coodinate.appendChild(y);
+      locus.appendChild(coodinate);
+    }
+    return;
+  }
+
+  /**
+  * ギアのデータのXMLを生成するメソッド
+  * @param aDocument ドキュメント
+  * @param gearElement ギア要素
+  * @param aGearModel 格納したいギアのモデル
+  **/
   private void createGearXML(Document aDocument,Element gearElement,GearModel aGearModel)
   {
     // For CenterCoodinate
@@ -175,8 +204,6 @@ public class MenuModel extends Model
     return;
   }
 
-
-
   /**
   * ファイルロード指示メソッド
   * @param aFileName ファイル名
@@ -191,6 +218,11 @@ public class MenuModel extends Model
   * MARK: 以下 XMLに関連する操作
   **/
 
+
+  /**
+  * ドキュメントインスタンスの生成
+  * MEMO: 例外処理のため別メソッドにしている
+  **/
   private Document createDocument()
   {
     DocumentBuilder documentBuilder = null;
@@ -204,7 +236,11 @@ public class MenuModel extends Model
   }
 
 
-
+  /**
+  * XMLファイルに出力するメソッド
+  * @param file 書き込みファイル
+  * @param document 生成ドキュメント
+  **/
   private static boolean write(File file, Document document) {
      // Transformerインスタンスの生成
      Transformer transformer = null;
@@ -227,5 +263,5 @@ public class MenuModel extends Model
           return false;
      }
      return true;
-}
+   }
 }
