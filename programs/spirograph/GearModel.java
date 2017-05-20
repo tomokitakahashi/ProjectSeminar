@@ -11,7 +11,6 @@ abstract public class GearModel extends Object
 {
   // ギアの中心座標
   protected Point2D.Double centerCoodinate;
-
   // ギアの半径
   protected double radius;
 
@@ -31,10 +30,10 @@ abstract public class GearModel extends Object
   protected Boolean centerMoveEnabled;
 
   // リスタート時などにデータの再設定、リセットを行うメソッド
-  abstract void dataReset();
+  abstract public void dataReset();
 
   // マウスのイベントが有効エリアにあるかどうかを判別するメソッド
-  abstract void judgePressArea(Point aPoint);
+  abstract public void judgePressArea(Point aPoint);
 
   /**
   * GearModelのコンストラクタ
