@@ -67,7 +67,6 @@ public class PinionModel extends GearModel
   **/
   public void changeCenterPosition(double aRadian, double aGearDistance)
   {
-
     this.updateCurrentCenter(aRadian,aGearDistance+spinDirection*radius*2,SpiroConstruct.SPIRO_WINDOW_CENTER);
     this.updateCurrentPencil();
     this.updateCurrentTapArea();
@@ -164,6 +163,11 @@ public class PinionModel extends GearModel
   public void updateByRelease(Point aPoint)
   {
     this.dataReset();
+    if(pencilMoveEnabled)
+    {
+      double axisPencilRadian = Math.atan2(tapAreaCoodinateList.get(1).y - centerCoodinate.y,tapAreaCoodinateList.get(1).x - centerCoodinate.x);
+      pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x) - axisPencilRadian;
+    }
     centerMoveEnabled = false;
     radiusAbjustEnabled = false;
     pencilMoveEnabled = false;
