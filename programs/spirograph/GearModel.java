@@ -11,6 +11,7 @@ abstract public class GearModel extends Object
 {
   // ギアの中心座標
   protected Point2D.Double centerCoodinate;
+
   // ギアの半径
   protected double radius;
 
@@ -62,7 +63,11 @@ abstract public class GearModel extends Object
     {
       Point2D.Double coodinate = tapAreaCoodinateList.get(index);
       double tapPoint = (coodinate.x - aPoint.x) * (coodinate.x - aPoint.x) + (coodinate.y - aPoint.y) * (coodinate.y - aPoint.y);
-      if(tapPoint <= SpiroConstruct.TAP_AREA_RANGE) { return true; }
+      if(tapPoint <= SpiroConstruct.TAP_AREA_RANGE)
+      {
+        previousRadius = radius;
+        return true;
+      }
     }
     return false;
   }

@@ -7,6 +7,9 @@ import java.awt.Color;
 
 public class SpiroModel extends Model
 {
+  // ファイルロードしているかの状態保存
+  public Boolean isLoading;
+
   // Viewのアニメーションが止まっているかの状態保存
   public Boolean isStop;
 
@@ -39,6 +42,7 @@ public class SpiroModel extends Model
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     isStop = true;
+    isLoading = false;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
     selectedColor = SpiroConstruct.RGB_INIT_COLOR;
@@ -50,15 +54,34 @@ public class SpiroModel extends Model
   {
     return pinionModel;
   }
+
+  public void setPinionModel(GearModel aGearModel)
+  {
+    pinionModel = (PinionModel)aGearModel;
+    return;
+  }
+
   // スパーギアのモデルを応答
   public SpurModel getSpurModel()
   {
     return spurModel;
   }
 
+  public void setSpurModel(GearModel aGearModel)
+  {
+    spurModel = (SpurModel)aGearModel;
+    return;
+  }
+
   public SpiroLocusModel getSpiroLocusModel()
   {
     return spiroLocusModel;
+  }
+
+  public void setSpiroLocusModel(SpiroLocusModel aSpiroLocusModel)
+  {
+    spiroLocusModel = aSpiroLocusModel;
+    return;
   }
 
   public double degree()
@@ -72,9 +95,21 @@ public class SpiroModel extends Model
     return;
   }
 
+  public void axisDegree(double newDegree)
+  {
+    axisDegree = newDegree;
+    return;
+  }
+
   public double gearDistance()
   {
     return gearDistance;
+  }
+
+  public void gearDistance(double newDistance)
+  {
+    gearDistance = newDistance;
+    return;
   }
 
   // アニメーションが止まっているかを設定するメソッド
@@ -185,6 +220,11 @@ public class SpiroModel extends Model
   {
     menuModel = aMenuModel;
     return;
+  }
+
+  public SpiroView getSpiroView()
+  {
+    return (SpiroView)dependents.get(0);
   }
 
   public Color getSpiroColor()
