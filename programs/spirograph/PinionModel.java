@@ -18,6 +18,11 @@ public class PinionModel extends GearModel
   private double pencilRadian;
 
   /**
+  *
+  **/
+  private double previousPencilDistance;
+
+  /**
   * 中心座標と鉛筆の距離
   **/
   private double pencilDistance;
@@ -85,6 +90,7 @@ public class PinionModel extends GearModel
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+    previousPencilDistance = pencilDistance;
     return;
   }
 
@@ -184,6 +190,7 @@ public class PinionModel extends GearModel
     if(radiusAbjustEnabled)
     {
       this.updateRadiusByDrag(aPoint);
+      pencilDistance = previousPencilDistance*radius / previousRadius;
     }
     else if (pencilMoveEnabled)
     {
