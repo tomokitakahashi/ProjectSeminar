@@ -119,6 +119,24 @@ public class PinionModel extends GearModel
     this.updateCurrentPencil();
     return;
   }
+
+  /**
+  * 鉛筆の座標を応答する
+  **/
+  public Point2D.Double pencilCoodinate()
+  {
+    return pencilCoodinate;
+  }
+
+  /**
+  * 鉛筆の座標を設定する
+  **/
+  public void pencilCoodinate(Point2D.Double newPoint)
+  {
+    pencilCoodinate = newPoint;
+    return;
+  }
+
   /**
   * 鉛筆の中心座標を元に描くべき座標に変換して返却する
   * MEMO: drawOvalを利用しているため

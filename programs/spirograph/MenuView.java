@@ -73,33 +73,27 @@ public class MenuView extends View
     return;
   }
 
-  public void showLoadDialog(int aMode)
+  public File showLoadDialog()
   {
-    JFileChooser filechooser = new JFileChooser();
-    filechooser.setFileSelectionMode(aMode);
-    int option = filechooser.showOpenDialog(this);
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    int option = fileChooser.showOpenDialog(this);
     if(option == JFileChooser.APPROVE_OPTION)
     {
-
-    } else if(option == JFileChooser.CANCEL_OPTION)
-    {
-
-    } else
-    {
-
+      return fileChooser.getSelectedFile();
     }
-    return;
+    return null;
   }
 
 
-  public File showSaveDialog(int aMode)
+  public File showSaveDialog()
   {
-    JFileChooser filechooser = new JFileChooser();
-    filechooser.setFileSelectionMode(aMode);
-    int option = filechooser.showSaveDialog(this);
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    int option = fileChooser.showSaveDialog(this);
     if(option == JFileChooser.APPROVE_OPTION)
     {
-      return filechooser.getSelectedFile();
+      return fileChooser.getSelectedFile();
     }
     return null;
   }

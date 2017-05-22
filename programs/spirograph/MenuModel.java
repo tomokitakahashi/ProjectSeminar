@@ -50,7 +50,7 @@ public class MenuModel extends Model
     super();
     selectedColor = Color.black;
     spiroModel = aSpiroModel;
-    spiroFile = new SpiroFile();
+    spiroFile = new SpiroFile(this);
     spiroModel.setMenuModel(this);
     buttonTitleList = new ArrayList<String>() {
       {
@@ -108,6 +108,7 @@ public class MenuModel extends Model
 
   public void load(File aFile)
   {
+    spiroFile.load(spiroModel,aFile);
     return;
   }
 
