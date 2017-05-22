@@ -34,7 +34,7 @@ public class SpiroView extends View implements Runnable
       if (!this.getSpiroModel().isLoading)
       {
       */
-        this.update();
+      this.update();
       //}
       try {
         Thread.sleep(1);

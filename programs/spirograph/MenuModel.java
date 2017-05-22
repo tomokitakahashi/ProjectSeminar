@@ -112,13 +112,12 @@ public class MenuModel extends Model
     spiroModel.isLoading = true;
 
     try {
-      spiroFile.load(spiroModel,aFile);
+      SpiroModel newModel = spiroFile.load(spiroModel,aFile);
+      spiroModel.getSpiroView().loadSpiroModel(newModel);
     } catch(Exception anException)
     {
 
     }
-
-    spiroModel.getSpiroView().loadSpiroModel(new SpiroModel());
     return;
   }
 

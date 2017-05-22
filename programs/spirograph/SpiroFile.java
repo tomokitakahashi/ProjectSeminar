@@ -1,5 +1,6 @@
 package spirograph;
 
+import java.awt.Color;
 import java.lang.Double;
 import java.io.IOException;
 import javax.xml.transform.OutputKeys;
@@ -84,7 +85,7 @@ public class SpiroFile extends Object {
   * @param aFile 選択されたファイル
   **/
 
-  public void load(SpiroModel aSpiroModel,File aFile) throws SAXException, IOException, ParserConfigurationException
+  public SpiroModel load(SpiroModel aSpiroModel,File aFile) throws SAXException, IOException, ParserConfigurationException
   {
 		Document document = this.createDocumentBuilder().parse(aFile.getPath());
     Element root = document.getDocumentElement();
@@ -97,23 +98,26 @@ public class SpiroFile extends Object {
         Element element = (Element)childNode;
         if(element.getNodeName().equals("spiroModel"))
         {
-          this.loadSpiroModel(aSpiroModel,childNode);
+          aSpiroModel = this.loadSpiroModel(aSpiroModel,childNode);
         } else if(element.getNodeName().equals("spurModel"))
         {
-          this.loadGearModel(aSpiroModel.getSpurModel(),childNode);
+          GearModel gearModel = this.loadGearModel(aSpiroModel.getSpurModel(),childNode);
+          aSpiroModel.setSpurModel(gearModel);
         }  else if(element.getNodeName().equals("pinionModel"))
         {
-          this.loadGearModel(aSpiroModel.getPinionModel(),childNode);
+          GearModel gearModel = this.loadGearModel(aSpiroModel.getPinionModel(),childNode);
+          aSpiroModel.setPinionModel(gearModel);
         }  else if(element.getNodeName().equals("locus"))
         {
-          this.loadLocusModel(aSpiroModel.getSpiroLocusModel(),childNode);
+          SpiroLocusModel locusModel = this.loadLocusModel(aSpiroModel.getSpiroLocusModel(),childNode);
+          aSpiroModel.setSpiroLocusModel(locusModel);
         }
       }
     }
-    return;
+    return aSpiroModel;
   }
 
-  private void loadLocusModel(SpiroLocusModel aSpiroLocusModel,Node aNode)
+  private SpiroLocusModel loadLocusModel(SpiroLocusModel aSpiroLocusModel,Node aNode)
   {
     aSpiroLocusModel.clear();
     NodeList list = aNode.getChildNodes();
@@ -125,14 +129,15 @@ public class SpiroFile extends Object {
         if(childNode.getNodeName().equals("coodinate"))
         {
            aSpiroLocusModel.locusList().add(this.loadCoodinate(childNode));
+           aSpiroLocusModel.locusColorList().add(Color.black);
         }
       }
     }
-    return;
+    return aSpiroLocusModel;
   }
 
 
-  private void loadSpiroModel(SpiroModel aSpiroModel,Node aNode)
+  private SpiroModel loadSpiroModel(SpiroModel aSpiroModel,Node aNode)
   {
     NodeList aNodeList = aNode.getChildNodes();
     for(Integer index = 0; index < aNodeList.getLength();index ++)
@@ -151,10 +156,10 @@ public class SpiroFile extends Object {
         }
       }
     }
-    return;
+    return aSpiroModel;
   }
 
-  private void loadGearModel(GearModel aGearModel,Node aNode)
+  private GearModel loadGearModel(GearModel aGearModel,Node aNode)
   {
     NodeList aNodeList = aNode.getChildNodes();
     for(Integer index = 0; index < aNodeList.getLength();index ++)
@@ -194,7 +199,7 @@ public class SpiroFile extends Object {
         }
       }
     }
-    return;
+    return aGearModel;
   }
 
   private Point2D.Double loadCoodinate(Node aNode)

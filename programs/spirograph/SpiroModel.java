@@ -54,15 +54,34 @@ public class SpiroModel extends Model
   {
     return pinionModel;
   }
+
+  public void setPinionModel(GearModel aGearModel)
+  {
+    pinionModel = (PinionModel)aGearModel;
+    return;
+  }
+
   // スパーギアのモデルを応答
   public SpurModel getSpurModel()
   {
     return spurModel;
   }
 
+  public void setSpurModel(GearModel aGearModel)
+  {
+    spurModel = (SpurModel)aGearModel;
+    return;
+  }
+
   public SpiroLocusModel getSpiroLocusModel()
   {
     return spiroLocusModel;
+  }
+
+  public void setSpiroLocusModel(SpiroLocusModel aSpiroLocusModel)
+  {
+    spiroLocusModel = aSpiroLocusModel;
+    return;
   }
 
   public double degree()
