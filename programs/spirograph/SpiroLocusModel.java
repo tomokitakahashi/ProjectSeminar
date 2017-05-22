@@ -31,6 +31,11 @@ public class SpiroLocusModel extends Object
     return locusColorList;
   }
 
+  public Boolean isEmpty()
+  {
+    return locusList.size() == 0;
+  }
+
   public void clear()
   {
     locusList.clear();

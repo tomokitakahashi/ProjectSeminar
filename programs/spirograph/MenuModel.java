@@ -16,6 +16,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.xml.sax.SAXException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -108,7 +109,16 @@ public class MenuModel extends Model
 
   public void load(File aFile)
   {
-    spiroFile.load(spiroModel,aFile);
+    spiroModel.isLoading = true;
+
+    try {
+      spiroFile.load(spiroModel,aFile);
+    } catch(Exception anException)
+    {
+
+    }
+
+    spiroModel.getSpiroView().loadSpiroModel(new SpiroModel());
     return;
   }
 

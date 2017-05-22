@@ -124,7 +124,7 @@ public class SpiroFile extends Object {
       {
         if(childNode.getNodeName().equals("coodinate"))
         {
-          aSpiroLocusModel.locusList().add(this.loadCoodinate(childNode));
+           aSpiroLocusModel.locusList().add(this.loadCoodinate(childNode));
         }
       }
     }
@@ -142,12 +142,12 @@ public class SpiroFile extends Object {
       {
         if(childNode.getNodeName().equals("axisDegree"))
         {
-          String text = childNode.getNodeValue();
+          String text = childNode.getTextContent();
           System.out.println(text);
           aSpiroModel.axisDegree(Double.valueOf(text));
         } else if(childNode.getNodeName().equals("gearDistance"))
         {
-          aSpiroModel.gearDistance(Double.valueOf(childNode.getNodeValue()));
+          aSpiroModel.gearDistance(Double.valueOf(childNode.getTextContent()));
         }
       }
     }
@@ -164,17 +164,29 @@ public class SpiroFile extends Object {
       {
         if(childNode.getNodeName().equals("centerCoodinate"))
         {
+          System.out.println("center");
           aGearModel.centerCoodinate(this.loadCoodinate(childNode));
+          System.out.println("after");
         } else if(childNode.getNodeName().equals("radius"))
         {
-          aGearModel.radius(Double.valueOf(childNode.getNodeValue()));
+          aGearModel.radius(Double.valueOf(childNode.getTextContent()));
         } else if(childNode.getNodeName().equals("tapAreaCoodinateList"))
         {
           NodeList list = childNode.getChildNodes();
-          aGearModel.tapAreaCoodinateList().set(0,this.loadCoodinate(list.item(0)));
-          aGearModel.tapAreaCoodinateList().set(1,this.loadCoodinate(list.item(1)));
-          aGearModel.tapAreaCoodinateList().set(2,this.loadCoodinate(list.item(2)));
-          aGearModel.tapAreaCoodinateList().set(3,this.loadCoodinate(list.item(3)));
+          Integer tapAreaIndex = 0;
+          for(Integer childIndex = 0;childIndex < list.getLength();childIndex++)
+          {
+            Node node = list.item(childIndex);
+            if(node.getNodeType() == Node.ELEMENT_NODE)
+            {
+              if(node.getNodeName().equals("coodinate"))
+              {
+                System.out.println(node.getChildNodes().getLength());
+                aGearModel.tapAreaCoodinateList().set(tapAreaIndex,this.loadCoodinate(node));
+                tapAreaIndex ++;
+              }
+            }
+          }
         } else if(childNode.getNodeName().equals("pencilCoodinate"))
         {
           PinionModel pinionModel = (PinionModel)aGearModel;
@@ -187,7 +199,28 @@ public class SpiroFile extends Object {
 
   private Point2D.Double loadCoodinate(Node aNode)
   {
-    Point2D.Double coodinate = new Point2D.Double(Double.valueOf(aNode.getChildNodes().item(0).getNodeValue()),Double.valueOf(aNode.getChildNodes().item(1).getNodeValue()));
+    NodeList list = aNode.getChildNodes();
+    String textX = "",textY = "";
+    for(Integer index = 0;index < list.getLength();index++)
+    {
+      Node node = list.item(index);
+      if(node.getNodeType() == Node.ELEMENT_NODE)
+      {
+        if(node.getNodeName().equals("x"))
+        {
+          System.out.println("x = ");
+          System.out.println(node.getTextContent());
+          textX = node.getTextContent();
+        } else if (node.getNodeName().equals("y"))
+        {
+          System.out.println("y = ");
+          System.out.println(node.getTextContent());
+          textY = node.getTextContent();
+        }
+      }
+    }
+    System.out.println("x: " + textX + " y: " + textY);
+    Point2D.Double coodinate = new Point2D.Double(Double.valueOf(textX),Double.valueOf(textY));
     return coodinate;
   }
 

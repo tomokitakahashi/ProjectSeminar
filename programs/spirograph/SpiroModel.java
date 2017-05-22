@@ -7,6 +7,9 @@ import java.awt.Color;
 
 public class SpiroModel extends Model
 {
+  // ファイルロードしているかの状態保存
+  public Boolean isLoading;
+
   // Viewのアニメーションが止まっているかの状態保存
   public Boolean isStop;
 
@@ -39,6 +42,7 @@ public class SpiroModel extends Model
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     isStop = true;
+    isLoading = false;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
     selectedColor = SpiroConstruct.RGB_INIT_COLOR;
@@ -197,6 +201,11 @@ public class SpiroModel extends Model
   {
     menuModel = aMenuModel;
     return;
+  }
+
+  public SpiroView getSpiroView()
+  {
+    return (SpiroView)dependents.get(0);
   }
 
   public Color getSpiroColor()

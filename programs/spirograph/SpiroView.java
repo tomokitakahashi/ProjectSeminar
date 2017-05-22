@@ -25,14 +25,17 @@ public class SpiroView extends View implements Runnable
   {
     while(true)
     {
-      if (!this.getSpiroModel().isStop())
+      if (!this.getSpiroModel().isStop() && !this.getSpiroModel().isLoading)
       {
         this.getSpiroModel().updateByAnimation();
         this.getSpiroModel().setDegree();
-      } else {
-
       }
-      this.update();
+/*
+      if (!this.getSpiroModel().isLoading)
+      {
+      */
+        this.update();
+      //}
       try {
         Thread.sleep(1);
       } catch (Exception anException) {
@@ -56,6 +59,7 @@ public class SpiroView extends View implements Runnable
   private void drawLocus(Graphics aGraphics)
   {
     SpiroLocusModel spiroLocusModel = this.getSpiroModel().getSpiroLocusModel();
+    if(spiroLocusModel.isEmpty()) return;
     for(Integer index = 0; index < spiroLocusModel.locusList().size();index ++)
     {
       Point2D.Double coodinate = spiroLocusModel.locusList().get(index);
@@ -113,6 +117,12 @@ public class SpiroView extends View implements Runnable
       }
       aGraphics.fillOval((int)areaCoodinate.x,(int)areaCoodinate.y,SpiroConstruct.TAP_AREA_RADIUS*2,SpiroConstruct.TAP_AREA_RADIUS*2);
     }
+    return;
+  }
+
+  public void loadSpiroModel(SpiroModel aSpiroModel)
+  {
+    model = aSpiroModel;
     return;
   }
 
