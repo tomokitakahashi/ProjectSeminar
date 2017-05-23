@@ -61,6 +61,7 @@ public class MenuModel extends Model
         add("Load");
         add("Clear");
         add("Position");
+        add("Rainbow");
       }
     };
     return;

@@ -7,6 +7,8 @@ import java.awt.Color;
 
 public class SpiroModel extends Model
 {
+  private Boolean isRainbow;
+
   // ファイルロードしているかの状態保存
   public Boolean isLoading;
 
@@ -43,6 +45,7 @@ public class SpiroModel extends Model
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     isStop = true;
     isLoading = false;
+    isRainbow = false;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
     selectedColor = SpiroConstruct.RGB_INIT_COLOR;
@@ -150,12 +153,16 @@ public class SpiroModel extends Model
   {
     pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance);
 
-    // create Rainbow Color with HSB
-    int hsbColorBit = Color.HSBtoRGB((float)Math.toRadians(axisDegree),1,1);
-    Color rgbColor = new Color(hsbColorBit);
-
     spiroLocusModel.locusList().add(pinionModel.pencilLocusCoodinate());
-    spiroLocusModel.locusColorList().add(rgbColor);
+    if(isRainbow)
+    {
+      int hsbColorBit = Color.HSBtoRGB((float)Math.toRadians(axisDegree),1,1);
+      Color rgbColor = new Color(hsbColorBit);
+      spiroLocusModel.locusColorList().add(rgbColor);
+    } else
+    {
+      spiroLocusModel.locusColorList().add(selectedColor);
+    }
 
     return;
   }
@@ -235,6 +242,12 @@ public class SpiroModel extends Model
   public void setSpiroColor(Color aColor)
   {
     selectedColor = aColor;
+    return;
+  }
+
+  public void setSpiroRainbowColor(Boolean aBool)
+  {
+    isRainbow = aBool;
     return;
   }
 

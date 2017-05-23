@@ -2,6 +2,7 @@ package spirograph;
 
 import java.awt.Color;
 import java.lang.Double;
+
 import java.io.IOException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 import java.util.ArrayList;
 import java.awt.Color;
@@ -74,7 +76,7 @@ public class SpiroFile extends Object {
 
 
     // SpiroLocusModel to XML
-    this.createLocusXML(document,spirograph,aSpiroModel.getSpiroLocusModel().locusList());
+    this.createLocusXML(document,spirograph,aSpiroModel.getSpiroLocusModel());
     this.write(aFile, document);
     return;
   }
@@ -128,8 +130,10 @@ public class SpiroFile extends Object {
       {
         if(childNode.getNodeName().equals("coodinate"))
         {
-           aSpiroLocusModel.locusList().add(this.loadCoodinate(childNode));
-           aSpiroLocusModel.locusColorList().add(Color.black);
+          NamedNodeMap colorAttributes = childNode.getAttributes();
+          int colorInt = Integer.valueOf(colorAttributes.getNamedItem("color").getNodeValue());
+          aSpiroLocusModel.locusList().add(this.loadCoodinate(childNode));
+          aSpiroLocusModel.locusColorList().add(new Color(colorInt));
         }
       }
     }
@@ -292,15 +296,17 @@ public class SpiroFile extends Object {
   * @param aDocument ドキュメント
   * @param parent 親ノードの要素
   **/
-  private void createLocusXML(Document aDocument,Element parent, ArrayList<Point2D.Double> aLocusList)
+  private void createLocusXML(Document aDocument,Element parent, SpiroLocusModel aSpiroLocus)
   {
 
     Element locus = aDocument.createElement("locus");
     parent.appendChild(locus);
-    for(Integer index = 0; index < aLocusList.size(); index++)
+    for(Integer index = 0; index < aSpiroLocus.locusList().size(); index++)
     {
       Element coodinate = aDocument.createElement("coodinate");
-      Point2D.Double locusCoodinate = aLocusList.get(index);
+      Point2D.Double locusCoodinate = aSpiroLocus.locusList().get(index);
+      Color color = aSpiroLocus.locusColorList().get(index);
+      coodinate.setAttribute("color",String.valueOf(color.getRGB()));
       Element x = aDocument.createElement("x");
       x.appendChild(aDocument.createTextNode(String.valueOf(locusCoodinate.x)));
       Element y = aDocument.createElement("y");

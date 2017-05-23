@@ -9,5 +9,6 @@ public interface MenuActionListener {
   public void animationStop();
   public void changedColor(Color aColor);
   public void changedPosition();
+  public void changeColorRainbow();
   public void clear();
 }
