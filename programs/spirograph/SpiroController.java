@@ -49,7 +49,17 @@ public class SpiroController extends Controller implements MenuActionListener
   }
   public void changedColor(Color aColor)
   {
+    this.getSpiroModel().setSpiroRainbowColor(false);
     this.getSpiroModel().setSpiroColor(aColor);
+    return;
+  }
+
+  /**
+  * スピログラフの色が虹色に設定された時のメソッド
+  **/
+  public void changeColorRainbow()
+  {
+    this.getSpiroModel().setSpiroRainbowColor(true);
     return;
   }
 

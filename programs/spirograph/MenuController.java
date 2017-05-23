@@ -72,6 +72,10 @@ public class MenuController extends Controller implements ActionListener, Change
     {
       this.tappedPositionButton();
     }
+    else if(aCommand.equals("Rainbow"))
+    {
+      this.tappedRainbowButton();
+    }
     return;
   }
 
@@ -138,6 +142,17 @@ public class MenuController extends Controller implements ActionListener, Change
     System.out.println("tappedPositionButton");
     if(menuActionListener == null){ return ;}
     menuActionListener.changedPosition();
+    return;
+  }
+
+  /**
+  * スピログラフの色を虹色に設定したときのアクション
+  **/
+  private void tappedRainbowButton()
+  {
+    System.out.println("tappedRainbowButton");
+    if(menuActionListener == null){ return; }
+    menuActionListener.changeColorRainbow();
     return;
   }
 
