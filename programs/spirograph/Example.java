@@ -76,7 +76,7 @@ public class Example extends Object
 		aMenuWindow.setSize(aMenuDimension.width,aMenuDimension.height);
 		aMenuWindow.setResizable(false);
 		aMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		aMenuWindow.setBounds(0,0,aMenuDimension.width,aMenuDimension.height);
+		aMenuWindow.setBounds(x - aMenuDimension.width,y,aMenuDimension.width,aMenuDimension.height);
 		aMenuWindow.setVisible(true);
 		aMenuWindow.toFront();
 
@@ -85,7 +85,7 @@ public class Example extends Object
 		JColorChooser colorchooser = new JColorChooser();
 		colorchooser.getSelectionModel().addChangeListener(aMenuController);
 		aColorMenuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		aColorMenuWindow.setBounds(10, 10, 300, 200);
+		aColorMenuWindow.setBounds(x + windowSize.width, y, 450, 300);
 		aColorMenuWindow.setTitle("スピログラフの色選択");
 		aColorMenuWindow.setVisible(true);
 		aColorMenuWindow.getContentPane().add(colorchooser);
