@@ -203,7 +203,6 @@ abstract public class GearModel extends Object
   **/
   public void updateCenterByDrag(Point aPoint)
   {
-    System.out.println("updateCenterByDrag");
     centerCoodinate.x = aPoint.x;
     centerCoodinate.y = aPoint.y;
     return;
