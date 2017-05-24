@@ -63,6 +63,12 @@ public class SpiroFile extends Object {
     // PinionModel to XML
     Element pinion = document.createElement("pinionModel");
     spirograph.appendChild(pinion);
+    Element pinionTheta = document.createElement("pinionTheta");
+    pinionTheta.appendChild(document.createTextNode(String.valueOf(pinionModel.pinionTheta())));
+    pinion.appendChild(pinionTheta);
+    Element spinDirection = document.createElement("spinDirection");
+    spinDirection.appendChild(document.createTextNode(String.valueOf(pinionModel.spinDirection())));
+    pinion.appendChild(spinDirection);
     this.createGearXML(document,pinion,pinionModel);
 
     Element pencilCoodinate = document.createElement("pencilCoodinate");
@@ -200,6 +206,14 @@ public class SpiroFile extends Object {
         {
           PinionModel pinionModel = (PinionModel)aGearModel;
           pinionModel.pencilCoodinate(this.loadCoodinate(childNode));
+        } else if(childNode.getNodeName().equals("pinionTheta"))
+        {
+          PinionModel pinionModel = (PinionModel)aGearModel;
+          pinionModel.pinionTheta(Double.valueOf(childNode.getTextContent()));
+        } else if(childNode.getNodeName().equals("spiroDirection"))
+        {
+          PinionModel pinionModel = (PinionModel)aGearModel;
+          pinionModel.spinDirection(Double.valueOf(childNode.getTextContent()));
         }
       }
     }
