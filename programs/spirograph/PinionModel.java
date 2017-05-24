@@ -89,8 +89,8 @@ public class PinionModel extends GearModel
   {
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
-    previousPencilDistance = pencilDistance;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+    previousPencilDistance = pencilDistance;
     return;
   }
 
@@ -117,6 +117,40 @@ public class PinionModel extends GearModel
     this.updateCurrentCenter(aRadian,aGearDistance,SpiroConstruct.SPIRO_WINDOW_CENTER);
     this.updateCurrentTapArea();
     this.updateCurrentPencil();
+    return;
+  }
+
+  /**
+  * ピニオンギアの回転方向を設定する
+  **/
+  public void spinDirection(double aDirection)
+  {
+    spinDirection = aDirection;
+    return;
+  }
+
+  /**
+  * ピニオンギアの回転方向を応答する
+  **/
+  public double spinDirection()
+  {
+    return spinDirection;
+  }
+
+  /**
+  * ピニオンギアの回転角を応答する
+  **/
+  public double pinionTheta()
+  {
+    return pinionTheta;
+  }
+
+  /**
+  * ピニオンギアの回転角を設定する
+  **/
+  public void pinionTheta(double aTheta)
+  {
+    pinionTheta = aTheta;
     return;
   }
 

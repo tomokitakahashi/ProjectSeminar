@@ -54,6 +54,9 @@ public class SpiroFile extends Object {
     Element gearDistance = document.createElement("gearDistance");
     gearDistance.appendChild(document.createTextNode(String.valueOf(aSpiroModel.gearDistance())));
     spiro.appendChild(gearDistance);
+    Element isRainbow = document.createElement("isRainbow");
+    isRainbow.appendChild(document.createTextNode(String.valueOf(aSpiroModel.isRainbow())));
+    spiro.appendChild(isRainbow);
 
     // SpurModel to XML
     Element spur = document.createElement("spurModel");
@@ -63,6 +66,12 @@ public class SpiroFile extends Object {
     // PinionModel to XML
     Element pinion = document.createElement("pinionModel");
     spirograph.appendChild(pinion);
+    Element pinionTheta = document.createElement("pinionTheta");
+    pinionTheta.appendChild(document.createTextNode(String.valueOf(pinionModel.pinionTheta())));
+    pinion.appendChild(pinionTheta);
+    Element spinDirection = document.createElement("spinDirection");
+    spinDirection.appendChild(document.createTextNode(String.valueOf(pinionModel.spinDirection())));
+    pinion.appendChild(spinDirection);
     this.createGearXML(document,pinion,pinionModel);
 
     Element pencilCoodinate = document.createElement("pencilCoodinate");
@@ -157,6 +166,9 @@ public class SpiroFile extends Object {
         } else if(childNode.getNodeName().equals("gearDistance"))
         {
           aSpiroModel.gearDistance(Double.valueOf(childNode.getTextContent()));
+        } else if(childNode.getNodeName().equals("isRainbow"))
+        {
+          aSpiroModel.setSpiroRainbowColor(Boolean.valueOf(childNode.getTextContent()));
         }
       }
     }
@@ -200,6 +212,14 @@ public class SpiroFile extends Object {
         {
           PinionModel pinionModel = (PinionModel)aGearModel;
           pinionModel.pencilCoodinate(this.loadCoodinate(childNode));
+        } else if(childNode.getNodeName().equals("pinionTheta"))
+        {
+          PinionModel pinionModel = (PinionModel)aGearModel;
+          pinionModel.pinionTheta(Double.valueOf(childNode.getTextContent()));
+        } else if(childNode.getNodeName().equals("spinDirection"))
+        {
+          PinionModel pinionModel = (PinionModel)aGearModel;
+          pinionModel.spinDirection(Double.valueOf(childNode.getTextContent()));
         }
       }
     }

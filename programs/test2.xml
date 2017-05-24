@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="Shift_JIS" standalone="no"?>
 <spirograph>
   <spiroModel>
-    <axisDegree>356.2000000000125</axisDegree>
+    <axisDegree>346.0000000000102</axisDegree>
     <gearDistance>179.99999999999997</gearDistance>
-    <isRainbow>true</isRainbow>
   </spiroModel>
   <spurModel>
     <centerCoodinate>
@@ -31,34 +30,34 @@
     </tapAreaCoodinateList>
   </spurModel>
   <pinionModel>
-    <pinionTheta>-18.65058838681142</pinionTheta>
+    <pinionTheta>-18.11651763570101</pinionTheta>
     <spinDirection>1.0</spinDirection>
     <centerCoodinate>
-      <x>554.5831701904116</x>
-      <y>287.7572476802943</y>
+      <x>549.5769627512622</x>
+      <y>256.1492978785468</y>
     </centerCoodinate>
     <radius>60.0</radius>
     <tapAreaCoodinateList>
       <coodinate>
-        <x>566.4426106131582</x>
-        <y>228.9409772029908</y>
+        <x>589.7247991327995</x>
+        <y>211.56060834990842</y>
       </coodinate>
       <coodinate>
-        <x>613.3994406677151</x>
-        <y>299.616688103041</y>
+        <x>594.1656522799005</x>
+        <y>296.2971342600842</y>
       </coodinate>
       <coodinate>
-        <x>542.7237297676648</x>
-        <y>346.5735181575978</y>
+        <x>509.42912636972466</x>
+        <y>300.7379874071851</y>
       </coodinate>
       <coodinate>
-        <x>495.7668997131081</x>
-        <y>275.89780725754764</y>
+        <x>504.98827322262383</x>
+        <y>216.0014614970094</y>
       </coodinate>
     </tapAreaCoodinateList>
     <pencilCoodinate>
-      <x>583.9913054290633</x>
-      <y>293.6869678916677</y>
+      <x>571.8713075155813</x>
+      <y>276.2232160693155</y>
     </pencilCoodinate>
   </pinionModel>
   <locus>
@@ -5358,227 +5357,227 @@
       <x>277.75364510897697</x>
       <y>414.9956236502891</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-14483712">
       <x>277.4261704436773</x>
       <y>414.6591184424081</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-14614784">
       <x>277.0984130004623</x>
       <y>414.32270901624366</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-14811392">
       <x>276.77037611597166</x>
       <y>413.98639942734036</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-15008000">
       <x>276.442063143533</x>
       <y>413.6501937186542</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-15139072">
       <x>276.11347745308746</x>
       <y>413.31409592045725</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-15335680">
       <x>275.7846224311144</x>
       <y>412.97811005024374</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-15532288">
       <x>275.455501480556</x>
       <y>412.64224011263485</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-15663360">
       <x>275.12611802074036</x>
       <y>412.30649009928544</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-15859968">
       <x>274.7964754873056</x>
       <y>411.9708639887901</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16056576">
       <x>274.46657733212214</x>
       <y>411.6353657465901</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16187648">
       <x>274.1364270232154</x>
       <y>411.2999993248809</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16384256">
       <x>273.8060280446876</x>
       <y>410.9647686625194</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16580864">
       <x>273.47538389663924</x>
       <y>410.62967768493206</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711936">
       <x>273.14449809509</x>
       <y>410.2947303040235</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711933">
       <x>272.8133741718992</x>
       <y>409.9599304180852</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711930">
       <x>272.4820156746863</x>
       <y>409.62528191170463</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711928">
       <x>272.1504261667496</x>
       <y>409.2907886556749</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711925">
       <x>271.81860922698627</x>
       <y>408.956454506905</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711922">
       <x>271.4865684498106</x>
       <y>408.6222833083303</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711920">
       <x>271.15430744507216</x>
       <y>408.2882788888227</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711917">
       <x>270.8218298379737</x>
       <y>407.9544450631029</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711914">
       <x>270.4891392689886</x>
       <y>407.62078563165136</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711912">
       <x>270.15623939377735</x>
       <y>407.28730438062087</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711909">
       <x>269.8231338831044</x>
       <y>406.9540050817487</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711906">
       <x>269.4898264227537</x>
       <y>406.6208914922696</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711904">
       <x>269.15632071344487</x>
       <y>406.28796735482973</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711901">
       <x>268.8226204707476</x>
       <y>405.95523639739974</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711898">
       <x>268.4887294249968</x>
       <y>405.6227023331895</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711896">
       <x>268.15465132120676</x>
       <y>405.2903688605624</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711893">
       <x>267.8203899189847</x>
       <y>404.9582396629509</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711890">
       <x>267.4859489924444</x>
       <y>404.6263184087717</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711888">
       <x>267.15133233011915</x>
       <y>404.2946087513419</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711885">
       <x>266.81654373487413</x>
       <y>403.9631143287955</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711882">
       <x>266.48158702381863</x>
       <y>403.6318387640001</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711880">
       <x>266.14646602821756</x>
       <y>403.30078566447446</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711877">
       <x>265.811184593403</x>
       <y>402.9699586223059</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711874">
       <x>265.4757465786849</x>
       <y>402.6393612140689</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711872">
       <x>265.14015585726145</x>
       <y>402.3089970007437</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711869">
       <x>264.80441631612905</x>
       <y>401.97886952763525</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711866">
       <x>264.46853185599224</x>
       <y>401.648982324293</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711864">
       <x>264.1325063911727</x>
       <y>401.31933890443077</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711861">
       <x>263.7963438495181</x>
       <y>400.9899427658476</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711858">
       <x>263.46004817231045</x>
       <y>400.66079739034836</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711856">
       <x>263.1236233141742</x>
       <y>400.3319062436653</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711853">
       <x>262.78707324298387</x>
       <y>400.00327277537997</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711850">
       <x>262.4504019397712</x>
       <y>399.67490041884605</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711848">
       <x>262.113613398632</x>
       <y>399.3467925911111</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711845">
       <x>261.77671162663273</x>
       <y>399.0189526928413</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711842">
       <x>261.4397006437163</x>
       <y>398.69138410824416</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711840">
       <x>261.10258448260817</x>
       <y>398.3640902049934</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711837">
       <x>260.7653671887211</x>
       <y>398.03707433415326</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711834">
       <x>260.4280528200605</x>
       <y>397.71033983010426</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711832">
       <x>260.0906454471291</x>
       <y>397.3838900104688</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711829">
       <x>259.75314915283036</x>
       <y>397.0577281760371</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711826">
       <x>259.41556803237324</x>
       <y>396.7318576106941</y>
     </coodinate>
-    <coodinate color="-65536">
+    <coodinate color="-16711824">
       <x>259.07790619317495</x>
       <y>396.4062815813468</y>
     </coodinate>
@@ -13901,414 +13900,6 @@
     <coodinate color="-50944">
       <x>571.8713075155813</x>
       <y>276.2232160693155</y>
-    </coodinate>
-    <coodinate color="-50432">
-      <x>572.0523761982462</x>
-      <y>276.41096943172454</y>
-    </coodinate>
-    <coodinate color="-49664">
-      <x>572.2322987729932</x>
-      <y>276.5983083138361</y>
-    </coodinate>
-    <coodinate color="-48896">
-      <x>572.4110721527888</x>
-      <y>276.7852350097124</y>
-    </coodinate>
-    <coodinate color="-48384">
-      <x>572.5886932691341</x>
-      <y>276.97175182792597</y>
-    </coodinate>
-    <coodinate color="-47616">
-      <x>572.7651590721445</x>
-      <y>277.1578610914734</y>
-    </coodinate>
-    <coodinate color="-46848">
-      <x>572.9404665306263</x>
-      <y>277.34356513768984</y>
-    </coodinate>
-    <coodinate color="-46336">
-      <x>573.1146126321555</x>
-      <y>277.5288663181606</y>
-    </coodinate>
-    <coodinate color="-45568">
-      <x>573.2875943831547</x>
-      <y>277.7137669986363</y>
-    </coodinate>
-    <coodinate color="-44800">
-      <x>573.4594088089692</x>
-      <y>277.89826955894296</y>
-    </coodinate>
-    <coodinate color="-44288">
-      <x>573.6300529539435</x>
-      <y>278.0823763928957</y>
-    </coodinate>
-    <coodinate color="-43520">
-      <x>573.7995238814974</x>
-      <y>278.26608990820995</y>
-    </coodinate>
-    <coodinate color="-42752">
-      <x>573.9678186742003</x>
-      <y>278.44941252641263</y>
-    </coodinate>
-    <coodinate color="-42240">
-      <x>574.1349344338466</x>
-      <y>278.6323466827529</y>
-    </coodinate>
-    <coodinate color="-41472">
-      <x>574.30086828153</x>
-      <y>278.81489482611335</y>
-    </coodinate>
-    <coodinate color="-40704">
-      <x>574.4656173577167</x>
-      <y>278.99705941891875</y>
-    </coodinate>
-    <coodinate color="-40192">
-      <x>574.6291788223191</x>
-      <y>279.1788429370475</y>
-    </coodinate>
-    <coodinate color="-39424">
-      <x>574.791549854768</x>
-      <y>279.36024786974</y>
-    </coodinate>
-    <coodinate color="-38656">
-      <x>574.952727654086</x>
-      <y>279.5412767195076</y>
-    </coodinate>
-    <coodinate color="-38144">
-      <x>575.1127094389578</x>
-      <y>279.7219320020416</y>
-    </coodinate>
-    <coodinate color="-37376">
-      <x>575.2714924478026</x>
-      <y>279.9022162461214</y>
-    </coodinate>
-    <coodinate color="-36608">
-      <x>575.4290739388443</x>
-      <y>280.08213199352195</y>
-    </coodinate>
-    <coodinate color="-35840">
-      <x>575.5854511901819</x>
-      <y>280.26168179892227</y>
-    </coodinate>
-    <coodinate color="-35328">
-      <x>575.7406214998591</x>
-      <y>280.44086822981126</y>
-    </coodinate>
-    <coodinate color="-34560">
-      <x>575.8945821859342</x>
-      <y>280.619693866396</y>
-    </coodinate>
-    <coodinate color="-33792">
-      <x>576.0473305865474</x>
-      <y>280.79816130150675</y>
-    </coodinate>
-    <coodinate color="-33280">
-      <x>576.1988640599914</x>
-      <y>280.9762731405038</y>
-    </coodinate>
-    <coodinate color="-32512">
-      <x>576.3491799847761</x>
-      <y>281.1540320011835</y>
-    </coodinate>
-    <coodinate color="-31744">
-      <x>576.4982757596985</x>
-      <y>281.33144051368265</y>
-    </coodinate>
-    <coodinate color="-31232">
-      <x>576.6461488039077</x>
-      <y>281.50850132038454</y>
-    </coodinate>
-    <coodinate color="-30464">
-      <x>576.7927965569719</x>
-      <y>281.685217075823</y>
-    </coodinate>
-    <coodinate color="-29696">
-      <x>576.9382164789438</x>
-      <y>281.8615904465873</y>
-    </coodinate>
-    <coodinate color="-29184">
-      <x>577.0824060504254</x>
-      <y>282.0376241112252</y>
-    </coodinate>
-    <coodinate color="-28416">
-      <x>577.2253627726332</x>
-      <y>282.2133207601478</y>
-    </coodinate>
-    <coodinate color="-27648">
-      <x>577.3670841674617</x>
-      <y>282.38868309553214</y>
-    </coodinate>
-    <coodinate color="-27136">
-      <x>577.5075677775476</x>
-      <y>282.5637138312247</y>
-    </coodinate>
-    <coodinate color="-26368">
-      <x>577.646811166332</x>
-      <y>282.73841569264334</y>
-    </coodinate>
-    <coodinate color="-25600">
-      <x>577.7848119181239</x>
-      <y>282.9127914166804</y>
-    </coodinate>
-    <coodinate color="-25088">
-      <x>577.9215676381607</x>
-      <y>283.08684375160425</y>
-    </coodinate>
-    <coodinate color="-24320">
-      <x>578.0570759526718</x>
-      <y>283.2605754569616</y>
-    </coodinate>
-    <coodinate color="-23552">
-      <x>578.1913345089367</x>
-      <y>283.4339893034784</y>
-    </coodinate>
-    <coodinate color="-23040">
-      <x>578.3243409753482</x>
-      <y>283.60708807296083</y>
-    </coodinate>
-    <coodinate color="-22272">
-      <x>578.4560930414699</x>
-      <y>283.7798745581967</y>
-    </coodinate>
-    <coodinate color="-21504">
-      <x>578.5865884180971</x>
-      <y>283.9523515628552</y>
-    </coodinate>
-    <coodinate color="-20992">
-      <x>578.7158248373145</x>
-      <y>284.12452190138725</y>
-    </coodinate>
-    <coodinate color="-20224">
-      <x>578.8438000525547</x>
-      <y>284.29638839892624</y>
-    </coodinate>
-    <coodinate color="-19456">
-      <x>578.9705118386563</x>
-      <y>284.46795389118597</y>
-    </coodinate>
-    <coodinate color="-18944">
-      <x>579.0959579919202</x>
-      <y>284.6392212243616</y>
-    </coodinate>
-    <coodinate color="-18176">
-      <x>579.2201363301666</x>
-      <y>284.8101932550274</y>
-    </coodinate>
-    <coodinate color="-17408">
-      <x>579.3430446927911</x>
-      <y>284.98087285003567</y>
-    </coodinate>
-    <coodinate color="-16896">
-      <x>579.4646809408199</x>
-      <y>285.15126288641596</y>
-    </coodinate>
-    <coodinate color="-16128">
-      <x>579.5850429569647</x>
-      <y>285.3213662512719</y>
-    </coodinate>
-    <coodinate color="-15360">
-      <x>579.7041286456772</x>
-      <y>285.4911858416803</y>
-    </coodinate>
-    <coodinate color="-14848">
-      <x>579.8219359332027</x>
-      <y>285.6607245645874</y>
-    </coodinate>
-    <coodinate color="-14080">
-      <x>579.9384627676335</x>
-      <y>285.8299853367071</y>
-    </coodinate>
-    <coodinate color="-13312">
-      <x>580.0537071189616</x>
-      <y>285.99897108441803</y>
-    </coodinate>
-    <coodinate color="-12800">
-      <x>580.1676669791302</x>
-      <y>286.1676847436591</y>
-    </coodinate>
-    <coodinate color="-12032">
-      <x>580.2803403620865</x>
-      <y>286.33612925982743</y>
-    </coodinate>
-    <coodinate color="-11264">
-      <x>580.3917253038311</x>
-      <y>286.50430758767374</y>
-    </coodinate>
-    <coodinate color="-10752">
-      <x>580.5018198624699</x>
-      <y>286.6722226911982</y>
-    </coodinate>
-    <coodinate color="-9984">
-      <x>580.6106221182629</x>
-      <y>286.83987754354627</y>
-    </coodinate>
-    <coodinate color="-9216">
-      <x>580.718130173674</x>
-      <y>287.0072751269041</y>
-    </coodinate>
-    <coodinate color="-8704">
-      <x>580.8243421534195</x>
-      <y>287.1744184323941</y>
-    </coodinate>
-    <coodinate color="-7936">
-      <x>580.9292562045164</x>
-      <y>287.34131045996924</y>
-    </coodinate>
-    <coodinate color="-7168">
-      <x>581.0328704963299</x>
-      <y>287.50795421830776</y>
-    </coodinate>
-    <coodinate color="-6656">
-      <x>581.1351832206205</x>
-      <y>287.67435272470783</y>
-    </coodinate>
-    <coodinate color="-5888">
-      <x>581.23619259159</x>
-      <y>287.84050900498204</y>
-    </coodinate>
-    <coodinate color="-5120">
-      <x>581.3358968459281</x>
-      <y>288.0064260933502</y>
-    </coodinate>
-    <coodinate color="-4608">
-      <x>581.434294242857</x>
-      <y>288.1721070323346</y>
-    </coodinate>
-    <coodinate color="-3840">
-      <x>581.5313830641767</x>
-      <y>288.3375548726519</y>
-    </coodinate>
-    <coodinate color="-3072">
-      <x>581.6271616143082</x>
-      <y>288.50277267310776</y>
-    </coodinate>
-    <coodinate color="-2560">
-      <x>581.7216282203382</x>
-      <y>288.6677635004887</y>
-    </coodinate>
-    <coodinate color="-1792">
-      <x>581.814781232061</x>
-      <y>288.8325304294555</y>
-    </coodinate>
-    <coodinate color="-1024">
-      <x>581.906619022022</x>
-      <y>288.99707654243593</y>
-    </coodinate>
-    <coodinate color="-512">
-      <x>581.9971399855584</x>
-      <y>289.1614049295163</y>
-    </coodinate>
-    <coodinate color="-131328">
-      <x>582.0863425408409</x>
-      <y>289.3255186883348</y>
-    </coodinate>
-    <coodinate color="-327936">
-      <x>582.1742251289141</x>
-      <y>289.48942092397203</y>
-    </coodinate>
-    <coodinate color="-459008">
-      <x>582.2607862137377</x>
-      <y>289.6531147488436</y>
-    </coodinate>
-    <coodinate color="-655616">
-      <x>582.3460242822239</x>
-      <y>289.81660328259176</y>
-    </coodinate>
-    <coodinate color="-852224">
-      <x>582.4299378442778</x>
-      <y>289.9798896519758</y>
-    </coodinate>
-    <coodinate color="-983296">
-      <x>582.5125254328352</x>
-      <y>290.1429769907641</y>
-    </coodinate>
-    <coodinate color="-1179904">
-      <x>582.5937856039005</x>
-      <y>290.30586843962504</y>
-    </coodinate>
-    <coodinate color="-1376512">
-      <x>582.6737169365834</x>
-      <y>290.4685671460161</y>
-    </coodinate>
-    <coodinate color="-1507584">
-      <x>582.7523180331355</x>
-      <y>290.6310762640768</y>
-    </coodinate>
-    <coodinate color="-1704192">
-      <x>582.8295875189865</x>
-      <y>290.7933989545171</y>
-    </coodinate>
-    <coodinate color="-1900800">
-      <x>582.905524042779</x>
-      <y>290.95553838450866</y>
-    </coodinate>
-    <coodinate color="-2031872">
-      <x>582.980126276404</x>
-      <y>291.1174977275746</y>
-    </coodinate>
-    <coodinate color="-2228480">
-      <x>583.0533929150344</x>
-      <y>291.2792801634785</y>
-    </coodinate>
-    <coodinate color="-2425088">
-      <x>583.125322677158</x>
-      <y>291.440888878115</y>
-    </coodinate>
-    <coodinate color="-2556160">
-      <x>583.1959143046121</x>
-      <y>291.6023270633989</y>
-    </coodinate>
-    <coodinate color="-2752768">
-      <x>583.2651665626139</x>
-      <y>291.76359791715424</y>
-    </coodinate>
-    <coodinate color="-2949376">
-      <x>583.3330782397938</x>
-      <y>291.92470464300396</y>
-    </coodinate>
-    <coodinate color="-3080448">
-      <x>583.3996481482254</x>
-      <y>292.08565045025784</y>
-    </coodinate>
-    <coodinate color="-3277056">
-      <x>583.4648751234564</x>
-      <y>292.24643855380214</y>
-    </coodinate>
-    <coodinate color="-3473664">
-      <x>583.5287580245388</x>
-      <y>292.4070721739884</y>
-    </coodinate>
-    <coodinate color="-3604736">
-      <x>583.5912957340579</x>
-      <y>292.5675545365209</y>
-    </coodinate>
-    <coodinate color="-3801344">
-      <x>583.652487158161</x>
-      <y>292.727888872346</y>
-    </coodinate>
-    <coodinate color="-3997952">
-      <x>583.7123312265853</x>
-      <y>292.88807841753953</y>
-    </coodinate>
-    <coodinate color="-4129024">
-      <x>583.7708268926863</x>
-      <y>293.04812641319575</y>
-    </coodinate>
-    <coodinate color="-4325632">
-      <x>583.8279731334633</x>
-      <y>293.20803610531414</y>
-    </coodinate>
-    <coodinate color="-4522240">
-      <x>583.8837689495869</x>
-      <y>293.3678107446878</y>
-    </coodinate>
-    <coodinate color="-4653312">
-      <x>583.9382133654241</x>
-      <y>293.5274535867914</y>
-    </coodinate>
-    <coodinate color="-4849920">
-      <x>583.9913054290633</x>
-      <y>293.6869678916677</y>
     </coodinate>
   </locus>
 </spirograph>

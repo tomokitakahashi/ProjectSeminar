@@ -7,33 +7,49 @@ import java.awt.Color;
 
 public class SpiroModel extends Model
 {
+  /**
+  * 虹色に設定するためのフラグ
+  **/
   private Boolean isRainbow;
 
-  // ファイルロードしているかの状態保存
-  public Boolean isLoading;
-
-  // Viewのアニメーションが止まっているかの状態保存
+  /**
+  * Viewのアニメーションが止まっているかの状態保存
+  **/
   public Boolean isStop;
 
-  // スピログラフで描かれた軌跡モデル
+  /**
+  * スピログラフで描かれた軌跡モデル
+  **/
   private SpiroLocusModel spiroLocusModel;
 
-  // スピログラフのスパーギアモデル
+  /**
+  * スピログラフのスパーギアモデル
+  */
   private SpurModel spurModel;
 
-  // スピログラフのピニオンモデル
+  /**
+  * スピログラフのピニオンモデル
+  **/
   private PinionModel pinionModel;
 
-  //軸線の角度
+  /**
+  * 軸線の角度
+  **/
   private double axisDegree;
 
-  // ギア同士の距離
+  /**
+  * ギア同士の距離
+  **/
   private double gearDistance;
 
-  // メニューのモデル (セーブなどは)
+  /**
+  * メニューのモデル (セーブなどは)
+  **/
   private MenuModel menuModel;
 
-  // スピログラフの選択色
+  /**
+  * スピログラフの選択色
+  **/
   private Color selectedColor;
 
   public SpiroModel()
@@ -44,7 +60,6 @@ public class SpiroModel extends Model
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
     isStop = true;
-    isLoading = false;
     isRainbow = false;
     axisDegree = 0.0;
     gearDistance = SpiroConstruct.PINION_CENTER.x - SpiroConstruct.SPIRO_WINDOW_CENTER.x;
@@ -248,6 +263,11 @@ public class SpiroModel extends Model
   {
     isRainbow = aBool;
     return;
+  }
+
+  public Boolean isRainbow()
+  {
+    return isRainbow;
   }
 
 }

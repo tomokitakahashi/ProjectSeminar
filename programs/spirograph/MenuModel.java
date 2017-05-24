@@ -110,14 +110,12 @@ public class MenuModel extends Model
 
   public void load(File aFile)
   {
-    spiroModel.isLoading = true;
-
     try {
       SpiroModel newModel = spiroFile.load(spiroModel,aFile);
       spiroModel.getSpiroView().loadSpiroModel(newModel);
     } catch(Exception anException)
     {
-
+      anException.printStackTrace();
     }
     return;
   }
