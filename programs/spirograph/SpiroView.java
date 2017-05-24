@@ -25,10 +25,14 @@ public class SpiroView extends View implements Runnable
   {
     while(true)
     {
-      if (!this.getSpiroModel().isStop() && !this.getSpiroModel().isLoading)
+      //&& !this.getSpiroModel().isLoading
+
+      if (!this.getSpiroModel().isStop())
       {
         this.getSpiroModel().updateByAnimation();
         this.getSpiroModel().setDegree();
+      } else {
+
       }
 /*
       if (!this.getSpiroModel().isLoading)

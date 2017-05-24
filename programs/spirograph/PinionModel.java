@@ -89,8 +89,8 @@ public class PinionModel extends GearModel
   {
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
-    pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
     previousPencilDistance = pencilDistance;
+    pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
     return;
   }
 
@@ -186,14 +186,13 @@ public class PinionModel extends GearModel
   @Override
   public void updateByRelease(Point aPoint)
   {
+    //super.updateByRelease(aPoint);
     this.dataReset();
     if(pencilMoveEnabled)
     {
       double axisPencilRadian = Math.atan2(tapAreaCoodinateList.get(1).y - centerCoodinate.y,tapAreaCoodinateList.get(1).x - centerCoodinate.x);
       pencilRadian = Math.atan2(pencilCoodinate.y - centerCoodinate.y,pencilCoodinate.x - centerCoodinate.x) - axisPencilRadian;
     }
-    centerMoveEnabled = false;
-    radiusAbjustEnabled = false;
     pencilMoveEnabled = false;
     return;
   }
@@ -205,12 +204,13 @@ public class PinionModel extends GearModel
   @Override
   public void updateByDrag(Point aPoint)
   {
+    //super.updateByDrag(aPoint);
     if(radiusAbjustEnabled)
     {
       this.updateRadiusByDrag(aPoint);
       pencilDistance = previousPencilDistance*radius / previousRadius;
     }
-    else if (pencilMoveEnabled)
+    if (pencilMoveEnabled)
     {
       this.updatePencilCenterByDrag(aPoint);
     }
@@ -224,11 +224,13 @@ public class PinionModel extends GearModel
   **/
   private void updatePencilCenterByDrag(Point aPoint)
   {
+    System.out.println("updatePencilCenterByDrag");
     double distanceX = centerCoodinate.x - aPoint.x;
     double distanceY = centerCoodinate.y - aPoint.y;
     double distance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
     if(distance <= radius)
     {
+      System.out.println("updatePencilCoodinate");
       pencilCoodinate.x = aPoint.x;
       pencilCoodinate.y = aPoint.y;
     }
@@ -246,7 +248,7 @@ public class PinionModel extends GearModel
   {
     if(!centerMoveEnabled)
     {
-      this.updateCurrentCenter(aRadian+Math.toRadians(180),radius,aPointCoodinate);
+      this.updateCurrentCenter(aRadian+Math.toRadians(180),radius*spinDirection,aPointCoodinate);
     }
     if(!pencilMoveEnabled)
     {
