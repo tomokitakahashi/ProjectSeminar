@@ -54,6 +54,9 @@ public class SpiroFile extends Object {
     Element gearDistance = document.createElement("gearDistance");
     gearDistance.appendChild(document.createTextNode(String.valueOf(aSpiroModel.gearDistance())));
     spiro.appendChild(gearDistance);
+    Element isRainbow = document.createElement("isRainbow");
+    isRainbow.appendChild(document.createTextNode(String.valueOf(aSpiroModel.isRainbow())));
+    spiro.appendChild(isRainbow);
 
     // SpurModel to XML
     Element spur = document.createElement("spurModel");
@@ -163,6 +166,9 @@ public class SpiroFile extends Object {
         } else if(childNode.getNodeName().equals("gearDistance"))
         {
           aSpiroModel.gearDistance(Double.valueOf(childNode.getTextContent()));
+        } else if(childNode.getNodeName().equals("isRainbow"))
+        {
+          aSpiroModel.setSpiroRainbowColor(Boolean.valueOf(childNode.getTextContent()));
         }
       }
     }
@@ -210,7 +216,7 @@ public class SpiroFile extends Object {
         {
           PinionModel pinionModel = (PinionModel)aGearModel;
           pinionModel.pinionTheta(Double.valueOf(childNode.getTextContent()));
-        } else if(childNode.getNodeName().equals("spiroDirection"))
+        } else if(childNode.getNodeName().equals("spinDirection"))
         {
           PinionModel pinionModel = (PinionModel)aGearModel;
           pinionModel.spinDirection(Double.valueOf(childNode.getTextContent()));

@@ -89,8 +89,8 @@ public class PinionModel extends GearModel
   {
     double distanceX = centerCoodinate.x - pencilCoodinate.x;
     double distanceY = centerCoodinate.y - pencilCoodinate.y;
-    previousPencilDistance = pencilDistance;
     pencilDistance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+    previousPencilDistance = pencilDistance;
     return;
   }
 
