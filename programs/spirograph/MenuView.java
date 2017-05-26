@@ -73,6 +73,9 @@ public class MenuView extends View
     return;
   }
 
+  /**
+  * ロード用のダイアログ表示
+  **/
   public File showLoadDialog()
   {
     JFileChooser fileChooser = new JFileChooser();
@@ -85,7 +88,9 @@ public class MenuView extends View
     return null;
   }
 
-
+  /**
+  * セーブ用のダイアログ表示
+  **/
   public File showSaveDialog()
   {
     JFileChooser fileChooser = new JFileChooser();
@@ -97,7 +102,5 @@ public class MenuView extends View
     }
     return null;
   }
-
-
 
 }

@@ -28,14 +28,26 @@ import java.awt.geom.Point2D;
 
 public class SpiroFile extends Object {
 
+  /**
+  * メニューモデル
+  **/
   private MenuModel menuModel;
 
+  /**
+  * SpiroFileのコンストラクタ
+  * @param aMenuModel メニューモデル
+  **/
   public SpiroFile(MenuModel aMenuModel)
   {
     menuModel = aMenuModel;
     return;
   }
 
+  /**
+  * セーブメソッド
+  * @param aSpiroModel スピロモデル
+  * @param aFile セーブファイル
+  **/
   public void save(SpiroModel aSpiroModel,File aFile)
   {
     SpurModel spurModel = aSpiroModel.getSpurModel();
@@ -95,7 +107,6 @@ public class SpiroFile extends Object {
   * @param aSpiroModel 現在使われているSpiroModel
   * @param aFile 選択されたファイル
   **/
-
   public SpiroModel load(SpiroModel aSpiroModel,File aFile) throws SAXException, IOException, ParserConfigurationException
   {
 		Document document = this.createDocumentBuilder().parse(aFile.getPath());
@@ -128,6 +139,11 @@ public class SpiroFile extends Object {
     return aSpiroModel;
   }
 
+  /**
+  * 軌跡をロードするモデル
+  * @param aSpiroLocusModel 軌跡モデル
+  * @param aNode ロードするノード
+  **/
   private SpiroLocusModel loadLocusModel(SpiroLocusModel aSpiroLocusModel,Node aNode)
   {
     aSpiroLocusModel.clear();
@@ -149,7 +165,11 @@ public class SpiroFile extends Object {
     return aSpiroLocusModel;
   }
 
-
+  /**
+  * スピロモデルをロードするメソッド
+  * @param aSpiroModel スピロモデル
+  * @param aNode ロードするノード
+  **/
   private SpiroModel loadSpiroModel(SpiroModel aSpiroModel,Node aNode)
   {
     NodeList aNodeList = aNode.getChildNodes();

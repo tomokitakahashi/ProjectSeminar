@@ -52,6 +52,9 @@ public class SpiroModel extends Model
   **/
   private Color selectedColor;
 
+  /**
+  * SpiroModelのコンストラクタ
+  **/
   public SpiroModel()
   {
     super();
@@ -67,70 +70,108 @@ public class SpiroModel extends Model
     return;
   }
 
-  // ピニオンギアのモデルを応答する
+  /**
+  * ピニオンギアのモデルを応答する
+  **/
   public PinionModel getPinionModel()
   {
     return pinionModel;
   }
 
+  /**
+  * ピニオンギアのモデルをセットする
+  * @param aGearModel ギアモデル
+  **/
   public void setPinionModel(GearModel aGearModel)
   {
     pinionModel = (PinionModel)aGearModel;
     return;
   }
 
-  // スパーギアのモデルを応答
+  /**
+  * スパーギアのモデルを応答
+  **/
   public SpurModel getSpurModel()
   {
     return spurModel;
   }
 
+  /**
+  * スパーギアのモデルをセットする
+  * @param aGearModel ギアモデル
+  **/
   public void setSpurModel(GearModel aGearModel)
   {
     spurModel = (SpurModel)aGearModel;
     return;
   }
 
+  /**
+  * スピロモデルの軌跡モデルを応答する
+  **/
   public SpiroLocusModel getSpiroLocusModel()
   {
     return spiroLocusModel;
   }
 
+  /**
+  * スピロモデルの軌跡モデルをセットする
+  * @param aSpiroLocusModel 軌跡モデル
+  **/
   public void setSpiroLocusModel(SpiroLocusModel aSpiroLocusModel)
   {
     spiroLocusModel = aSpiroLocusModel;
     return;
   }
 
+  /**
+  * 角度を応答する
+  **/
   public double degree()
   {
     return axisDegree;
   }
 
+  /**
+  * 角度を増やす
+  **/
   public void setDegree()
   {
     axisDegree += 0.1;
     return;
   }
 
+  /**
+  * 軸角度をセットする
+  * @param newDegree 新しい角度
+  **/
   public void axisDegree(double newDegree)
   {
     axisDegree = newDegree;
     return;
   }
 
+  /**
+  * ギア同士の距離を応答する
+  **/
   public double gearDistance()
   {
     return gearDistance;
   }
 
+  /**
+  * ギア同士の距離をセットする
+  **/
   public void gearDistance(double newDistance)
   {
     gearDistance = newDistance;
     return;
   }
 
-  // アニメーションが止まっているかを設定するメソッド
+  /**
+  * アニメーションを止めるメソッド
+  * @param aBool 真偽
+  **/
   public void setStop(Boolean aBool)
   {
     if (aBool)
@@ -143,30 +184,40 @@ public class SpiroModel extends Model
     return;
   }
 
-  //アニメーションが止まっているかを応答するメソッド
+  /**
+  * アニメーションが止まっているかを応答するメソッド
+  **/
   public Boolean isStop()
   {
     return isStop;
   }
 
-  // リスタートした時に再設定するメソッド
+  /**
+  * リスタートした時に再設定するメソッド
+  **/
   public void restartModel()
   {
     pinionModel.restart(gearDistance);
     return;
   }
 
+  /**
+  * 内接・外接を切り替えた時に呼ばれるメソッド
+  **/
   public void changePinionPosition()
   {
-    pinionModel.changeCenterPosition(Math.toRadians(axisDegree),gearDistance);
+    this.updateGearDistance();
+    pinionModel.changeCenterPosition(Math.toRadians(axisDegree),gearDistance,spurModel.centerCoodinate());
     this.updateGearDistance();
     return;
   }
-  //アニメーションでモデルを更新するメソッド
-  // MEMO: 色、軌跡のデータ更新
+
+  /**アニメーションでモデルを更新するメソッド
+  * MEMO: 色、軌跡のデータ更新
+  **/
   public void updateByAnimation()
   {
-    pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance);
+    pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance,spurModel.centerCoodinate());
 
     spiroLocusModel.locusList().add(pinionModel.pencilLocusCoodinate());
     if(isRainbow)
@@ -182,7 +233,10 @@ public class SpiroModel extends Model
     return;
   }
 
-  //マウスプレスに応じてモデルを更新するメソッド
+  /**
+  * マウスプレスに応じてモデルを更新するメソッド
+  * @param aPoint マウスポイント
+  **/
   public void updateByPress(Point aPoint)
   {
     if(!isStop) return;
@@ -191,7 +245,10 @@ public class SpiroModel extends Model
     return;
   }
 
-  // マウスドラッグに応じてモデルを更新するメソッド
+  /**
+  * マウスドラッグに応じてモデルを更新するメソッド
+  * @param aPoint マウスポイント
+  **/
   public void updateByDrag(Point aPoint)
   {
     if(!isStop) return;
@@ -201,7 +258,10 @@ public class SpiroModel extends Model
     return;
   }
 
-  // マウスリリースに応じてモデルを更新するメソッド
+  /**
+  * マウスリリースに応じてモデルを更新するメソッド
+  * @param aPoint マウスポイント
+  **/
   public void updateByRelease(Point aPoint)
   {
     if(!isStop) return;
@@ -210,16 +270,21 @@ public class SpiroModel extends Model
     return;
   }
 
-  // イベントによる最新の座標等を更新するメソッド
+  /**
+  * イベントによる最新の座標等を更新するメソッド
+  **/
   public void updateCurrent()
   {
     double radian = Math.toRadians(axisDegree);
     double spurRadius = spurModel.radius();
-    Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.x,Math.sin(radian)*spurRadius+SpiroConstruct.SPIRO_WINDOW_CENTER.y);
+    Point2D.Double coodinate = new Point2D.Double(Math.cos(radian)*spurRadius+spurModel.centerCoodinate().x,Math.sin(radian)*spurRadius+spurModel.centerCoodinate().y);
     pinionModel.updateCurrent(radian,coodinate);
     return;
   }
 
+  /**
+  * 最新のギア同士の距離を設定するメソッド
+  **/
   private void updateGearDistance()
   {
     double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
@@ -228,43 +293,65 @@ public class SpiroModel extends Model
     return;
   }
 
+  /**
+  * 軌跡をクリアするメソッド
+  **/
   public void clearLocus()
   {
     spiroLocusModel.clear();
     return;
   }
 
-  //MenuModelをセットするメソッド
-  //ファイルシステムに関する処理はMenuModel内で行うため
-  //SpiroModelとMenuModelは「関係」している必要がある
+  /**
+  * MenuModelをセットするメソッド
+  * ファイルシステムに関する処理はMenuModel内で行うため
+  * SpiroModelとMenuModelは「関係」している必要がある
+  **/
   public void setMenuModel(MenuModel aMenuModel)
   {
     menuModel = aMenuModel;
     return;
   }
 
+  /**
+  * スピロビューのゲッター
+  **/
   public SpiroView getSpiroView()
   {
     return (SpiroView)dependents.get(0);
   }
 
+  /**
+  * スピログラフの色のゲッター
+  **/
   public Color getSpiroColor()
   {
     return selectedColor;
   }
 
+  /**
+  * スピログラフの色のセッター
+  * @param aColor カラー
+  **/
   public void setSpiroColor(Color aColor)
   {
     selectedColor = aColor;
     return;
   }
 
+  /**
+  * 虹色に設定するためのセッター
+  * @param aBool 真偽
+  **/
   public void setSpiroRainbowColor(Boolean aBool)
   {
     isRainbow = aBool;
     return;
   }
 
+  /**
+  * 現在の色が虹色かどうか応答するメソッド
+  **/
   public Boolean isRainbow()
   {
     return isRainbow;

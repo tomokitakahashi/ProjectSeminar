@@ -8,6 +8,8 @@ public class SpurModel extends GearModel
 {
   /**
   * SpurMddelのコンストラクタ
+  * @param aCenterCoodinate 中心座標
+  * @param aRadius 半径
   **/
   public SpurModel(Point2D.Double aCenterCoodinate,double aRadius)
   {

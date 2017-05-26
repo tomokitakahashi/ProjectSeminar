@@ -13,10 +13,19 @@ import java.io.File;
 
 public class MenuController extends Controller implements ActionListener, ChangeListener
 {
+  /**
+  * メニュー用のリスナー
+  **/
   private MenuActionListener menuActionListener = null;
 
+  /**
+  * カラーチューザーをメニューとして扱うためプロパティにする
+  **/
   private JColorChooser colorChooser = null;
 
+  /**
+  * MenuControllerのコンストラクタ
+  **/
   public MenuController()
   {
     super();
@@ -25,6 +34,7 @@ public class MenuController extends Controller implements ActionListener, Change
 
   /**
   * MenuControllerではMouseListenerを使わないためOverrideしてviewのsetのみ
+  * @param aView セットするView
   **/
   @Override
   public void setView(View aView)
@@ -35,6 +45,7 @@ public class MenuController extends Controller implements ActionListener, Change
 
   /**
   * メニューのアクションリスナーを登録するメソッド
+  * @param aListener 登録するリスナー
   **/
   public void setMenuActionListener(MenuActionListener aListener)
   {
@@ -44,6 +55,7 @@ public class MenuController extends Controller implements ActionListener, Change
 
   /**
   * ボタンのアクションを取得するためのメソッド
+  * @param aEvent イベント
   **/
   public void actionPerformed(ActionEvent aEvent)
   {
@@ -164,17 +176,26 @@ public class MenuController extends Controller implements ActionListener, Change
     return;
   }
 
+  /**
+  * メニューモデルのゲッター
+  **/
   public MenuModel getMenuModel()
   {
     return (MenuModel)model;
   }
 
+  /**
+  * メニュービューのゲッター
+  **/
   public MenuView getMenuView()
   {
     return (MenuView)view;
   }
 
-  // 色の選択があった時にColorChooserから最新の色を取得するために外部からColorChooserを登録するメソッド
+  /**
+  * カラーチューザーのセッター
+  * @param aColorChooser カラーチューザー
+  **/
   public void setColorChooser(JColorChooser aColorChooser)
   {
     colorChooser = aColorChooser;
