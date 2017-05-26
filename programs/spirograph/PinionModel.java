@@ -18,7 +18,7 @@ public class PinionModel extends GearModel
   private double pencilRadian;
 
   /**
-  *
+  * 以前の鉛筆の距離
   **/
   private double previousPencilDistance;
 
@@ -70,9 +70,9 @@ public class PinionModel extends GearModel
   * @param aRadian スピログラフの軸線のラジアン
   * @param aGearDistance ギア同士の距離
   **/
-  public void changeCenterPosition(double aRadian, double aGearDistance)
+  public void changeCenterPosition(double aRadian, double aGearDistance,Point2D.Double spurCenterCoodinate)
   {
-    this.updateCurrentCenter(aRadian,aGearDistance+spinDirection*radius*2,SpiroConstruct.SPIRO_WINDOW_CENTER);
+    this.updateCurrentCenter(aRadian,aGearDistance+spinDirection*radius*2,spurCenterCoodinate);
     this.updateCurrentPencil();
     this.updateCurrentTapArea();
     spinDirection *= -1;
@@ -110,11 +110,11 @@ public class PinionModel extends GearModel
   * @param aRadian スピログラフの軸線のラジアン
   * @param aGearDistance ギア同士の距離
   **/
-  public void animationManager(double aRadian,double aGearDistance)
+  public void animationManager(double aRadian,double aGearDistance,Point2D.Double spiroCenterCoodinate)
   {
     System.out.println(aRadian);
     pinionTheta += (changeRate * spinDirection);
-    this.updateCurrentCenter(aRadian,aGearDistance,SpiroConstruct.SPIRO_WINDOW_CENTER);
+    this.updateCurrentCenter(aRadian,aGearDistance,spiroCenterCoodinate);
     this.updateCurrentTapArea();
     this.updateCurrentPencil();
     return;
@@ -147,6 +147,7 @@ public class PinionModel extends GearModel
 
   /**
   * ピニオンギアの回転角を設定する
+  * @param aTheta 新規値
   **/
   public void pinionTheta(double aTheta)
   {
@@ -164,6 +165,7 @@ public class PinionModel extends GearModel
 
   /**
   * 鉛筆の座標を設定する
+  * @param newPoint 新規値
   **/
   public void pencilCoodinate(Point2D.Double newPoint)
   {
@@ -192,6 +194,7 @@ public class PinionModel extends GearModel
 
   /**
   * マウスのプレスによってモデルがアップデート可能かどうかを判断するメソッド
+  * @param aPoint タップしたポイント
   **/
   @Override
   public void judgePressArea(Point aPoint)
@@ -220,7 +223,6 @@ public class PinionModel extends GearModel
   @Override
   public void updateByRelease(Point aPoint)
   {
-    //super.updateByRelease(aPoint);
     this.dataReset();
     if(pencilMoveEnabled)
     {

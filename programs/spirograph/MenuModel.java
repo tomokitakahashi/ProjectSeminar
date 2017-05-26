@@ -108,6 +108,10 @@ public class MenuModel extends Model
     return;
   }
 
+  /**
+  * ロード指示メソッド
+  * @param aFile ロードするファイル
+  **/
   public void load(File aFile)
   {
     try {

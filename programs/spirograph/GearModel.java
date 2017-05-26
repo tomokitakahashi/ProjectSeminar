@@ -9,31 +9,49 @@ import java.util.ArrayList;
 
 abstract public class GearModel extends Object
 {
-  // ギアの中心座標
+  /**
+  * ギアの中心座標
+  **/
   protected Point2D.Double centerCoodinate;
 
-  // ギアの半径
+  /**
+  * ギアの半径
+  **/
   protected double radius;
 
-  // アニメーションするために、前の半径を格納するプロパティ
+  /**
+  * アニメーションするために、前の半径を格納するプロパティ
+  **/
   protected double previousRadius;
 
-  // アニメーションするために、前の中心座標を格納しておくプロパティ
+  /**
+  * アニメーションするために、前の中心座標を格納しておくプロパティ
+  **/
   protected Point2D.Double previousCenterCoodinate;
 
-  // マウスイベントを取得する部分の座標を格納しておくArrayList
+  /**
+  * マウスイベントを取得する部分の座標を格納しておくArrayList
+  **/
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
 
-  // 半径の拡大拡小が可能かどうかを格納するプロパティ
+  /**
+  * 半径の拡大拡小が可能かどうかを格納するプロパティ
+  **/
   protected Boolean radiusAbjustEnabled;
 
-  // 中心が移動できるかどうかを格納しておくプロパティ
+  /**
+  * 中心が移動できるかどうかを格納しておくプロパティ
+  **/
   protected Boolean centerMoveEnabled;
 
-  // リスタート時などにデータの再設定、リセットを行うメソッド
+  /**
+  * リスタート時などにデータの再設定、リセットを行うメソッド
+  **/
   abstract public void dataReset();
 
-  // マウスのイベントが有効エリアにあるかどうかを判別するメソッド
+  /**
+  * マウスのイベントが有効エリアにあるかどうかを判別するメソッド
+  **/
   abstract public void judgePressArea(Point aPoint);
 
   /**
@@ -228,30 +246,45 @@ abstract public class GearModel extends Object
     }
   }
 
+  /**
+  * 描画するx,y座標を応答する
+  **/
   public Point2D.Double drawGearCoodinate()
   {
     Point2D.Double coodinate = new Point2D.Double(centerCoodinate.x - radius, centerCoodinate.y - radius);
     return coodinate;
   }
 
+  /**
+  * 描画する大きさを応答する
+  **/
   public Dimension drawGearDimension()
   {
     Dimension dimension = new Dimension((int)radius * 2,(int)radius * 2);
     return dimension;
   }
 
+  /**
+  * 描画する中心円の座標を応答する
+  **/
   public Point2D.Double drawGearCenterCoodinate()
   {
     Point2D.Double coodinate = new Point2D.Double(centerCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
     return coodinate;
   }
 
+  /**
+  * 描画する中心円の大きさを応答する
+  **/
   public Dimension drawGearCenterDimension()
   {
     Dimension dimension = new Dimension(SpiroConstruct.TAP_AREA_RADIUS * 2,SpiroConstruct.TAP_AREA_RADIUS * 2);
     return dimension;
   }
 
+  /**
+  * このインスタンスを文字列にして応答する。
+  **/
   public String toString()
   {
     StringBuffer aBuffer = new StringBuffer();

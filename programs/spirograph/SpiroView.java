@@ -9,18 +9,30 @@ import java.util.ArrayList;
 
 public class SpiroView extends View implements Runnable
 {
+  /**
+  * スピロビューのコンストラクタ
+  * @param aSpiroModel スピロモデル
+  **/
   public SpiroView(SpiroModel aSpiroModel)
   {
     super(aSpiroModel);
     return;
   }
+
+  /**
+  * スピロビューのコンストラクタ
+  * @param aSpiroModel スピロモデル
+  * @param aSpiroController スピロコントローラー
+  **/
   public SpiroView(SpiroModel aSpiroModel,SpiroController aSpiroController)
   {
     super(aSpiroModel,aSpiroController);
     return;
   }
 
-  // アニメーションをするスレッドのためのメソッド
+  /**
+  * アニメーションをするスレッドのためのメソッド
+  **/
   public void run()
   {
     while(true)
@@ -38,6 +50,10 @@ public class SpiroView extends View implements Runnable
     }
   }
 
+  /**
+  * JFrameに描画するためのメソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  **/
   @Override
   public void paintComponent(Graphics aGraphics)
   {
@@ -50,7 +66,10 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
-  // スピログラフの軌跡描画メソッド
+  /**
+  * スピログラフの軌跡描画メソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  **/
   private void drawLocus(Graphics aGraphics)
   {
     SpiroLocusModel spiroLocusModel = this.getSpiroModel().getSpiroLocusModel();
@@ -65,7 +84,10 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
-  // ピニオンギア描写メソッド
+  /**
+  * ピニオンギア描写メソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  **/
   private void drawPinionGear(Graphics aGraphics)
   {
     PinionModel pinionModel = this.getSpiroModel().getPinionModel();
@@ -79,7 +101,10 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
-  // スパーギア描写メソッド
+  /**
+  * スパーギア描写メソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  **/
   private void drawSpurGear(Graphics aGraphics)
   {
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
@@ -90,7 +115,10 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
-  //軸線描写メソッド
+  /**
+  * 軸線描写メソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  **/
   private void drawAxis(Graphics aGraphics)
   {
     SpurModel spurModel = this.getSpiroModel().getSpurModel();
@@ -99,7 +127,11 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
-  //マウスイベント取得エリア描写メソッド
+  /**
+  * マウスイベント取得エリア描写メソッド
+  * @param aGraphics グラフィックス・コンテキスト
+  * @param aGear ギアモデル
+  **/
   private void drawTapArea(Graphics aGraphics, GearModel aGear)
   {
     for(Integer index = 0; index < aGear.tapAreaCoodinateList().size();index++)
@@ -115,13 +147,19 @@ public class SpiroView extends View implements Runnable
     return;
   }
 
+  /**
+  * スピロモデルのローダー
+  * @param aSpiroModel スピロモデル
+  **/
   public void loadSpiroModel(SpiroModel aSpiroModel)
   {
     model = aSpiroModel;
     return;
   }
 
-  // SpiroModelにキャストして応答するメソッド
+  /**
+  * SpiroModelにキャストして応答するメソッド
+  **/
   public SpiroModel getSpiroModel()
   {
     SpiroModel spiroModel = (SpiroModel)model;

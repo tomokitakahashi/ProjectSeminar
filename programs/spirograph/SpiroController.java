@@ -5,12 +5,19 @@ import java.awt.Color;
 
 public class SpiroController extends Controller implements MenuActionListener
 {
+  /**
+  * スピロコントローラーのコンストラクタ
+  **/
   public SpiroController()
   {
     super();
     return;
   }
 
+  /**
+  * マウスドラッグのゲッター
+  * @param aMouseEvent マウスイベント
+  **/
   @Override
   public void mouseDragged(MouseEvent aMouseEvent)
   {
@@ -19,6 +26,10 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
+  /**
+  * マウスプレスのゲッター
+  * @param aMouseEvent マウスイベント
+  **/
   @Override
   public void mousePressed(MouseEvent aMouseEvent)
 	{
@@ -26,6 +37,10 @@ public class SpiroController extends Controller implements MenuActionListener
 		return;
 	}
 
+  /**
+  * マウスリリースのゲッター
+  * @param aMouseEvent マウスイベント
+  **/
   @Override
   public void mouseReleased(MouseEvent aMouseEvent)
   {
@@ -33,7 +48,9 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
-  // メニューからスタートが押された際にデリゲートを通じて通知される
+  /**
+  * アニメーションスタートのゲッター
+  **/
   public void animationStart()
   {
     System.out.println("animationStart");
@@ -41,12 +58,20 @@ public class SpiroController extends Controller implements MenuActionListener
     this.getSpiroModel().restartModel();
     return;
   }
-  // メニューからストップが押された際にデリゲートを通じて通知される
+
+  /**
+  * アニメーションストップのゲッター
+  **/
   public void animationStop()
   {
     this.getSpiroModel().setStop(true);
     return;
   }
+
+  /**
+  * カラー変更のセッター
+  * @param aColor カラー
+  **/
   public void changedColor(Color aColor)
   {
     this.getSpiroModel().setSpiroRainbowColor(false);
@@ -63,6 +88,9 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
+  /**
+  * 内接・外接の変更ゲッター
+  **/
   public void changedPosition()
   {
     if(!this.getSpiroModel().isStop()) return;
@@ -70,6 +98,9 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
+  /**
+  * クリアのゲッター
+  **/
   public void clear()
   {
     if(!this.getSpiroModel().isStop()) return;
@@ -77,18 +108,21 @@ public class SpiroController extends Controller implements MenuActionListener
     return;
   }
 
-  // スピロモデルを応答するメソッド
+  /**
+  * スピロモデルを応答するメソッド
+  **/
   private SpiroModel getSpiroModel()
   {
     SpiroModel spiroModel = (SpiroModel)model;
     return spiroModel;
   }
 
-  // スピロビューを応答するメソッド
+  /**
+  * スピロビューを応答するメソッド
+  **/
   private SpiroView getSpiroView()
   {
     SpiroView spiroView = (SpiroView)view;
     return spiroView;
   }
-
 }
