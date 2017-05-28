@@ -11,49 +11,58 @@ abstract public class GearModel extends Object
 {
   /**
   * ギアの中心座標
-  **/
+  * 良好（2017年5月20日）  
+  */
   protected Point2D.Double centerCoodinate;
 
   /**
   * ギアの半径
-  **/
+  * 良好（2017年5月20日）
+  */
   protected double radius;
 
   /**
   * アニメーションするために、前の半径を格納するプロパティ
-  **/
+  * 良好（2017年5月20日）
+  */
   protected double previousRadius;
 
   /**
   * マウスイベントを取得する部分の座標を格納しておくArrayList
-  **/
+  * 良好（2017年5月20日）
+  */
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
 
   /**
   * 半径の拡大拡小が可能かどうかを格納するプロパティ
-  **/
+  * 良好（2017年5月20日）
+  */
   protected Boolean radiusAbjustEnabled;
 
   /**
   * 中心が移動できるかどうかを格納しておくプロパティ
-  **/
+  * 良好（2017年5月20日）
+  */
   protected Boolean centerMoveEnabled;
 
   /**
   * リスタート時などにデータの再設定、リセットを行うメソッド
-  **/
+  * 良好（2017年5月20日）
+  */
   abstract public void dataReset();
 
   /**
   * マウスのイベントが有効エリアにあるかどうかを判別するメソッド
-  **/
+  * 良好（2017年5月20日）
+  */
   abstract public void judgePressArea(Point aPoint);
 
   /**
   * GearModelのコンストラクタ
+  * 良好（2017年5月20日）
   * @param aCenterCoodinate 初期中心座標
   * @param aRadius 初期半径
-  **/
+  */
   public GearModel(Point2D.Double aCenterCoodinate,double aRadius)
   {
     super();
@@ -67,8 +76,9 @@ abstract public class GearModel extends Object
 
   /**
   * タップした箇所が円の周りの4点上のいずれかに該当しているかどうかを判断するメソッド
+  * 良好（2017年5月20日）
   * @param aPoint タップしたポイント
-  **/
+  */
   protected Boolean validateAroundTapArea(Point aPoint)
   {
     for(Integer index = 0; index < tapAreaCoodinateList.size(); index++)
@@ -86,8 +96,9 @@ abstract public class GearModel extends Object
 
   /**
   * タップした箇所が中心上であるかどうかを判断するメソッドe
+  * 良好（2017年5月20日）
   * @param aPoint タップしたポイント
-  **/
+  */
   protected Boolean validateCenterTapArea(Point aPoint)
   {
     double centerTapPoint = (centerCoodinate.x - aPoint.x) * (centerCoodinate.x - aPoint.x) + (centerCoodinate.y - aPoint.y) * (centerCoodinate.y - aPoint.y);
@@ -97,7 +108,8 @@ abstract public class GearModel extends Object
 
   /**
   * 円周上のタップエリアの初期座標設定
-  **/
+  * 良好（2017年5月20日）
+  */
   private void initializeTapArea()
   {
     tapAreaCoodinateList = new ArrayList<Point2D.Double>();
@@ -114,8 +126,9 @@ abstract public class GearModel extends Object
 
   /**
   * タップエリアの描くべき座標を返却する
+  * 良好（2017年5月20日）
   * @param index インデックス
-  **/
+  */
   public Point2D.Double drawTapAreaCoodinate(Integer index)
   {
     Point2D.Double tapAreaCoodinate = tapAreaCoodinateList.get(index);
@@ -125,16 +138,18 @@ abstract public class GearModel extends Object
 
   /**
   * タップエリアのリストを応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public ArrayList<Point2D.Double> tapAreaCoodinateList()
   {
     return tapAreaCoodinateList;
   }
 
   /**
-  ギアの半径を設定する
-  @param aRadius 半径
-  **/
+  * ギアの半径を設定する
+  * 良好（2017年5月20日）
+  * @param aRadius 半径
+  */
   public void radius(double aRadius)
   {
     radius = aRadius;
@@ -143,7 +158,8 @@ abstract public class GearModel extends Object
 
   /**
   * ギアの半径を応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public double radius()
   {
     return radius;
@@ -151,8 +167,9 @@ abstract public class GearModel extends Object
 
   /**
   * ギアの中心座標を設定する
+  * 良好（2017年5月20日）
   * @param aCenterCoodinate 中心座標
-  **/
+  */
   public void centerCoodinate(Point2D.Double aCenterCoodinate)
   {
     centerCoodinate = aCenterCoodinate;
@@ -161,7 +178,8 @@ abstract public class GearModel extends Object
 
   /**
   ギアの中心座標を応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Point2D.Double centerCoodinate()
   {
     return centerCoodinate;
@@ -169,8 +187,9 @@ abstract public class GearModel extends Object
 
   /**
   * ドラッグイベントによってモデルをアップデートするメソッド
+  * 良好（2017年5月20日）
   * @param aPoint ドラッグ位置
-  **/
+  */
   public void updateByDrag(Point aPoint)
   {
     if(radiusAbjustEnabled)
@@ -187,8 +206,9 @@ abstract public class GearModel extends Object
 
   /**
   * マウスカーソルリリースエベントによってモデルをアップデートするメソッド
+  * 良好（2017年5月20日）
   * @param aPoint リリース位置
-  **/
+  */
   public void updateByRelease(Point aPoint)
   {
     centerMoveEnabled = false;
@@ -198,8 +218,9 @@ abstract public class GearModel extends Object
 
   /**
   * 拡大拡小イベントによって半径をアップデートするメソッド
+  * 良好（2017年5月20日）
   * @param aPoint マウス位置
-  **/
+  */
   protected void updateRadiusByDrag(Point aPoint)
   {
     double x = centerCoodinate.x - aPoint.x;
@@ -211,8 +232,9 @@ abstract public class GearModel extends Object
 
   /**
   * 中心のドラッグによって中心座標をアップデートする
+  * 良好（2017年5月20日）
   * @param aPoint マウス位置
-  **/
+  */
   public void updateCenterByDrag(Point aPoint)
   {
     centerCoodinate.x = aPoint.x;
@@ -220,6 +242,10 @@ abstract public class GearModel extends Object
     return;
   }
 
+  /**
+  * タップエリアの座標をアップデートする
+  * 良好（2017年5月20日）
+  */
   public void updateTapArea()
   {
     double newRadius = -radius;
@@ -242,7 +268,8 @@ abstract public class GearModel extends Object
 
   /**
   * 描画するx,y座標を応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Point2D.Double drawGearCoodinate()
   {
     Point2D.Double coodinate = new Point2D.Double(centerCoodinate.x - radius, centerCoodinate.y - radius);
@@ -251,7 +278,8 @@ abstract public class GearModel extends Object
 
   /**
   * 描画する大きさを応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Dimension drawGearDimension()
   {
     Dimension dimension = new Dimension((int)radius * 2,(int)radius * 2);
@@ -260,7 +288,8 @@ abstract public class GearModel extends Object
 
   /**
   * 描画する中心円の座標を応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Point2D.Double drawGearCenterCoodinate()
   {
     Point2D.Double coodinate = new Point2D.Double(centerCoodinate.x - SpiroConstruct.TAP_AREA_RADIUS,centerCoodinate.y - SpiroConstruct.TAP_AREA_RADIUS);
@@ -269,7 +298,8 @@ abstract public class GearModel extends Object
 
   /**
   * 描画する中心円の大きさを応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Dimension drawGearCenterDimension()
   {
     Dimension dimension = new Dimension(SpiroConstruct.TAP_AREA_RADIUS * 2,SpiroConstruct.TAP_AREA_RADIUS * 2);
@@ -278,7 +308,8 @@ abstract public class GearModel extends Object
 
   /**
   * このインスタンスを文字列にして応答する。
-  **/
+  * 良好（2017年5月20日）
+  */
   public String toString()
   {
     StringBuffer aBuffer = new StringBuffer();

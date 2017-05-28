@@ -24,23 +24,27 @@ public class MenuModel extends Model
 {
   /**
   * スピログラフのモデルを格納しておく
-  **/
+  * 良好（2017年5月20日）
+  */
   private SpiroModel spiroModel;
 
   /**
   * ファイル保存用クラス
-  **/
+  * 良好（2017年5月20日）
+  */
   private SpiroFile spiroFile;
 
   /**
   * スピログラフの軌跡の色を保持しておく
-  **/
+  * 良好（2017年5月20日）
+  */
   private Color selectedColor;
 
   /**
   * MenuModel のコンストラクタ
+  * 良好（2017年5月20日）
   * @param aSpiroModel スピログラフのモデル
-  **/
+  */
   public MenuModel(SpiroModel aSpiroModel)
   {
     super();
@@ -52,8 +56,9 @@ public class MenuModel extends Model
 
   /**
   * スピログラフの選択されている色を格納する
+  * 良好（2017年5月20日）
   * @param aColor 選択色
-  **/
+  */
   public void setSelectedColor(Color aColor)
   {
     selectedColor = aColor;
@@ -62,12 +67,17 @@ public class MenuModel extends Model
 
   /**
   * 選択されている色を応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Color getSelectedColor()
   {
     return selectedColor;
   }
 
+  /**
+  * ダイアログが表示できるかを応答する
+  * 良好（2017年5月20日）
+  */
   public boolean showDialogEnabled()
   {
     return spiroModel.isStop();
@@ -75,8 +85,9 @@ public class MenuModel extends Model
 
   /**
   * セーブ指示メソッド
+  * 良好（2017年5月20日）
   * @param aFileName ファイル名
-  **/
+  */
   public void save(File aFile)
   {
     spiroFile.save(spiroModel,aFile);
@@ -85,8 +96,9 @@ public class MenuModel extends Model
 
   /**
   * ロード指示メソッド
+  * 良好（2017年5月20日）
   * @param aFile ロードするファイル
-  **/
+  */
   public void load(File aFile)
   {
     try {

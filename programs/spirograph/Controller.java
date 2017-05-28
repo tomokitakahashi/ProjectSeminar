@@ -15,15 +15,19 @@ public class Controller extends MouseInputAdapter
 {
 	/**
 	 * 情報を握っているModelのインスタンスを束縛する。
+	 * G_02 高橋 追記:
+	 *  Modelをシリアライズさせないためにtransientを追加、保存するファイルの可視性のため
 	 * 良好（2010年7月25日）
 	 */
-	protected Model model;
+	protected transient Model model;
 
 	/**
 	 * 表示を司るViewのインスタンスを束縛する。
+	 * G_02 高橋 追記:
+	 *  Viewをシリアライズさせないためにtransientを追加、保存するファイルの可視性のため
 	 * 良好（2010年7月25日）
 	 */
-	protected View view;
+	protected transient View view;
 
 	/**
 	 * 以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
