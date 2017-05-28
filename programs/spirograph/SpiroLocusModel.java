@@ -9,17 +9,20 @@ public class SpiroLocusModel extends Object
 {
   /**
   * 鉛筆によって描かれた座標値を格納しておくリスト
-  **/
+  * 良好（2017年5月20日）
+  */
   private ArrayList<Point2D.Double> locusList;
 
   /**
   * 軌跡の色を格納しておくリスト
-  **/
+  * 良好（2017年5月20日）
+  */
   private ArrayList<Color> locusColorList;
 
   /**
   * SpiroLocusModelのコンストラクタ
-  **/
+  * 良好（2017年5月20日）
+  */
   public SpiroLocusModel()
   {
     locusList = new ArrayList<Point2D.Double>();
@@ -28,7 +31,8 @@ public class SpiroLocusModel extends Object
 
   /**
   * 軌跡の座標値リストを応答するメソッド
-  **/
+  * 良好（2017年5月20日）
+  */
   public ArrayList<Point2D.Double> locusList()
   {
     return locusList;
@@ -36,7 +40,8 @@ public class SpiroLocusModel extends Object
 
   /**
   * 色のリストを応答するメソッド
-  **/
+  * 良好（2017年5月20日）
+  */
   public ArrayList<Color> locusColorList()
   {
     return locusColorList;
@@ -44,7 +49,8 @@ public class SpiroLocusModel extends Object
 
   /**
   * 座標リストが空かどうかを応答する
-  **/
+  * 良好（2017年5月20日）
+  */
   public Boolean isEmpty()
   {
     return locusList.size() == 0;
@@ -52,7 +58,8 @@ public class SpiroLocusModel extends Object
 
   /**
   * 軌跡データ全てをクリアする
-  **/
+  * 良好（2017年5月20日）
+  */
   public void clear()
   {
     locusList.clear();

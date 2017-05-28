@@ -18,8 +18,9 @@ public class MenuView extends View
 {
   /**
   *  MenuViewのコンストラクタ
+  * 良好（2017年5月20日）
   * @param aMenuModel メニューモデル
-  **/
+  */
   public MenuView(MenuModel aMenuModel)
   {
     super(aMenuModel);
@@ -31,9 +32,10 @@ public class MenuView extends View
 
   /**
   * MenuViewのコンストラクタ
+  * 良好（2017年5月20日）
   * @param aMenuModel メニューモデル
   * @param aMenuController メニューコントローラ
-  **/
+  */
   public MenuView(MenuModel aMenuModel, MenuController aMenuController)
   {
     super(aMenuModel,aMenuController);
@@ -42,10 +44,12 @@ public class MenuView extends View
     controller = aMenuController;
     return;
   }
+
   /**
   * Componentを表示させるためのメソッド
+  * 良好（2017年5月20日）
   * @param aGraphics グラフィックス・コンテキスト
-  **/
+  */
   @Override
   public void paintComponent(Graphics aGraphics)
   {
@@ -74,7 +78,8 @@ public class MenuView extends View
 
   /**
   * ロード用のダイアログ表示
-  **/
+  * 良好（2017年5月20日）
+  */
   public File showLoadDialog()
   {
     JFileChooser fileChooser = new JFileChooser();
@@ -89,7 +94,8 @@ public class MenuView extends View
 
   /**
   * セーブ用のダイアログ表示
-  **/
+  * 良好（2017年5月20日）
+  */
   public File showSaveDialog()
   {
     JFileChooser fileChooser = new JFileChooser();
@@ -102,7 +108,10 @@ public class MenuView extends View
     return null;
   }
 
-  // 追加
+  /**
+  * MenuModelを応答する
+  * 良好（2017年5月20日）
+  */
   public MenuModel getMenuModel()
   {
     if(model instanceof MenuModel)
@@ -112,6 +121,10 @@ public class MenuView extends View
     return null;
   }
 
+  /**
+  * MenuControllerを応答する
+  * 良好（2017年5月20日）
+  */
   public MenuController getMenuController()
   {
     if(controller instanceof MenuController)

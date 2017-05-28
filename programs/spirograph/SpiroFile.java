@@ -30,9 +30,10 @@ public class SpiroFile extends Object {
 
   /**
   * セーブメソッド
+  * 良好（2017年5月20日）
   * @param aSpiroModel スピロモデル
   * @param aFile セーブファイル
-  **/
+  */
   public void save(SpiroModel aSpiroModel,File aFile)
   {
     SpurModel spurModel = aSpiroModel.getSpurModel();
@@ -89,9 +90,10 @@ public class SpiroFile extends Object {
 
   /**
   * ファイル読み込み用
+  * 良好（2017年5月20日）
   * @param aSpiroModel 現在使われているSpiroModel
   * @param aFile 選択されたファイル
-  **/
+  */
   public SpiroModel load(SpiroModel aSpiroModel,File aFile) throws SAXException, IOException, ParserConfigurationException
   {
 		Document document = this.createDocumentBuilder().parse(aFile.getPath());
@@ -126,9 +128,10 @@ public class SpiroFile extends Object {
 
   /**
   * 軌跡をロードするモデル
+  * 良好（2017年5月20日）
   * @param aSpiroLocusModel 軌跡モデル
   * @param aNode ロードするノード
-  **/
+  */
   private SpiroLocusModel loadLocusModel(SpiroLocusModel aSpiroLocusModel,Node aNode)
   {
     aSpiroLocusModel.clear();
@@ -152,9 +155,10 @@ public class SpiroFile extends Object {
 
   /**
   * スピロモデルをロードするメソッド
+  * 良好（2017年5月20日）
   * @param aSpiroModel スピロモデル
   * @param aNode ロードするノード
-  **/
+  */
   private SpiroModel loadSpiroModel(SpiroModel aSpiroModel,Node aNode)
   {
     NodeList aNodeList = aNode.getChildNodes();
@@ -180,6 +184,12 @@ public class SpiroFile extends Object {
     return aSpiroModel;
   }
 
+  /**
+  * ギアをロードするメソッド
+  * 良好（2017年5月20日）
+  * @param aSpiroModel ギアモデル
+  * @param aNode ロードするノード
+  */
   private GearModel loadGearModel(GearModel aGearModel,Node aNode)
   {
     NodeList aNodeList = aNode.getChildNodes();
@@ -231,6 +241,11 @@ public class SpiroFile extends Object {
     return aGearModel;
   }
 
+  /**
+  * 座標をロードするメソッド
+  * 良好（2017年5月20日）
+  * @param aNode ロードするノード
+  */
   private Point2D.Double loadCoodinate(Node aNode)
   {
     NodeList list = aNode.getChildNodes();
@@ -261,8 +276,9 @@ public class SpiroFile extends Object {
 
   /**
   * ドキュメントインスタンスの生成
+  * 良好（2017年5月20日）
   * MEMO: 例外処理のため別メソッドにしている
-  **/
+  */
   private DocumentBuilder createDocumentBuilder()
   {
     DocumentBuilder documentBuilder = null;
@@ -277,10 +293,11 @@ public class SpiroFile extends Object {
 
   /**
   * ギアのデータのXMLを生成するメソッド
+  * 良好（2017年5月20日）
   * @param aDocument ドキュメント
   * @param gearElement ギア要素
   * @param aGearModel 格納したいギアのモデル
-  **/
+  */
   private void createGearXML(Document aDocument,Element gearElement,GearModel aGearModel)
   {
     // For CenterCoodinate
@@ -318,9 +335,10 @@ public class SpiroFile extends Object {
 
   /**
   * 描画済みの軌跡データのXMLを生成するメソッド
+  * 良好（2017年5月20日）
   * @param aDocument ドキュメント
   * @param parent 親ノードの要素
-  **/
+  */
   private void createLocusXML(Document aDocument,Element parent, SpiroLocusModel aSpiroLocus)
   {
 
@@ -345,9 +363,10 @@ public class SpiroFile extends Object {
 
   /**
   * XMLファイルに出力するメソッド
+  * 良好（2017年5月20日）
   * @param file 書き込みファイル
   * @param document 生成ドキュメント
-  **/
+  */
   private static boolean write(File file, Document document) {
      // Transformerインスタンスの生成
      Transformer transformer = null;

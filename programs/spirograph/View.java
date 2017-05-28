@@ -14,12 +14,15 @@ public class View extends JPanel
 	/**
 	 * 情報を握っているModelのインスタンスを束縛する。
 	 * 束縛されるModelのインスタンスはpicture()というメッセージに応答できなければならない。
+	 * * G_02 高橋 追記:
+	 *  Modelをシリアライズさせないためにtransientを追加、保存するファイルの可視性のため
 	 * 良好（2010年7月25日）
 	 */
 	protected transient Model model;
 
 	/**
 	 * 制御を司るControllerのインスタンスを束縛する。
+	 * transient
 	 * 良好（2010年7月25日）
 	 */
 	protected transient Controller controller;
