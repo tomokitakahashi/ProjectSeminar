@@ -53,13 +53,12 @@ public class MenuView extends View
     panel.setLayout(null);
     Dimension aMenuViewSize = this.getSize();
     panel.setBounds(0,0,aMenuViewSize.width,aMenuViewSize.height);
-    MenuModel menuModel = this.getMenuModel();
     MenuController menuController = this.getMenuController();
-    Integer bottonCount = 7;
-    for (Integer index = 0;index < menuModel.getButtonTitleList().size() ;index++ ) {
-      String aTitle = menuModel.getButtonTitleList().get(index);
+    Integer buttonCount = SpiroConstruct.BUTTON_TITLES.length;
+    for (Integer index = 0;index < buttonCount ;index++ ) {
+      String aTitle = SpiroConstruct.BUTTON_TITLES[index];
       Integer width = aMenuViewSize.width - SpiroConstruct.MENU_BUTTON_MARGIN * 2;
-      Integer height =  (aMenuViewSize.height - SpiroConstruct.MENU_BUTTON_MARGIN*(bottonCount+1))/bottonCount;
+      Integer height =  (aMenuViewSize.height - SpiroConstruct.MENU_BUTTON_MARGIN*(buttonCount+1))/buttonCount;
       JButton aButton = new JButton(aTitle);
       aButton.setBounds(SpiroConstruct.MENU_BUTTON_MARGIN,
                         SpiroConstruct.MENU_BUTTON_MARGIN + index*(height+SpiroConstruct.MENU_BUTTON_MARGIN),

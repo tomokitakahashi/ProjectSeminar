@@ -16,13 +16,13 @@ public class View extends JPanel
 	 * 束縛されるModelのインスタンスはpicture()というメッセージに応答できなければならない。
 	 * 良好（2010年7月25日）
 	 */
-	protected Model model;
+	protected transient Model model;
 
 	/**
 	 * 制御を司るControllerのインスタンスを束縛する。
 	 * 良好（2010年7月25日）
 	 */
-	protected Controller controller;
+	protected transient Controller controller;
 
 	/**
 	 * スクロール量としてPointのインスタンスを束縛する。

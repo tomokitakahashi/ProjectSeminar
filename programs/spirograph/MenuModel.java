@@ -33,11 +33,6 @@ public class MenuModel extends Model
   private SpiroFile spiroFile;
 
   /**
-  * メニューに表示させるタイトルリスト
-  **/
-  private ArrayList<String> buttonTitleList;
-
-  /**
   * スピログラフの軌跡の色を保持しておく
   **/
   private Color selectedColor;
@@ -52,17 +47,6 @@ public class MenuModel extends Model
     selectedColor = Color.black;
     spiroModel = aSpiroModel;
     spiroFile = new SpiroFile();
-    buttonTitleList = new ArrayList<String>() {
-      {
-        add("Start");
-        add("Stop");
-        add("Save");
-        add("Load");
-        add("Clear");
-        add("Position");
-        add("Rainbow");
-      }
-    };
     return;
   }
 
@@ -87,14 +71,6 @@ public class MenuModel extends Model
   public boolean showDialogEnabled()
   {
     return spiroModel.isStop();
-  }
-
-  /**
-  * 表示するボタンのタイトルリストを応答する
-  **/
-  public ArrayList<String> getButtonTitleList()
-  {
-    return buttonTitleList;
   }
 
   /**

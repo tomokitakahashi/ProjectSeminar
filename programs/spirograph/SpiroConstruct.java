@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SpiroConstruct {
   public static final Integer MENU_BUTTON_MARGIN = 10;
@@ -30,4 +32,7 @@ public class SpiroConstruct {
 
   // 色とりどりにする際の初期値
   public static final Color RGB_INIT_COLOR = new Color(255,0,0);
+
+  // package protected
+  static final String BUTTON_TITLES[] = { "Start","Stop","Save","Load","Clear","Position","Rainbow"};
 }
