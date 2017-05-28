@@ -34,7 +34,6 @@ public class SpurModel extends GearModel
   @Override
   public void judgePressArea(Point aPoint)
   {
-    previousCenterCoodinate = centerCoodinate;
     radiusAbjustEnabled = this.validateAroundTapArea(aPoint);
     centerMoveEnabled = this.validateCenterTapArea(aPoint);
     return;

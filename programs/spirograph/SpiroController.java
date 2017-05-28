@@ -7,7 +7,8 @@ public class SpiroController extends Controller implements MenuActionListener
 {
   /**
   * スピロコントローラーのコンストラクタ
-  **/
+  * 良好（2017年5月20日)
+  */
   public SpiroController()
   {
     super();
@@ -16,8 +17,9 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * マウスドラッグのゲッター
+  * 良好（2017年5月20日)
   * @param aMouseEvent マウスイベント
-  **/
+  */
   @Override
   public void mouseDragged(MouseEvent aMouseEvent)
   {
@@ -28,8 +30,9 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * マウスプレスのゲッター
+  * 良好（2017年5月20日)
   * @param aMouseEvent マウスイベント
-  **/
+  */
   @Override
   public void mousePressed(MouseEvent aMouseEvent)
 	{
@@ -39,8 +42,9 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * マウスリリースのゲッター
+  * 良好（2017年5月20日)
   * @param aMouseEvent マウスイベント
-  **/
+  */
   @Override
   public void mouseReleased(MouseEvent aMouseEvent)
   {
@@ -50,7 +54,8 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * アニメーションスタートのゲッター
-  **/
+  * 良好（2017年5月20日)
+  */
   public void animationStart()
   {
     System.out.println("animationStart");
@@ -61,7 +66,8 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * アニメーションストップのゲッター
-  **/
+  * 良好（2017年5月20日)
+  */
   public void animationStop()
   {
     this.getSpiroModel().setStop(true);
@@ -70,8 +76,9 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * カラー変更のセッター
+  * 良好（2017年5月22日)
   * @param aColor カラー
-  **/
+  */
   public void changedColor(Color aColor)
   {
     this.getSpiroModel().setSpiroRainbowColor(false);
@@ -81,7 +88,8 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * スピログラフの色が虹色に設定された時のメソッド
-  **/
+  * 良好（2017年5月26日)
+  */
   public void changeColorRainbow()
   {
     this.getSpiroModel().setSpiroRainbowColor(true);
@@ -90,7 +98,8 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * 内接・外接の変更ゲッター
-  **/
+  * 良好（2017年5月23日)
+  */
   public void changedPosition()
   {
     if(!this.getSpiroModel().isStop()) return;
@@ -100,7 +109,8 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * クリアのゲッター
-  **/
+  * 良好（2017年5月20日)
+  */
   public void clear()
   {
     if(!this.getSpiroModel().isStop()) return;
@@ -110,19 +120,27 @@ public class SpiroController extends Controller implements MenuActionListener
 
   /**
   * スピロモデルを応答するメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   private SpiroModel getSpiroModel()
   {
-    SpiroModel spiroModel = (SpiroModel)model;
-    return spiroModel;
+    if(model instanceof SpiroModel)
+    {
+      return (SpiroModel)model;
+    }
+    return null;
   }
 
   /**
   * スピロビューを応答するメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   private SpiroView getSpiroView()
   {
-    SpiroView spiroView = (SpiroView)view;
-    return spiroView;
+    if(view instanceof SpiroView)
+    {
+      return (SpiroView)view;
+    }
+    return null;
   }
 }

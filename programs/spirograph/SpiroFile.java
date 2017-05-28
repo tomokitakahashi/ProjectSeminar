@@ -29,21 +29,6 @@ import java.awt.geom.Point2D;
 public class SpiroFile extends Object {
 
   /**
-  * メニューモデル
-  **/
-  private MenuModel menuModel;
-
-  /**
-  * SpiroFileのコンストラクタ
-  * @param aMenuModel メニューモデル
-  **/
-  public SpiroFile(MenuModel aMenuModel)
-  {
-    menuModel = aMenuModel;
-    return;
-  }
-
-  /**
   * セーブメソッド
   * @param aSpiroModel スピロモデル
   * @param aFile セーブファイル
@@ -156,7 +141,7 @@ public class SpiroFile extends Object {
         if(childNode.getNodeName().equals("coodinate"))
         {
           NamedNodeMap colorAttributes = childNode.getAttributes();
-          int colorInt = Integer.valueOf(colorAttributes.getNamedItem("color").getNodeValue());
+          int colorInt = Integer.parseInt(colorAttributes.getNamedItem("color").getNodeValue());
           aSpiroLocusModel.locusList().add(this.loadCoodinate(childNode));
           aSpiroLocusModel.locusColorList().add(new Color(colorInt));
         }

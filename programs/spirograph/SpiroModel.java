@@ -9,56 +9,59 @@ public class SpiroModel extends Model
 {
   /**
   * 虹色に設定するためのフラグ
-  **/
+  * 良好（2017年5月24日)
+  */
   private Boolean isRainbow;
 
   /**
   * Viewのアニメーションが止まっているかの状態保存
-  **/
-  public Boolean isStop;
+  * 良好（2017年5月20日)
+  */
+  private Boolean isStop;
 
   /**
   * スピログラフで描かれた軌跡モデル
+  * 良好（2017年5月20日)
   **/
   private SpiroLocusModel spiroLocusModel;
 
   /**
   * スピログラフのスパーギアモデル
+  * 良好（2017年5月20日)
   */
   private SpurModel spurModel;
 
   /**
   * スピログラフのピニオンモデル
-  **/
+  * 良好（2017年5月20日)
+  */
   private PinionModel pinionModel;
 
   /**
   * 軸線の角度
-  **/
+  * 良好（2017年5月20日)
+  */
   private double axisDegree;
 
   /**
   * ギア同士の距離
-  **/
+  * 良好（2017年5月20日)
+  */
   private double gearDistance;
 
   /**
-  * メニューのモデル (セーブなどは)
-  **/
-  private MenuModel menuModel;
-
-  /**
   * スピログラフの選択色
-  **/
+  * 良好（2017年5月20日)
+  */
   private Color selectedColor;
 
   /**
   * SpiroModelのコンストラクタ
-  **/
+  * 良好（2017年5月20日)
+  */
   public SpiroModel()
   {
     super();
-    menuModel = null;
     spiroLocusModel = new SpiroLocusModel();
     spurModel = new SpurModel(SpiroConstruct.SPIRO_WINDOW_CENTER,SpiroConstruct.SPUR_RADIUS);
     pinionModel = new PinionModel(SpiroConstruct.PINION_CENTER,SpiroConstruct.PINION_RADIUS);
@@ -72,7 +75,8 @@ public class SpiroModel extends Model
 
   /**
   * ピニオンギアのモデルを応答する
-  **/
+  * 良好（2017年5月20日)
+  */
   public PinionModel getPinionModel()
   {
     return pinionModel;
@@ -80,17 +84,22 @@ public class SpiroModel extends Model
 
   /**
   * ピニオンギアのモデルをセットする
+  * 良好（2017年5月20日)
   * @param aGearModel ギアモデル
-  **/
+  */
   public void setPinionModel(GearModel aGearModel)
   {
-    pinionModel = (PinionModel)aGearModel;
+    if(aGearModel instanceof PinionModel)
+    {
+      pinionModel = (PinionModel)aGearModel;
+    }
     return;
   }
 
   /**
   * スパーギアのモデルを応答
-  **/
+  * 良好（2017年5月20日)
+  */
   public SpurModel getSpurModel()
   {
     return spurModel;
@@ -98,17 +107,22 @@ public class SpiroModel extends Model
 
   /**
   * スパーギアのモデルをセットする
+  * 良好（2017年5月20日)
   * @param aGearModel ギアモデル
-  **/
+  */
   public void setSpurModel(GearModel aGearModel)
   {
-    spurModel = (SpurModel)aGearModel;
+    if(aGearModel instanceof SpurModel)
+    {
+      spurModel = (SpurModel)aGearModel;
+    }
     return;
   }
 
   /**
   * スピロモデルの軌跡モデルを応答する
-  **/
+  * 良好（2017年5月20日)
+  */
   public SpiroLocusModel getSpiroLocusModel()
   {
     return spiroLocusModel;
@@ -116,8 +130,9 @@ public class SpiroModel extends Model
 
   /**
   * スピロモデルの軌跡モデルをセットする
+  * 良好（2017年5月20日)
   * @param aSpiroLocusModel 軌跡モデル
-  **/
+  */
   public void setSpiroLocusModel(SpiroLocusModel aSpiroLocusModel)
   {
     spiroLocusModel = aSpiroLocusModel;
@@ -126,7 +141,8 @@ public class SpiroModel extends Model
 
   /**
   * 角度を応答する
-  **/
+  * 良好（2017年5月20日)
+  */
   public double degree()
   {
     return axisDegree;
@@ -134,7 +150,8 @@ public class SpiroModel extends Model
 
   /**
   * 角度を増やす
-  **/
+  * 良好（2017年5月20日)
+  */
   public void setDegree()
   {
     axisDegree += 0.1;
@@ -143,8 +160,9 @@ public class SpiroModel extends Model
 
   /**
   * 軸角度をセットする
+  * 良好（2017年5月20日)
   * @param newDegree 新しい角度
-  **/
+  */
   public void axisDegree(double newDegree)
   {
     axisDegree = newDegree;
@@ -153,7 +171,8 @@ public class SpiroModel extends Model
 
   /**
   * ギア同士の距離を応答する
-  **/
+  * 良好（2017年5月20日)
+  */
   public double gearDistance()
   {
     return gearDistance;
@@ -161,7 +180,8 @@ public class SpiroModel extends Model
 
   /**
   * ギア同士の距離をセットする
-  **/
+  * 良好（2017年5月20日)
+  */
   public void gearDistance(double newDistance)
   {
     gearDistance = newDistance;
@@ -169,9 +189,10 @@ public class SpiroModel extends Model
   }
 
   /**
-  * アニメーションを止めるメソッド
+  * アニメーションと停止、開始をセットする
+  * 良好（2017年5月20日)
   * @param aBool 真偽
-  **/
+  */
   public void setStop(Boolean aBool)
   {
     if (aBool)
@@ -185,8 +206,9 @@ public class SpiroModel extends Model
   }
 
   /**
-  * アニメーションが止まっているかを応答するメソッド
-  **/
+  * アニメーションが止まっているかを応答する
+  * 良好（2017年5月20日)
+  */
   public Boolean isStop()
   {
     return isStop;
@@ -194,7 +216,8 @@ public class SpiroModel extends Model
 
   /**
   * リスタートした時に再設定するメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   public void restartModel()
   {
     pinionModel.restart(gearDistance);
@@ -203,7 +226,8 @@ public class SpiroModel extends Model
 
   /**
   * 内接・外接を切り替えた時に呼ばれるメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   public void changePinionPosition()
   {
     this.updateGearDistance();
@@ -212,9 +236,11 @@ public class SpiroModel extends Model
     return;
   }
 
-  /**アニメーションでモデルを更新するメソッド
+  /**
+  * アニメーションでモデルを更新するメソッド
   * MEMO: 色、軌跡のデータ更新
-  **/
+  * 良好（2017年5月20日)
+  */
   public void updateByAnimation()
   {
     pinionModel.animationManager(Math.toRadians(axisDegree),gearDistance,spurModel.centerCoodinate());
@@ -235,8 +261,9 @@ public class SpiroModel extends Model
 
   /**
   * マウスプレスに応じてモデルを更新するメソッド
+  * 良好（2017年5月20日)
   * @param aPoint マウスポイント
-  **/
+  */
   public void updateByPress(Point aPoint)
   {
     if(!isStop) return;
@@ -247,8 +274,9 @@ public class SpiroModel extends Model
 
   /**
   * マウスドラッグに応じてモデルを更新するメソッド
+  * 良好（2017年5月20日)
   * @param aPoint マウスポイント
-  **/
+  */
   public void updateByDrag(Point aPoint)
   {
     if(!isStop) return;
@@ -260,8 +288,9 @@ public class SpiroModel extends Model
 
   /**
   * マウスリリースに応じてモデルを更新するメソッド
+  * 良好（2017年5月20日)
   * @param aPoint マウスポイント
-  **/
+  */
   public void updateByRelease(Point aPoint)
   {
     if(!isStop) return;
@@ -272,7 +301,8 @@ public class SpiroModel extends Model
 
   /**
   * イベントによる最新の座標等を更新するメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   public void updateCurrent()
   {
     double radian = Math.toRadians(axisDegree);
@@ -284,7 +314,8 @@ public class SpiroModel extends Model
 
   /**
   * 最新のギア同士の距離を設定するメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   private void updateGearDistance()
   {
     double distanceX = (pinionModel.centerCoodinate().x - spurModel.centerCoodinate().x);
@@ -295,7 +326,8 @@ public class SpiroModel extends Model
 
   /**
   * 軌跡をクリアするメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   public void clearLocus()
   {
     spiroLocusModel.clear();
@@ -303,19 +335,9 @@ public class SpiroModel extends Model
   }
 
   /**
-  * MenuModelをセットするメソッド
-  * ファイルシステムに関する処理はMenuModel内で行うため
-  * SpiroModelとMenuModelは「関係」している必要がある
-  **/
-  public void setMenuModel(MenuModel aMenuModel)
-  {
-    menuModel = aMenuModel;
-    return;
-  }
-
-  /**
   * スピロビューのゲッター
-  **/
+  * 良好（2017年5月20日)
+  */
   public SpiroView getSpiroView()
   {
     return (SpiroView)dependents.get(0);
@@ -323,7 +345,8 @@ public class SpiroModel extends Model
 
   /**
   * スピログラフの色のゲッター
-  **/
+  * 良好（2017年5月20日)
+  */
   public Color getSpiroColor()
   {
     return selectedColor;
@@ -331,8 +354,9 @@ public class SpiroModel extends Model
 
   /**
   * スピログラフの色のセッター
+  * 良好（2017年5月20日)
   * @param aColor カラー
-  **/
+  */
   public void setSpiroColor(Color aColor)
   {
     selectedColor = aColor;
@@ -341,8 +365,9 @@ public class SpiroModel extends Model
 
   /**
   * 虹色に設定するためのセッター
+  * 良好（2017年5月20日)
   * @param aBool 真偽
-  **/
+  */
   public void setSpiroRainbowColor(Boolean aBool)
   {
     isRainbow = aBool;
@@ -351,10 +376,10 @@ public class SpiroModel extends Model
 
   /**
   * 現在の色が虹色かどうか応答するメソッド
-  **/
+  * 良好（2017年5月20日)
+  */
   public Boolean isRainbow()
   {
     return isRainbow;
   }
-
 }

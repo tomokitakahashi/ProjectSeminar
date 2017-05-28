@@ -181,7 +181,11 @@ public class MenuController extends Controller implements ActionListener, Change
   **/
   public MenuModel getMenuModel()
   {
-    return (MenuModel)model;
+    if(model instanceof MenuModel)
+    {
+      return (MenuModel)model;
+    }
+    return null;
   }
 
   /**
@@ -189,7 +193,11 @@ public class MenuController extends Controller implements ActionListener, Change
   **/
   public MenuView getMenuView()
   {
-    return (MenuView)view;
+    if(view instanceof MenuView)
+    {
+      return (MenuView)view;
+    }
+    return null;
   }
 
   /**

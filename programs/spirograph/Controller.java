@@ -11,7 +11,7 @@ import javax.swing.event.MouseInputAdapter;
 /**
  * コントローラ。制御まわりを専門に行う。
  */
-public class Controller extends MouseInputAdapter implements MouseWheelListener
+public class Controller extends MouseInputAdapter
 {
 	/**
 	 * 情報を握っているModelのインスタンスを束縛する。
@@ -188,7 +188,7 @@ public class Controller extends MouseInputAdapter implements MouseWheelListener
 		view.addMouseWheelListener(this);
 		return;
 	}
-	
+
 	/**
 	 * このインスタンスを文字列にして応答する。
 	 * @return 自分自身を表す文字列

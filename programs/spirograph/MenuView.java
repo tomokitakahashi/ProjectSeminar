@@ -53,8 +53,8 @@ public class MenuView extends View
     panel.setLayout(null);
     Dimension aMenuViewSize = this.getSize();
     panel.setBounds(0,0,aMenuViewSize.width,aMenuViewSize.height);
-    MenuModel menuModel = (MenuModel)model;
-    MenuController menuController = (MenuController)controller;
+    MenuModel menuModel = this.getMenuModel();
+    MenuController menuController = this.getMenuController();
     Integer bottonCount = 7;
     for (Integer index = 0;index < menuModel.getButtonTitleList().size() ;index++ ) {
       String aTitle = menuModel.getButtonTitleList().get(index);
@@ -99,6 +99,25 @@ public class MenuView extends View
     if(option == JFileChooser.APPROVE_OPTION)
     {
       return fileChooser.getSelectedFile();
+    }
+    return null;
+  }
+
+  // 追加
+  public MenuModel getMenuModel()
+  {
+    if(model instanceof MenuModel)
+    {
+      return (MenuModel)model;
+    }
+    return null;
+  }
+
+  public MenuController getMenuController()
+  {
+    if(controller instanceof MenuController)
+    {
+      return (MenuController)controller;
     }
     return null;
   }

@@ -51,8 +51,7 @@ public class MenuModel extends Model
     super();
     selectedColor = Color.black;
     spiroModel = aSpiroModel;
-    spiroFile = new SpiroFile(this);
-    spiroModel.setMenuModel(this);
+    spiroFile = new SpiroFile();
     buttonTitleList = new ArrayList<String>() {
       {
         add("Start");
