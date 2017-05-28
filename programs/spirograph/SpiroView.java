@@ -6,6 +6,19 @@ import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
+// import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JFileChooser;
+import javax.swing.JTextField;
+//import java.awt.FlowLayout;
+// import java.awt.Dimension;
+// import java.awt.Graphics;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.io.File;
 
 public class SpiroView extends View implements Runnable
 {
@@ -13,6 +26,7 @@ public class SpiroView extends View implements Runnable
   * スピロビューのコンストラクタ
   * @param aSpiroModel スピロモデル
   **/
+  
   public SpiroView(SpiroModel aSpiroModel)
   {
     super(aSpiroModel);
@@ -162,7 +176,11 @@ public class SpiroView extends View implements Runnable
   **/
   public SpiroModel getSpiroModel()
   {
-    SpiroModel spiroModel = (SpiroModel)model;
-    return spiroModel;
+    if(model instanceof SpiroModel)
+    {
+      return (SpiroModel)model;
+    }
+    return null;
   }
+
 }

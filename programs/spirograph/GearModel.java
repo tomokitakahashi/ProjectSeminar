@@ -25,11 +25,6 @@ abstract public class GearModel extends Object
   protected double previousRadius;
 
   /**
-  * アニメーションするために、前の中心座標を格納しておくプロパティ
-  **/
-  protected Point2D.Double previousCenterCoodinate;
-
-  /**
   * マウスイベントを取得する部分の座標を格納しておくArrayList
   **/
   protected ArrayList<Point2D.Double> tapAreaCoodinateList;
@@ -63,7 +58,6 @@ abstract public class GearModel extends Object
   {
     super();
     centerCoodinate = aCenterCoodinate;
-    previousCenterCoodinate = aCenterCoodinate;
     radius = aRadius;
     previousRadius = aRadius;
     radiusAbjustEnabled = false;

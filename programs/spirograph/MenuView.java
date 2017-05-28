@@ -53,13 +53,12 @@ public class MenuView extends View
     panel.setLayout(null);
     Dimension aMenuViewSize = this.getSize();
     panel.setBounds(0,0,aMenuViewSize.width,aMenuViewSize.height);
-    MenuModel menuModel = (MenuModel)model;
-    MenuController menuController = (MenuController)controller;
-    Integer bottonCount = 7;
-    for (Integer index = 0;index < menuModel.getButtonTitleList().size() ;index++ ) {
-      String aTitle = menuModel.getButtonTitleList().get(index);
+    MenuController menuController = this.getMenuController();
+    Integer buttonCount = SpiroConstruct.BUTTON_TITLES.length;
+    for (Integer index = 0;index < buttonCount ;index++ ) {
+      String aTitle = SpiroConstruct.BUTTON_TITLES[index];
       Integer width = aMenuViewSize.width - SpiroConstruct.MENU_BUTTON_MARGIN * 2;
-      Integer height =  (aMenuViewSize.height - SpiroConstruct.MENU_BUTTON_MARGIN*(bottonCount+1))/bottonCount;
+      Integer height =  (aMenuViewSize.height - SpiroConstruct.MENU_BUTTON_MARGIN*(buttonCount+1))/buttonCount;
       JButton aButton = new JButton(aTitle);
       aButton.setBounds(SpiroConstruct.MENU_BUTTON_MARGIN,
                         SpiroConstruct.MENU_BUTTON_MARGIN + index*(height+SpiroConstruct.MENU_BUTTON_MARGIN),
@@ -99,6 +98,25 @@ public class MenuView extends View
     if(option == JFileChooser.APPROVE_OPTION)
     {
       return fileChooser.getSelectedFile();
+    }
+    return null;
+  }
+
+  // 追加
+  public MenuModel getMenuModel()
+  {
+    if(model instanceof MenuModel)
+    {
+      return (MenuModel)model;
+    }
+    return null;
+  }
+
+  public MenuController getMenuController()
+  {
+    if(controller instanceof MenuController)
+    {
+      return (MenuController)controller;
     }
     return null;
   }

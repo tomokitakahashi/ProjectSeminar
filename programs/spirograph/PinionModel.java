@@ -199,7 +199,6 @@ public class PinionModel extends GearModel
   @Override
   public void judgePressArea(Point aPoint)
   {
-    previousCenterCoodinate = centerCoodinate;
     radiusAbjustEnabled = this.validateAroundTapArea(aPoint);
     pencilMoveEnabled = this.validatePencilTapArea(aPoint);
     return;
