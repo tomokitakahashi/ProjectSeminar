@@ -15,7 +15,7 @@ public class Example extends Object
 {
 	/**
 	 * メニュー画面、スピログラフ画面、色選択画面を生成し、表示させる。
-	 * MVCパアーンを適用しており、MenuControllerをSpiroControllerはデリゲートを用いてアクションの伝達を行っている。
+	 * MVCパターンを適用しており、MenuControllerをSpiroControllerはデリゲートを用いてアクションの伝達を行っている。
 	 * バグ（2017年5月20日）
 	 * バグ（2017年5月28日）
 	 * 修正（2017年5月29日）
