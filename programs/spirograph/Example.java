@@ -14,17 +14,12 @@ import javax.swing.SwingUtilities;
 public class Example extends Object
 {
 	/**
-	 * 画面をキャプチャして画像化し、ビューとコントローラの3つのペア
-	 *（MVC-1, MVC-2, MVC-3のウィンドウたち）から1つのモデルを観測している状態を作り出す。
-	 * その後、モデルの内容物を先ほどキャプチャした画像にして、
-	 * 自分が変化したと騒いだ瞬間、MVC-1, MVC-2, MVC-3のすべてのウィンドウが更新される。
-	 * そして、モデルの内容物をnull化して、自分が変化したと騒ぎ、すべてのウィンドウが空に更新される。
-	 * この過程を何回か繰り返すことで、MVC: Model-View-Controller（Observerデザインパターン）が
-	 * きちんと動いているかを確かめる例題プログラムである。
+	 * メニュー画面、スピログラフ画面、色選択画面を生成し、表示させる。
+	 * MVCパアーンを適用しており、MenuControllerをSpiroControllerはデリゲートを用いてアクションの伝達を行っている。
+	 * バグ（2017年5月20日）
+	 * バグ（2017年5月28日）
+	 * 修正（2017年5月29日）
 	 * @param arguments 引数の文字列の配列
-	 * バグ（2010年7月25日）
-	 * 良好（2010年7月25日）
-	 * 修正（2015年10月16日）
 	 */
 	public static void main(String[] arguments)
 	{
@@ -84,7 +79,7 @@ public class Example extends Object
 		// JColorChooserをMenuControllerに登録
 		aMenuController.setColorChooser(colorchooser);
 
-		// Swingのコーディング規約によってshow()が非推奨となり
+		// Swingのコーディング規約によってshow()が非推奨となり(setVisibleでshowを駆動させている)、
 		// invokeLaterを用いてsetVisible(true)を実行することを推奨しているため
 		SwingUtilities.invokeLater(new Runnable()
 		{
