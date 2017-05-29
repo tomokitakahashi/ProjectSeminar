@@ -170,7 +170,7 @@ public class MenuController extends Controller implements ActionListener, Change
   }
 
   /**
-  * スピログラフの色を虹色に設定したときのアクション
+  * スピログラフの色を虹色に設定するボタンを押した時のアクション
   * 良好（2017年5月20日）
   */
   private void tappedRainbowButton()
@@ -182,7 +182,7 @@ public class MenuController extends Controller implements ActionListener, Change
   }
 
   /**
-  * 色が選択され設定色が変化した時に呼ばれるメソッド
+  * 色が選択されたときに呼ばれるメソッド
   * 良好（2017年5月20日）
   * @param aEvent イベント
   */
