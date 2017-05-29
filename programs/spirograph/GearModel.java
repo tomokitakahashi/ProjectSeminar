@@ -11,7 +11,7 @@ abstract public class GearModel extends Object
 {
   /**
   * ギアの中心座標
-  * 良好（2017年5月20日）  
+  * 良好（2017年5月20日）
   */
   protected Point2D.Double centerCoodinate;
 
@@ -95,7 +95,7 @@ abstract public class GearModel extends Object
   }
 
   /**
-  * タップした箇所が中心上であるかどうかを判断するメソッドe
+  * タップした箇所が中心上であるかどうかを判断するメソッド
   * 良好（2017年5月20日）
   * @param aPoint タップしたポイント
   */
@@ -125,7 +125,7 @@ abstract public class GearModel extends Object
   }
 
   /**
-  * タップエリアの描くべき座標を返却する
+  * タップエリアの描くべき座標を応答する
   * 良好（2017年5月20日）
   * @param index インデックス
   */
@@ -177,7 +177,7 @@ abstract public class GearModel extends Object
   }
 
   /**
-  ギアの中心座標を応答する
+  * ギアの中心座標を応答する
   * 良好（2017年5月20日）
   */
   public Point2D.Double centerCoodinate()
@@ -205,7 +205,7 @@ abstract public class GearModel extends Object
   }
 
   /**
-  * マウスカーソルリリースエベントによってモデルをアップデートするメソッド
+  * マウスカーソルリリースイベントによってモデルをアップデートするメソッド
   * 良好（2017年5月20日）
   * @param aPoint リリース位置
   */

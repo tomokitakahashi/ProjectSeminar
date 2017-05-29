@@ -12,7 +12,9 @@ public class Model extends Object
 {
 	/**
 	 * 依存物（Observerデザインパターンの観測者）：Viewのインスタンスたちを束縛する。
-	 * G_02追記: 依存物自体をシリアライズさせないためにtransientを追加
+	 * G_02 高橋 追記:
+	 *  依存物自体をシリアライズさせないためにtransientを追加、保存するファイルの可視性のため
+	 +
 	 * 良好（2010年7月25日）
 	 */
 	protected transient ArrayList<View> dependents;

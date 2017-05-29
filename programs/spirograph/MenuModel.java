@@ -78,7 +78,7 @@ public class MenuModel extends Model
   * ダイアログが表示できるかを応答する
   * 良好（2017年5月20日）
   */
-  public boolean showDialogEnabled()
+  public Boolean showDialogEnabled()
   {
     return spiroModel.isStop();
   }

@@ -11,7 +11,7 @@ public class PinionModel extends GearModel
   * 鉛筆の中心座標
   * 良好（2017年5月20日）
   **/
-  public Point2D.Double pencilCoodinate;
+  private Point2D.Double pencilCoodinate;
 
   /**
   * 鉛筆の角度 (鉛筆の回転角)
