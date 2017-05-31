@@ -20,6 +20,9 @@ import org.xml.sax.SAXException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+* メニュー用のモデル
+*/
 public class MenuModel extends Model
 {
   /**

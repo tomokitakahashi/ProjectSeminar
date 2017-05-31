@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import java.awt.Component;
 import java.io.File;
 
+/**
+* スピログラフのビュー
+*/
 public class SpiroView extends View implements Runnable
 {
   /**

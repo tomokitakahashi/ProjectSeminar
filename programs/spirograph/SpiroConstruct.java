@@ -8,6 +8,9 @@ import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+* このアプリの定数
+*/
 public class SpiroConstruct {
   /**
   * メニューボタンのマージン

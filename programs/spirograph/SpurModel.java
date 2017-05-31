@@ -4,6 +4,9 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.awt.Point;
 
+/**
+* スパーギアのモデル
+*/
 public class SpurModel extends GearModel
 {
   /**
