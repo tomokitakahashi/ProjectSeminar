@@ -25,7 +25,9 @@ import java.awt.Color;
 import java.io.File;
 import java.awt.geom.Point2D;
 
-
+/**
+* ファイルシステムにアクセスするためのクラス
+*/
 public class SpiroFile extends Object {
 
   /**

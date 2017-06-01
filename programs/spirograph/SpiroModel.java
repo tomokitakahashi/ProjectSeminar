@@ -5,6 +5,9 @@ import java.awt.geom.Point2D.Double;
 import java.awt.Point;
 import java.awt.Color;
 
+/**
+* スピログラフのモデル
+*/
 public class SpiroModel extends Model
 {
   /**

@@ -5,6 +5,9 @@ import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.awt.Point;
 
+/**
+* ピニオンギアのモデル
+*/
 public class PinionModel extends GearModel
 {
   /**

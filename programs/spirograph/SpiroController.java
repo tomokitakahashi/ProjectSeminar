@@ -3,6 +3,9 @@ package spirograph;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
+/**
+* スピロモデルのコントローラー
+*/
 public class SpiroController extends Controller implements MenuActionListener
 {
   /**

@@ -14,6 +14,9 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.io.File;
 
+/**
+* メニュー用のビュー
+*/
 public class MenuView extends View
 {
   /**
